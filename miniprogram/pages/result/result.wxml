@@ -1,4 +1,27 @@
 <!--miniprogram/pages/result/result.wxml-->
-<cu-custom bgImage="">
+<cu-custom bgImage="" style="background: linear-gradient(to right,#Ff9700,#Ed1c24);">
+  <view slot="content">
+  <image mode="widthFix" src="/images/result/return.svg" style="width:32rpx;height:32rpx;display:absolute;left:0px;"></image>
+  </view>
+  
 </cu-custom>
-<text>miniprogram/pages/result/result.wxml</text>
+<view class="result-search">
+  <text class="result-search-font">JavaScript</text>
+  <image src="/images/result/edit.svg" mode="widthFix" class="result-search-icon"></image>
+</view>
+
+<block wx:for="{{result_content}}" wx:for-item="item">
+<view class="bg-img bg-mask shadow-blur result-container text-white" style="background-image: url('/images/result/u=2399821824,1913911900&fm=26&gp=0.jpg');height: 414upx;">
+  <view>
+  <view class="result-position-salary">
+    <text class="result-position">{{item.title}}</text>
+    <!-- <text class="result-salary">15-25K</text> -->
+  </view>
+  <text class="result-companyInfo">教育背景：{{item.edu_back}}</text>
+  <text class="result-companyInfo">公司： {{item.company}}</text>
+  <text class="result-companyInfo">待遇：{{item.info}}</text>
+  <text class="result-companyLocation ">地点：{{item.province}} {{item.city}}</text>
+</view>
+</view>
+</block>
+
