@@ -9,7 +9,8 @@ exports.main = async (event, context) => {
   db.collection('t_url').add({
     data:{
       url: event.target_url,
-      state: 0
+      state: 0,
+      username: event.username
     },
     success: function (res) {
       return {
