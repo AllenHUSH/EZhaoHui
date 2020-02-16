@@ -9,7 +9,3 @@
     </navigator>
   </view>
 </view>
-<form bindsubmit="formSubmit">
-  <input name="url" placeholder="url" />
-  <button formType="submit">提交</button>
-</form>
