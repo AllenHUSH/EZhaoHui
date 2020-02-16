@@ -30,15 +30,9 @@ page{
   padding-right: 40rpx;
   border-radius: 5%;
 }
-.result-position-salary{
+.result-title{
   width: 100%;
   margin-top: 40rpx;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-}
-.result-position{
   display: block;
 	overflow: hidden;
   text-overflow: ellipsis;
@@ -46,14 +40,9 @@ page{
 	width:350px;
   font-size: 34rpx;
   font-weight: 600;
-  /* color:#333; */
+  /* color:white; */
 }
-/* .result-salary{
-  color: orange;
-  font-size: 30rpx;
-  letter-spacing: 1.5px;
-} */
-.result-companyInfo{
+.result-info{
   display: block;
 	overflow: hidden;
   text-overflow: ellipsis;
@@ -62,24 +51,8 @@ page{
   margin-top: 20rpx;
   font-size: 28rpx;
   letter-spacing: 1.2px;
-  color: white;
+  /* color:white; */
 }
-/* .result-needs{
-  margin-top: 20rpx;
-  display: flex;
-  flex-direction: row;
-}
-.result-needs-box{
-  background-color: #F8F8F8;
-  color: #333; 
-  margin-right: 15rpx;
-  padding:5rpx 10rpx 5rpx 10rpx;
-  border-radius: 10rpx;
-}
-.result-needs-font{
-  font-size: 28rpx;
-  letter-spacing: 1.2px;
-} */
 .result-companyLocation{
   margin-top: 20rpx;
   font-size: 28rpx;
@@ -90,4 +63,5 @@ page{
   text-overflow: ellipsis;
 	white-space: nowrap;
   width:250px;
+  /* color:white; */
 }

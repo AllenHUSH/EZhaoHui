@@ -5,23 +5,35 @@
   </view>
   
 </cu-custom>
+
 <view class="result-search">
   <text class="result-search-font">JavaScript</text>
   <image src="/images/result/edit.svg" mode="widthFix" class="result-search-icon"></image>
 </view>
 
 <block wx:for="{{result_content}}" wx:for-item="item">
-<view class="bg-img bg-mask shadow-blur result-container text-white" style="background-image: url('/images/result/u=2399821824,1913911900&fm=26&gp=0.jpg');height: 414upx;">
-  <view>
-  <view class="result-position-salary">
-    <text class="result-position">{{item.title}}</text>
-    <!-- <text class="result-salary">15-25K</text> -->
+
+  <view wx:if="{{item.picture!=''}}" class="bg-img bg-mask shadow-blur result-container text-white" style="background-image: url('{{item.picture}}');height: 414upx;">
+    <!-- 这是个坑bg-mask下面必须要是一个盒子，否则就会被mask遮住 -->
+    <view>
+      <text class="result-title">{{item.title}}</text>
+      <text class="result-info">教育背景：{{item.edu_back}}</text>
+      <text class="result-info">公司： {{item.company}}</text>
+      <text class="result-info">待遇：{{item.info}}</text>
+      <text class="result-companyLocation ">地点：{{item.province}} {{item.city}}</text>
+    </view>
   </view>
-  <text class="result-companyInfo">教育背景：{{item.edu_back}}</text>
-  <text class="result-companyInfo">公司： {{item.company}}</text>
-  <text class="result-companyInfo">待遇：{{item.info}}</text>
-  <text class="result-companyLocation ">地点：{{item.province}} {{item.city}}</text>
-</view>
-</view>
+
+  <view wx:else class="light {{item.color}} shadow-blur result-container text-white">
+    <!-- 这是个坑bg-mask下面必须要是一个盒子，否则就会被mask遮住 -->
+    <view>
+      <text class="result-title">{{item.title}}</text>
+      <text class="result-info">教育背景：{{item.edu_back}}</text>
+      <text class="result-info">公司： {{item.company}}</text>
+      <text class="result-info">待遇：{{item.info}}</text>
+      <text class="result-companyLocation ">地点：{{item.province}} {{item.city}}</text>
+    </view>
+  </view>
+
 </block>
 
