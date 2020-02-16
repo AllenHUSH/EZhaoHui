@@ -30,8 +30,7 @@ Page({
         icon: 'settingsfill'
       },
     ],
-    processedElements: [
-      {
+    processedElements: [{
         title: '推荐',
         name: 'icon',
         color: 'mauve',
@@ -74,8 +73,30 @@ Page({
         icon: 'loading2'
       },
     ],
+    url: ""
   },
-
+  formSubmit: function(e) {  
+    console.log('form发生了submit事件，携带数据为：', e.detail.value);  
+    let {
+      url
+    } = e.detail.value;  
+    this.setData({    
+      url
+    }) 
+    wx.cloud.callFunction({
+      // 要调用的云函数名称
+      name: 'insertUrl',
+      // 传递给云函数的event参数
+      data: {
+        target_url:this.data.url,
+        username:"as"
+      }
+    }).then(res => {
+      console.log(res) 
+    }).catch(err => {
+      console.log(err)
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

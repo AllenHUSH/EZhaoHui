@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/admin/admin_home/admin_home",
     "pages/index/index",
     "pages/about/about",
     "pages/result/result"
