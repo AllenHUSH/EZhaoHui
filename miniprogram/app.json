@@ -1,39 +1,40 @@
 {
-  "pages": [
-    "pages/index/index",
-    "pages/about/about",
-    "pages/result/result"
-  ],
-  "window": {
-    "backgroundColor": "#F6F6F6",
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "E招汇",
-    "navigationBarTextStyle": "black",
-    "navigationStyle": "custom"
-  },
-  "usingComponents": {
-    "cu-custom": "/colorui/components/cu-custom"
-  },
-  "sitemapLocation": "sitemap.json",
-  "style": "v2",
-  "tabBar": {
-    "color": "#a9b7b7",
-    "selectedColor": "#11cd6e",
-    "borderStyle": "white",
-    "list": [
-      {
-        "selectedIconPath": "images/tarbar_icon/index.png",
-        "iconPath": "images/tarbar_icon/index_un.png",
-        "pagePath": "pages/index/index",
-        "text": "首页"
-      },
-      {
-        "selectedIconPath": "images/tarbar_icon/about.png",
-        "iconPath": "images/tarbar_icon/about_un.png",
-        "pagePath": "pages/about/about",
-        "text": "关于"
-      }
-    ]
-  }
+	"pages": [
+		"pages/index/index",
+		"pages/about/about",
+		"pages/result/result"
+	],
+	"window": {
+		"backgroundColor": "#F6F6F6",
+		"backgroundTextStyle": "light",
+		"navigationBarBackgroundColor": "#F6F6F6",
+		"navigationBarTitleText": "E招汇",
+		"navigationBarTextStyle": "black",
+		"navigationStyle": "custom"
+	},
+	"usingComponents": {
+		"cu-custom": "/colorui/components/cu-custom",
+		"list":"/components/list/list"
+	},
+	"sitemapLocation": "sitemap.json",
+	"style": "v2",
+	"tabBar": {
+		"color": "#a9b7b7",
+		"selectedColor": "#11cd6e",
+		"borderStyle": "white",
+		"list": [
+			{
+				"selectedIconPath": "images/tarbar_icon/index.png",
+				"iconPath": "images/tarbar_icon/index_un.png",
+				"pagePath": "pages/index/index",
+				"text": "首页"
+			},
+			{
+				"selectedIconPath": "images/tarbar_icon/about.png",
+				"iconPath": "images/tarbar_icon/about_un.png",
+				"pagePath": "pages/about/about",
+				"text": "关于"
+			}
+		]
+	}
 }

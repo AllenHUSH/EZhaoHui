@@ -32,7 +32,7 @@ page{
 	width: 340rpx;
 	height: 80rpx;
 	text-align: center;
-	background-color: #f6f6f6;
+	background-color: #f3f3f3;
 	color: #0081ff;
 }
 .search .title .text2{
@@ -53,31 +53,4 @@ page{
 	height: 70rpx;
 	line-height: 70rpx;
 	border-radius: 10rpx;
-}
-.msg .item{
-	box-sizing: border-box;
-	position: relative;
-	margin: 37.5rpx auto;
-	padding: 25rpx 25rpx 50rpx;
-	width: 675rpx;
-	min-height: 210rpx;
-	background-color: #0081ff;
-	border-radius: 15rpx;
-}
-.msg .item .msg-info{
-	margin-top: 20rpx;
-	word-wrap: break-word;
-	line-height: 45rpx;
-	overflow: hidden;
-	text-overflow: ellipsis;
-}
-.msg .item .time{
-	position: absolute;
-	top: 25rpx;
-	right: 25rpx;
-}
-.msg .item .industry{
-	position: absolute;
-	bottom: 25rpx;
-	right: 25rpx;
 }

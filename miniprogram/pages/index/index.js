@@ -191,5 +191,6 @@ Page({
 		this.setData({
 			searchQuery:input
 		})
-	}
+	},
+	
 })
