@@ -1,15 +1,13 @@
 <!--miniprogram/pages/result/result.wxml-->
-<cu-custom bgImage="" style="background: linear-gradient(to right,#Ff9700,#Ed1c24);">
-  <view slot="content">
-  <image mode="widthFix" src="/images/result/return.svg" style="width:32rpx;height:32rpx;display:absolute;left:0px;"></image>
-  </view>
-  
+<cu-custom bgImage="" style="background: linear-gradient(to right,#Ff9700,#Ed1c24);" isBack="{{true}}">
+<view slot="backText" style="color:white;">返回</view>
+  <view slot="content" style="color:white;">E招会</view>
 </cu-custom>
 
-<view class="result-search">
-  <text class="result-search-font">JavaScript</text>
-  <image src="/images/result/edit.svg" mode="widthFix" class="result-search-icon"></image>
-</view>
+<!-- <view class="result-return" bind:tap="onTap">
+  <image src="/images/result/return.svg" mode="widthFix" class="result-return-icon"></image>
+  <text class="result-return-font">返回首页</text>
+</view> -->
 
 <block wx:for="{{result_content}}" wx:for-item="item">
 
