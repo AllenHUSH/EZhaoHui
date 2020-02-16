@@ -29,19 +29,16 @@ Page({
         color: 'mauve',
         icon: 'settingsfill'
       },
-    ],
-    processedElements: [{
-        title: '推荐',
-        name: 'icon',
-        color: 'mauve',
-        icon: 'icon'
-      },
       {
-        title: '按钮',
-        name: 'button',
+        title: '退出',
+        name: 'Exit',
         color: 'pink',
-        icon: 'btn'
-      },
+        icon: 'back',
+        url:"/pages/index/index",
+        type:"switchTab"
+      }
+    ],
+    processedElements: [
       {
         title: '标签',
         name: 'tag',
