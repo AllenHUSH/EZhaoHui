@@ -1,0 +1,18 @@
+<!--components/list/list.wxml-->
+<view class="msg">
+    <view 
+		class="item bg-gradual-blue radius shadow-blur" 
+		wx:for="{{list}}" wx:key="item"
+		bindtap="clickCopy"
+		data-src="https://mp.weixin.qq.com/s/LGoWHiOUr7VFK2R3IzLxMg"
+	>
+            <view class="title text-xl">{{item.company+'/'+item.work_name}}</view>
+            <!-- 公司名称/岗位名称 -->
+            <view class="msg-info">{{item.desc}}</view>
+            <!-- 简介 -->
+            <view class="time">{{'招聘时间：'+item.time}}</view>
+            <!-- 招聘时间 -->
+            <view class="industry">{{item.industry}}</view>
+            <!-- 行业 -->
+    </view>
+</view>
