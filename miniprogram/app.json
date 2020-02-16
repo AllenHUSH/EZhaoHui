@@ -2,8 +2,15 @@
   "pages": [
     "pages/index/index",
     "pages/about/about",
-    "pages/result/result",
-    "pages/admin/admin_home/admin_home"
+    "pages/result/result"
+  ],
+  "subpackages": [
+    {
+      "root": "packageAdmin",
+      "pages": [
+        "pages/admin_home/admin_home"
+      ]
+    }
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
