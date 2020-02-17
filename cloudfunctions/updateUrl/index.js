@@ -6,7 +6,7 @@ const db = cloud.database()
 // 云函数入口函数
 exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
-  db.collection('t_url').doc(event.id).update({
+  await db.collection('t_url').doc(event.id).update({
       data:{
         url: event.target_url,
         city: event.city,

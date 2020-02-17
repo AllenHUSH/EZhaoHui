@@ -88,12 +88,14 @@ Page({
       name: 'insertUrl',
       // 传递给云函数的event参数
       data: {
-        target_url:this.data.url,
+        target_url: this.data.url,
         username:"as"
       }
     }).then(res => {
+      console.log('hello!!!!'+res)
       console.log(res) 
     }).catch(err => {
+      console.log('error!!!!!!!!')
       console.log(err)
     })
   },
