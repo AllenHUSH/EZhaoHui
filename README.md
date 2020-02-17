@@ -1,12 +1,24 @@
-# 云开发 quickstart
+# Url对象及其属性（数据库中）
+|字段名字|name|描述|
+|--|--|--|
+|城市|city||
+|企业|company||
+|开始时间|creat_time||
+|结束时间|end_time||
+|备注|info||
+|图片地址|picture||
+|省区|province||
+|状态|state||
+|标题（职位名称）|title||
+|招聘连接|url||
+|创建用户|username||
 
-这是云开发的快速启动指引，其中演示了如何上手使用云开发的三大基础能力：
 
-- 数据库：一个既可在小程序前端操作，也能在云函数中读写的 JSON 文档型数据库
-- 文件存储：在小程序前端直接上传/下载云端文件，在云开发控制台可视化管理
-- 云函数：在云端运行的代码，微信私有协议天然鉴权，开发者只需编写业务逻辑代码
+# 接口
 
-## 参考文档
-
-- [云开发文档](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.html)
-
+|接口id|需要参数|说明|
+|--|--|--|
+|queryByState|state|按照state查询|
+|queryUrl|type,需要查询的值|查询|
+|updateUrl|必须id，更新的标签|各类更新，审核|
+||||
