@@ -6,11 +6,11 @@ Page({
    */
   data: {
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
     var arr = ["bg-red","bg-orange","bg-yellow",
 "bg-purple","bg-olive","bg-green","bg-cyan","bg-blue",
 "bg-brown"];
@@ -74,6 +74,7 @@ Page({
       }
     ]
     this.setData({result_content});
+
   },
 
   /**

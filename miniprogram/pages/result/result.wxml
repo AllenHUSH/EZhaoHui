@@ -1,4 +1,5 @@
 <!--miniprogram/pages/result/result.wxml-->
+
 <cu-custom bgImage="" bgColor="bg-gradual-orange" isBack="{{true}}">
 <view slot="backText" style="color:white;">返回</view>
   <view slot="content" style="color:white;">E招会</view>
@@ -6,4 +7,3 @@
 <block wx:for="{{result_content}}" wx:for-item="item">
 <card iscolor="{{item.iscolor}}" color="{{item.color}}" picture="{{item.picture}}" city="{{item.city}}" company="{{item.company}}" edu_back="{{item.edu_back}}" info="{{item.info}}" province="{{item.province}}" title="{{item.title}}" url="{{item.url}}"></card>
 </block>
-

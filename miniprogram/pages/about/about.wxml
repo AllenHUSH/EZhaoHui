@@ -1,5 +1,18 @@
 <!--miniprogram/pages/about/about.wxml-->
-<cu-custom  bgColor="bg-gradual-pink" bgImage="">
-	<view slot="content">E招汇</view>
-</cu-custom>
-<text>miniprogram/pages/about/about.wxml</text>
+<view class="wrap">
+  <view class="container">
+    <image src="../../images/nav_about.png" class="background" mode="widthFix"></image>
+    <!-- <text>miniprogram/pages/about/about.wxml</text> -->
+    <view class="userinfo-avatar">
+      <open-data default-avatar="../../images/tarbar_icon/about.png" type="userAvatarUrl" class="touxiang"></open-data>
+    </view>
+    <open-data default-text="请完成授权" type="userNickName" class="nick"></open-data>
+    <view class="kuang">
+      <input class="link text-center" placeholder="分享你的咨询链接" placeholder-style="color: #fff; font-size: 16px;"></input>
+    </view>
+    <view class="go" bindtap="bindtest">GO</view>
+    <view class="houtai"><navigator open-type="redirect"  url="/packageAdmin/pages/home/home">后台管理</navigator></view>
+     <button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" wx:if="{{condition}}">授权登录</button>
+     <!-- <view wx:else>请升级微信版本</view> -->
+  </view>
+</view>
