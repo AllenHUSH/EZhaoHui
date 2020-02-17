@@ -1,0 +1,15 @@
+<!--miniprogram/pages/admin/admin_home/admin_home.wxml-->
+<image style="width:100%;" mode="widthFix" src="../../../images/nav_admin.png"></image>
+<view class="main-box">
+  <view class='nav-list'>
+    <navigator open-type="navigate" hover-class='none' url="/pages/basics/{{item.name}}/{{item.name}}" class="nav-li bg-{{item.color}}" wx:for="{{elements}}" wx:key>
+      <view class="nav-title">{{item.title}}</view>
+      <view class="nav-name">{{item.name}}</view>
+      <text class='cuIcon-{{item.icon}}'></text>
+    </navigator>
+  </view>
+</view>
+<form bindsubmit="formSubmit">
+  <input name="url" placeholder="url" />
+  <button formType="submit">提交</button>
+</form>
