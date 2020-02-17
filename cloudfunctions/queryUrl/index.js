@@ -6,7 +6,7 @@ const db = cloud.database()
 
 // 云函数入口函数
 exports.main = async (event, context) => {
-  /*if(event.type == 'all'){
+  if(event.type == 'all'){
     return await db.collection('t_url').get()
   }else if(event.type == 'city'){
     return await db.collection('t_url').where({
@@ -114,48 +114,49 @@ exports.main = async (event, context) => {
         return res.data
       }
     })
-  }*/
-  return await db.collection('t_url').where(db.command.or([{
-    city: db.RegExp({
-      regexp: '.*' + event.city,
-      options: 'i',
-    })
-  },
-  {
-    company: db.RegExp({
-      regexp: '.*' + event.company,
-      options: 'i',
-    })
-  },
-  {
-      edu_back: db.RegExp({
-        regexp: '.*' + event.edu_back,
-        options: 'i',
-      })
-    },
-    {
-      info: db.RegExp({
-        regexp: '.*' + event.info,
-        options: 'i',
-      })
-    },
-    {
-      province: db.RegExp({
-        regexp: '.*' + event.province,
-        options: 'i',
-      })
-    },
-    {
-      state: db.RegExp({
-        regexp: '.*' + event.state,
-        options: 'i',
-      })
-    },
-    {
-      title: db.RegExp({
-        regexp: '.*' + event.title,
-        options: 'i',
-      })
-    }
-  ])).get()
+  }
 }
+//   return await db.collection('t_url').where(db.command.or([{
+//     city: db.RegExp({
+//       regexp: '.*' + event.city,
+//       options: 'i',
+//     })
+//   },
+//   {
+//     company: db.RegExp({
+//       regexp: '.*' + event.company,
+//       options: 'i',
+//     })
+//   },
+//   {
+//       edu_back: db.RegExp({
+//         regexp: '.*' + event.edu_back,
+//         options: 'i',
+//       })
+//     },
+//     {
+//       info: db.RegExp({
+//         regexp: '.*' + event.info,
+//         options: 'i',
+//       })
+//     },
+//     {
+//       province: db.RegExp({
+//         regexp: '.*' + event.province,
+//         options: 'i',
+//       })
+//     },
+//     {
+//       state: db.RegExp({
+//         regexp: '.*' + event.state,
+//         options: 'i',
+//       })
+//     },
+//     {
+//       title: db.RegExp({
+//         regexp: '.*' + event.title,
+//         options: 'i',
+//       })
+//     }
+//   ])).get()
+// }
