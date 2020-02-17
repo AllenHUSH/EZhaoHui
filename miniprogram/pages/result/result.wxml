@@ -3,46 +3,7 @@
 <view slot="backText" style="color:white;">返回</view>
   <view slot="content" style="color:white;">E招会</view>
 </cu-custom>
-
-<!-- <view class="result-return" bind:tap="onTap">
-  <image src="/images/result/return.svg" mode="widthFix" class="result-return-icon"></image>
-  <text class="result-return-font">返回首页</text>
-</view> -->
-
 <block wx:for="{{result_content}}" wx:for-item="item">
-<!-- 先判断是否有背景图片 -->
-  <view catchlongtap="onLongpress" data-url="{{item.url}}" wx:if="{{item.picture!=''}}" class="bg-img bg-mask shadow-blur result-container text-white" style="background-image: url('{{item.picture}}');height: 414upx;">
-    <!-- 这是个坑bg-mask下面必须要是一个盒子，否则就会被mask遮住 -->
-    <view class='padding-sm flex flex-wrap'>
-     <text class="result-title"  style="color:white;" wx:if="{{item.title!=''}}">{{item.title}}</text>
-      <text class="cu-tag light bg-orange result-info radius" wx:if="{{item.company!=''}}"> {{item.company}}</text>
-      <text class="cu-tag light bg-red result-info radius text-center" wx:item="{{item.edu_back}}">{{item.edu_back}}</text>
-      <text class="cu-tag light bg-brown result-info radius" wx:if="{{item.province!='' || item.city!=''}}">{{item.province}} {{item.city}}</text>
-      <text class="cu-tag light bg-pink result-companyLocation radius" wx:if="{{item.info!=''}}">{{item.info}}</text>
-    </view>
-  </view>
-  <!-- 没有背景图片，是否有颜色作为背景 -->
-  <view  catchlongtap="onLongpress" data-url="{{item.url}}" wx:elif="{{item.iscolor}}" class="{{item.color}} shadow-blur result-container text-white">
-    <!-- 这是个坑bg-mask下面必须要是一个盒子，否则就会被mask遮住 -->
-    <view class='padding-sm flex flex-wrap'>
-      <text class="result-title"  style="color:white;" wx:if="{{item.title!=''}}">{{item.title}}</text>
-      <text class="cu-tag light bg-orange result-info radius" wx:if="{{item.company!=''}}"> {{item.company}}</text>
-      <text class="cu-tag light bg-red result-info radius text-center" wx:item="{{item.edu_back}}">{{item.edu_back}}</text>
-      <text class="cu-tag light bg-brown result-info radius" wx:if="{{item.province!='' || item.city!=''}}">{{item.province}} {{item.city}}</text>
-      <text class="cu-tag light bg-pink result-companyLocation radius" wx:if="{{item.info!=''}}">{{item.info}}</text>
-    </view>
-  </view>
-  <!-- 用白色作为背景 -->
-  <view  catchlongtap="onLongpress" data-url="{{item.url}}" style="background:white;" wx:else class=" shadow-blur result-container text-white">
-    <!-- 这是个坑bg-mask下面必须要是一个盒子，否则就会被mask遮住 -->
-    <view class='padding-sm flex flex-wrap'>
-      <text class="result-title"  wx:if="{{item.title!=''}}">{{item.title}}</text>
-      <text class="cu-tag light bg-orange result-info radius" wx:if="{{item.company!=''}}"> {{item.company}}</text>
-      <text class="cu-tag light bg-red result-info radius text-center" wx:item="{{item.edu_back}}">{{item.edu_back}}</text>
-      <text class="cu-tag light bg-brown result-info radius" wx:if="{{item.province!='' || item.city!=''}}">{{item.province}} {{item.city}}</text>
-      <text class="cu-tag light bg-pink result-companyLocation radius" wx:if="{{item.info!=''}}">{{item.info}}</text>
-    </view>
-  </view>
-
+<card iscolor="{{item.iscolor}}" color="{{item.color}}" picture="{{item.picture}}" city="{{item.city}}" company="{{item.company}}" edu_back="{{item.edu_back}}" info="{{item.info}}" province="{{item.province}}" title="{{item.title}}" url="{{item.url}}"></card>
 </block>
 

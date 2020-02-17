@@ -1,0 +1,42 @@
+@import "../../colorui/components/cu-custom.wxss";
+@import "../../colorui/animation.wxss";
+@import "../../colorui/icon.wxss";
+@import "../../colorui/main.wxss";
+
+.result-container{
+  margin-bottom: 15rpx;
+  display: flex;
+  flex-direction: column;
+  margin: 20rpx 20rpx 0 20rpx;
+  padding-left:40rpx;
+  padding-right: 40rpx;
+  border-radius: 5%;
+  /* background-color: white; */
+}
+.result-title{
+  width: 100%;
+  margin-top: 35rpx;
+  display: block;
+	overflow: hidden;
+  text-overflow: ellipsis;
+	white-space: nowrap;
+	width:350px;
+  font-size: 40rpx;
+  font-weight: 600;
+  color:#666;
+}
+.result-info{
+  margin-top: 20rpx;
+  font-size: 28rpx;
+  letter-spacing: 1.2px;
+  /* color:white; */
+  display:inline-block;
+  vertical-align: center;
+}
+.result-companyLocation{
+  margin-top: 20rpx;
+  font-size: 28rpx;
+  letter-spacing: 1.2px;
+  margin-bottom: 40rpx;
+  display: inline-block;
+}

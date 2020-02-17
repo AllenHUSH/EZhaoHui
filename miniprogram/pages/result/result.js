@@ -5,23 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    li:"dd"
   },
-  onLongpress:function(event){
-    console.log("ddd");
-    var url=event.currentTarget.dataset.url;
-    
-    wx.setClipboardData({
-      data: url,
-      success:function(res){
-        wx.getClipboardData({
-          success:function(res){
-            console.log(res.data);
-          }
-        })
-      }
-    })
-  },
+
   /**
    * 生命周期函数--监听页面加载
    */
