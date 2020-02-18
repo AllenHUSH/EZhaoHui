@@ -16,10 +16,11 @@ Component({
 		company: "",
 		educationBgList: ["不限","本科", "研究生"],
 		educationBg: 0,
-		region: [],
+		region: ["","",""],
 		region1:"不限",
 		money: 0,
-		moneyList: ["不限","5k-10k", "10k-15k", "15k-20k", "20k+"]
+		moneyList: ["不限","5k-10k", "10k-15k", "15k-20k", "20k+"],
+		title:""
 	},
 
 	/**
@@ -34,6 +35,11 @@ Component({
 		stationChange(e) {
 			this.setData({
 				station: e.detail.value
+			})
+		},
+		titleChange(e){
+			this.setData({
+				title: e.detail.value
 			})
 		},
 		companyChange(e) {
@@ -63,7 +69,8 @@ Component({
 				company: this.data.company,
 				money: this.data.moneyList[this.data.money],
 				region: this.data.region,
-				educationBg: this.data.educationBgList[this.data.educationBg]
+				educationBg: this.data.educationBgList[this.data.educationBg],
+				title: this.data.title
 			};
 			this.triggerEvent('queryEvent', queryData) 
 		}

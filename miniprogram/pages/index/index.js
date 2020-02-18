@@ -106,14 +106,19 @@ Page({
 		}
 	},
 	searchEvent(data){
-		
+		let city = data.detail.region[1] === "不限" ? "" : data.detail.region[1];
+		let province = data.detail.region[0] === "不限" ? "" : data.detail.region[0];
+		let educationBg = data.detail.educationBg === "不限" ? "" : data.detail.educationBg;
+		let money = data.detail.money === "不限" ? "" : data.detail.money;
 		let query={
-			city: data.detail.region[1],
+			title: data.detail.title,
+			city: city,
 			company: data.detail.company,
-			edu_back: data.detail.educationBg + " " + data.detail.major,
-			info: data.detail.money + data.detail.station,
-			province: data.detail.region[0],
-			type:"all"
+			edu_back: educationBg + data.detail.major,
+			info: money + data.detail.station,
+			province: province,
+			type:"one",
+			state:0
 		}
 		wx.cloud.callFunction({
 			name:"queryUrl",
@@ -123,6 +128,7 @@ Page({
 			wx.navigateTo({
 				url: '../result/result',
 			})
+			console.log(res.result)
 		})
 	}
 })
