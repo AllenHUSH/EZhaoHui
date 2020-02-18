@@ -1,40 +1,46 @@
-@import "../../colorui/components/cu-custom.wxss";
-@import "../../colorui/animation.wxss";
 @import "../../colorui/icon.wxss";
 @import "../../colorui/main.wxss";
 
-.result-container{
-  margin-bottom: 15rpx;
-  display: flex;
-  flex-direction: column;
-  margin: 20rpx 20rpx 0 20rpx;
-  padding-left:40rpx;
-  padding-right: 40rpx;
-  padding-bottom: 40rpx;
-  padding-top: 35rpx;
-  border-radius: 5%;
-  /* background-color: white; */
+.result-container {
+    display: flex;
+    flex-direction: column;
+    padding: 20rpx;
+	margin: 20rpx auto;
+	min-height: 210rpx;
+	width: 637rpx;
+	border-radius: 15rpx;
 }
-.result-title{
-  width: 100%;
-  display: block;
-	overflow: hidden;
-  text-overflow: ellipsis;
-	white-space: nowrap;
-	width:350px;
-  font-size: 40rpx;
-  font-weight: 600;
-  color:#666;
+
+.result-title {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 656rpx;
+    font-size: 40rpx;
+    font-weight: 600;
+    color: #fff;
 }
-.result-info{
-  margin-top: 20rpx;
-  font-size: 28rpx;
-  letter-spacing: 1.2px;
-  /* color:white; */
-  display:inline-block;
-  vertical-align: center;
-  overflow:hidden; /*超出的部分隐藏起来。*/ 
-  white-space:nowrap;/*不换行*/
-  text-overflow:ellipsis;
-  max-width:500rpx ;
+
+.result-info {
+    margin-top: 20rpx;
+	height: 45rpx;
+	line-height: 45rpx;
+    font-size: 28rpx;
+    display: inline-block;
+    vertical-align: center;
+    overflow: hidden; /*超出的部分隐藏起来。*/
+    white-space: nowrap; /*不换行*/
+    text-overflow: ellipsis;
+    max-width: 656rpx;
+}
+.result-tag{
+	display: inline-block;
+	margin-top: 20rpx;
+	max-width: 220rpx;
+	line-height: 45rpx;
+	height: 45rpx;
+	overflow: hidden; /*超出的部分隐藏起来。*/
+    white-space: nowrap; /*不换行*/
+    text-overflow: ellipsis;
 }

@@ -1,56 +1,33 @@
-<!--components/card/card.wxml-->
+<!--components/card/card.wxml
+	style="{{card.picture ? 'background-image:url('+ card.picture +');height: 414rpx;':''}}"
+-->
 
-<view class="wrapper">
-    <!-- <view catchlongtap="onLongpress" data-url="{{card.url}}" wx:if="{{picture!=''}}" class="bg-img bg-mask shadow-blur result-container text-white" style="background-image: url('{{picture}}');height: 414upx;">
-        <view class='padding-sm flex flex-wrap'>
-            <text class="result-title" style="color:white;" wx:if="{{title!='' && title!=undefined}}">{{title}}</text>
-            <text class="cu-tag light bg-orange result-info radius" wx:if="{{company!=''&&company!=undefined}}"> {{company}}</text>
-            <text class="cu-tag light bg-red result-info radius text-center" wx:if="{{edu_back!=''&& edu_back!=undefined}}">{{edu_back}}</text>
-            <text class="cu-tag light bg-brown result-info radius" wx:if="{{(province!='' || city!='')&&(province!=undefined || city!=undefined)}}">{{province}} {{city}}</text>
-            <text class="cu-tag light bg-pink result-info radius" wx:if="{{info!=''&&info!=undefined}}">{{info}}</text>
-        </view>
-    </view> -->
-    <!-- 没有背景图片，是否有颜色作为背景 -->
-    <!-- <view catchlongtap="onLongpress" data-url="{{url}}" wx:elif="{{iscolor}}" class="{{color}} shadow-blur result-container text-white">
-        <view class='padding-sm flex flex-wrap'>
-            <text class="result-title" style="color:white;" wx:if="{{title!='' && title!=undefined}}">{{title}}</text>
-            <text class="cu-tag light bg-orange result-info radius" wx:if="{{company!=''&&company!=undefined}}"> {{company}}</text>
-            <text class="cu-tag light bg-red result-info radius text-center" wx:if="{{edu_back!=''&& edu_back!=undefined}}">{{edu_back}}</text>
-            <text class="cu-tag light bg-brown result-info radius" wx:if="{{(province!='' || city!='')&&(province!=undefined || city!=undefined)}}">{{province}} {{city}}</text>
-            <text class="cu-tag light bg-pink result-info radius" wx:if="{{info!=''&&info!=undefined}}">{{info}}</text>
-        </view>
-    </view> -->
-    <!-- 用白色作为背景 -->
-    <view 
-		bindtap="copyUrl" 
-		data-url="{{card.url}}" 
-		style="background:white;" 
-		class="padding radius shadow-blur"
-		class="{{color[Math.floor(Math.Random()*6])}}"
+<view 
+	bindtap="copyUrl" 
+	data-url="{{card.url}}" 
+	class="{{'result-container padding radius shadow-blur padding radius '+ color[number]}}"
+>
+	<view
+		class=' padding-sm flex flex-wrap'
 	>
-        <view class='padding-sm flex flex-wrap'>
-            <text 
-				class="result-title" 
-				wx:if="{{card.title!='' && card.title!=undefined}}"
-			>{{card.title}}</text>
-            <text 
-				class="cu-tag light bg-orange result-info radius" 
-				wx:if="{{card.company!=''&&card.company!=undefined}}"
-			> {{card.company}}</text>
-            <text 
-				class="cu-tag light bg-red result-info radius text-center" 
-				wx:if="{{card.edu_back!=''&& card.edu_back!=undefined}}"
-			>{{card.edu_back}}</text>
-            <text 
-				class="cu-tag light bg-brown result-info radius" 
-				wx:if="{{(province!='' || city!='')&&(card.province!=undefined || card.city!=undefined)}}"
-			>{{card.province}} {{card.city}}</text>
-            <text 
-				class="cu-tag light bg-pink result-info radius" 
-				wx:if="{{card.info!=''&&icard.nfo!=undefined}}"
-			>{{card.info}}</text>
-        </view>
-    </view>
-    <!-- <slot></slot> -->
+		<text 
+			class="result-title" 
+		>{{card.title}}</text><!-- 标题 -->
+		<text 
+			class="cu-tag light bg-orange result-tag radius" 
+			wx:if="{{card.company}}"
+		> {{card.company}}</text><!-- 公司 -->
+		<text 
+			class="cu-tag light bg-brown result-tag radius" 
+			wx:if="{{card.province || card.city}}"
+		>{{card.province}} {{card.city}}</text><!-- 城市 -->
+		<text 
+			class="cu-tag light bg-brown result-tag radius" 
+			wx:if="{{card.edu_back}}"
+		>{{card.edu_back}}</text><!-- 城市 -->
+		<view 
+			class="result-info" 
+			wx:if="{{card.info}}"
+		>{{card.info}}</view><!-- 详情 -->
+	</view>
 </view>
-<!-- 先判断是否有背景图片 -->

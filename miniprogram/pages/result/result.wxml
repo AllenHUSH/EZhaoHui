@@ -5,5 +5,7 @@
   <view slot="content" style="color:white;">E招会</view>
 </cu-custom>
 <block wx:for="{{result_content}}" wx:key="item">
-	<card card="{{item}}"></card>
+	<card 
+		card="{{item}}"
+	></card>
 </block>
