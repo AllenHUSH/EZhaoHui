@@ -24,7 +24,7 @@
 			wx:if="{{card.province || card.city}}"
 		>{{card.province}} {{card.city}}</text><!-- 城市 -->
 		<text 
-			class="cu-tag light bg-brown result-tag radius" 
+			class="cu-tag light bg-red result-tag radius" 
 			wx:if="{{card.edu_back}}"
 		>{{card.edu_back}}</text><!-- 城市 -->
 		<view 
