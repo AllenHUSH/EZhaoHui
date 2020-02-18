@@ -120,6 +120,7 @@ Page({
 			type:"one",
 			state:0
 		}
+		console.log(query)
 		wx.cloud.callFunction({
 			name:"queryUrl",
 			data:query
