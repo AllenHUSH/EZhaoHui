@@ -49,6 +49,16 @@
 					"id": -1,
 					"name": "admin",
 					"pathName": "packageAdmin/pages/home/home"
+				},
+				{
+					"id": -2,
+					"name": "test",
+					"pathName": "packageAdmin/pages/test/test"
+				},
+				{
+					"id": -3,
+					"name": "result",
+					"pathName": "pages/result/result"
 				}
 			]
 		}

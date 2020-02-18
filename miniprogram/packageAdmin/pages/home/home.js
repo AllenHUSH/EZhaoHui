@@ -9,7 +9,8 @@ Page({
       title: '待处理',
       name: 'pending',
       color: 'cyan',
-      icon: 'writefill'
+      icon: 'writefill',
+      url:"/packageAdmin/pages/pending/pending"
     },
     {
       title: '未通过',

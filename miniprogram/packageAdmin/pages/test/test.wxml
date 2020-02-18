@@ -1,0 +1,22 @@
+<!--packageAdmin/pages/test/test.wxml-->
+<cu-custom bgColor="bg-gradual-red">
+  <view slot="content">接口测试页</view>
+</cu-custom>
+<view>
+  <form bindsubmit="formSubmit" bindreset="formReset">
+    <view class="cu-form-group">
+      <view class="title">URL</view>
+      <input name="url" placeholder="please input here" />
+    </view>
+    <view class="cu-form-group">
+      <view class="title">微信号</view>
+      <input name="wxId" placeholder="please input here" />
+    </view>
+    <button formType="submit" class="bg-gradual-red">Submit</button>
+    <button formType="reset">Reset</button>
+  </form>
+</view>
+
+<view>
+<button bindtap="queryData">查询</button>
+</view>

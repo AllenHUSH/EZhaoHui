@@ -8,7 +8,9 @@
     {
       "root": "packageAdmin",
       "pages": [
-        "pages/home/home"
+        "pages/home/home",
+        "pages/pending/pending",
+        "pages/test/test"
       ]
     }
   ],
