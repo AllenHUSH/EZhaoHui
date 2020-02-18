@@ -95,3 +95,14 @@ create_time|date|招聘开始时间|否
 |city|city|按照city查询|
 ||||
 *info 说明格式是（薪资 岗位信息）*
+
+# 管理员与轮播图
+author: ljx
+
+#### 接口表:
+接口名 | 参数 | 参数类型 |返回值|返回值类型|说明
+-|-|-|-|-|-
+getOpenid|无|无|openid|String|获取当前登录用户的openid
+queryAuthority|msg|String|是或否|bool|msg为当前用户的openid，返回true表示当前用户是管理员
+insertRecommend|url_id、type|String、number|无|无|url_id是招聘信息的id 调用此函数将招聘信息变为推荐信息或轮播图信息 type=1是推荐信息 type=2是轮播图信息
+deleteRecommend|url_id|String|无|无|调用这个函数 把推荐信息或轮播图信息变成普通信息
