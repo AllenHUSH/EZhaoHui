@@ -25,7 +25,8 @@
   },
   "usingComponents": {
     "cu-custom": "/colorui/components/cu-custom",
-	"searchForm":"/components/searchForm/searchForm"
+	"searchForm":"/components/searchForm/searchForm",
+	"card": "/components/card/card"
   },
   "sitemapLocation": "sitemap.json",
   "style": "v2",
