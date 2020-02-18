@@ -1,8 +1,9 @@
 {
   "pages": [
+    "pages/result/result",
     "pages/index/index",
     "pages/about/about",
-    "pages/result/result"
+    "components/card/card"
   ],
   "subpackages": [
     {

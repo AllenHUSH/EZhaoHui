@@ -1,67 +1,6 @@
 page{
   background-color: #F8F8F8;
 }
-.result-return{
-  background: linear-gradient(to right,#Ff9700,#Ed1c24);
-  padding-left:30rpx ;
-  padding-right: 30rpx;
-  height: 40px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-}
-.result-return-font{
-  font-size: 30rpx;
-  color: white;
-  font-weight: 500;
-  letter-spacing: 1.5rpx;
-}
-.result-return-icon{
-  width: 45rpx;
-  height: 45rpx;
-}
-.result-container{
-  margin-bottom: 15rpx;
-  display: flex;
-  flex-direction: column;
-  margin: 20rpx 20rpx 0 20rpx;
-  padding-left:40rpx;
-  padding-right: 40rpx;
-  border-radius: 5%;
-}
-.result-title{
-  width: 100%;
-  margin-top: 40rpx;
-  display: block;
-	overflow: hidden;
-  text-overflow: ellipsis;
-	white-space: nowrap;
-	width:350px;
-  font-size: 34rpx;
-  font-weight: 600;
-  /* color:white; */
-}
-.result-info{
-  display: block;
-	overflow: hidden;
-  text-overflow: ellipsis;
-	white-space: nowrap;
-  width:330px;
-  margin-top: 20rpx;
-  font-size: 28rpx;
-  letter-spacing: 1.2px;
-  /* color:white; */
-}
-.result-companyLocation{
-  margin-top: 20rpx;
-  font-size: 28rpx;
-  letter-spacing: 1.2px;
-  margin-bottom: 40rpx;
-  display: block;
-	overflow: hidden;
-  text-overflow: ellipsis;
-	white-space: nowrap;
-  width:250px;
-  /* color:white; */
+button{
+  background-color: black;
 }
