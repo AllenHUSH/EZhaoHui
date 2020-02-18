@@ -24,7 +24,7 @@
   font-size: 20px;
   margin-top: 20px;
 }
-.kuang{
+.consult{
   margin-top: 20px;
   width: 80%;
   height: 90rpx;
@@ -57,6 +57,7 @@
   -webkit-background-clip: text;
   background-clip: text;  
   color: transparent;
+  cursor: pointer;
 }
 .houtai{
   font-size: 20px;
