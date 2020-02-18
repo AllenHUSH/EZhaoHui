@@ -8,7 +8,7 @@ const db = cloud.database()
 exports.main = async (event, context) => {
   if(event.type == 'all'){
     return await db.collection('t_url').get()
-  }else if(event.type == 'city'){
+  }else if(event.type == 'city'){ 
     return await db.collection('t_url').where({
       city: event.city
     }).get({
@@ -114,49 +114,67 @@ exports.main = async (event, context) => {
         return res.data
       }
     })
+  } else if (event.type == "allSerch") {
+    return await db.collection("t_url").where({
+      info: event.info,
+      province: event.provincn,
+      city:event.city,
+      company:event.company,
+      edu_back:event.edu_back,
+    }).get({
+      success: function(res){
+        return res.data
+      },
+      error: function(res){
+        return "数据不全"
+      }
+    })
+  }else if (event.type == "one"){
+    return await db.collection('t_url').where(db.command.and([{
+      city: event.city
+    },
+    {
+      company: db.RegExp({
+        regexp: '.*' + event.company,
+        options: 'i',
+      })
+    },
+    {
+      edu_back: db.RegExp({
+        regexp: '.*' + event.edu_back,
+        options: 'i',
+      })
+    },
+    {
+      info: db.RegExp({
+        regexp: '.*' + event.info + '.*',
+        options: 'i',
+      })
+    },
+    {
+      province: db.RegExp({
+        regexp: '.*' + event.province,
+        options: 'i',
+      })
+    },
+    {
+      state: event.state
+    },
+      // {
+      //   title: db.RegExp({
+      //     regexp: '.*' + event.title,
+      //     options: 'i',
+      //   })
+      // }
+    ])).get()
+  }else if(event.type == "two"){
+    return await db.collection("t_url").where({
+      state: event.state,
+    }).get({
+      success: function (res) {
+        // res.data 是包含以上定义的两条记录的数组
+        console.log(res.data)
+      }
+    });
   }
 }
-//   return await db.collection('t_url').where(db.command.or([{
-//     city: db.RegExp({
-//       regexp: '.*' + event.city,
-//       options: 'i',
-//     })
-//   },
-//   {
-//     company: db.RegExp({
-//       regexp: '.*' + event.company,
-//       options: 'i',
-//     })
-//   },
-//   {
-//       edu_back: db.RegExp({
-//         regexp: '.*' + event.edu_back,
-//         options: 'i',
-//       })
-//     },
-//     {
-//       info: db.RegExp({
-//         regexp: '.*' + event.info,
-//         options: 'i',
-//       })
-//     },
-//     {
-//       province: db.RegExp({
-//         regexp: '.*' + event.province,
-//         options: 'i',
-//       })
-//     },
-//     {
-//       state: db.RegExp({
-//         regexp: '.*' + event.state,
-//         options: 'i',
-//       })
-//     },
-//     {
-//       title: db.RegExp({
-//         regexp: '.*' + event.title,
-//         options: 'i',
-//       })
-//     }
-//   ])).get()
-// }
