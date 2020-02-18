@@ -33,10 +33,11 @@ Page({
         info:"这是一条测试数据 薪资80/天 不包吃住 无转正"
       },
       success: res => {
+        //将color属性加到数组的每一个对象的里面
         for (var i = 0; i < res.result.data.length; i++) {
           res.result.data[i].color = arr[Math.floor((Math.random() * arr.length))]
         }
-         console.log(res.result.data);
+        //  console.log(res.result.data);
         this.setData({
           result_content: res.result.data
         })

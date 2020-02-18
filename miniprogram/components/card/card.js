@@ -1,10 +1,4 @@
 // components/card/card.js
-// 注意：要在页面的onload里面自己写上
-// var arr = ["bg-red","bg-orange","bg-yellow",
-// "bg-purple","bg-olive","bg-green","bg-cyan","bg-blue",
-// "bg-brown"];
-// color: arr[Math.floor((Math.random()*arr.length))],
-// 把color传到组件里面来
 Component({
   /**
    * 组件的属性列表
@@ -79,6 +73,7 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    //长按复制
     onLongpress:function(event){
       console.log("ddd");
       var url=event.currentTarget.dataset.url;
