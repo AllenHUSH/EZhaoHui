@@ -14,11 +14,12 @@ Component({
 		major:"",
 		station: "",
 		company: "",
-		educationBgList: ["本科", "研究生"],
+		educationBgList: ["不限","本科", "研究生"],
 		educationBg: 0,
-		region: ['广东省', '广州市', '海珠区'],
+		region: [],
+		region1:"不限",
 		money: 0,
-		moneyList: ["5k-10k", "10k-15k", "15k-20k", "20k+"]
+		moneyList: ["不限","5k-10k", "10k-15k", "15k-20k", "20k+"]
 	},
 
 	/**

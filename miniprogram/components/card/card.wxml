@@ -5,8 +5,10 @@
 <view 
 	bindtap="copyUrl" 
 	data-url="{{card.url}}" 
-	class="{{'result-container padding radius shadow-blur padding radius '+ color[number]}}"
+	style="{{card.picture ? 'background-image:url('+ card.picture +');height: 414rpx;':''}}"
+	class="{{'result-container padding radius '+ color[number]}}"
 >
+	<view class="bg" wx:if="{{card.picture}}"></view>
 	<view
 		class=' padding-sm flex flex-wrap'
 	>

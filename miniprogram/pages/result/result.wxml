@@ -4,8 +4,10 @@
 <view slot="backText" style="color:white;">返回</view>
   <view slot="content" style="color:white;">E招会</view>
 </cu-custom>
-<block wx:for="{{result_content}}" wx:key="item">
+<view wx:for="{{result_content}}" wx:key="item"
+	style="width:93%;margin:auto;overflow:hidden"
+>
 	<card 
-		card="{{item}}"
+		card="{{item}}" number="{{index%6}}"
 	></card>
-</block>
+</view>

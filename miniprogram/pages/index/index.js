@@ -2,7 +2,7 @@ var app = getApp();
 Page({
 	data: {
 		cardCur: 0,
-		swiperList: [{//轮播图模拟数据
+		swiperList: [{
 			id: 0,
 			type: 'image',
 			url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84000.jpg'
@@ -22,29 +22,24 @@ Page({
 				id: 4,
 				type: 'image',
 				url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big25011.jpg'
-			}, {
-				id: 5,
-				type: 'image',
-				url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big21016.jpg'
-			}, {
-				id: 6,
-				type: 'image',
-				url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg'
-			}],
+			}],//轮播列表
 		msg:[],//推荐列表
 		searchQuery:"",
-		
+		recommendList:[]//推荐列表
 	},
 	onLoad() {
 		this.towerSwiper('swiperList');// 初始化轮播图
-		// wx.cloud.callFunction({//获取轮播 推荐信息
-		// 	name:"",
-		// 	data:{
-		// 		state:2
-		// 	}
-		// }).then(res=>{
-		// 	this.data.msg = res.result.data
-		// })
+		wx.cloud.callFunction({//获取轮播 推荐信息
+			name:"queryUrl",
+			data:{
+				state:0,
+				type:"all"
+			}
+		}).then(res=>{
+			this.setData({
+				recommendList:res.result.data
+			})
+		})
 	},
 	DotStyle(e) {
 		this.setData({
@@ -118,7 +113,7 @@ Page({
 			edu_back: data.detail.educationBg + " " + data.detail.major,
 			info: data.detail.money + data.detail.station,
 			province: data.detail.region[0],
-			type:"allSerch"
+			type:"all"
 		}
 		wx.cloud.callFunction({
 			name:"queryUrl",

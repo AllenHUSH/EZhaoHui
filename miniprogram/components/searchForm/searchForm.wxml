@@ -50,7 +50,7 @@
 			<view class="title">地区选择</view>
 			<picker mode="region" bindchange="RegionChange" value="{{region}}" custom-item="{{customItem}}">
 				<view class="picker">
-					{{region[0]}}，{{region[1]}}，{{region[2]}}
+					{{region[0] ?region[0]+","+region[1]+","+region[2]:region1}}
 				</view>
 			</picker>
 		</view>

@@ -8,7 +8,11 @@ Component({
         card: {
             type: Object,
             default: {}
-        }
+        },
+		number:{
+			type:Number,
+			default:0
+		}
     },
 
     /**
