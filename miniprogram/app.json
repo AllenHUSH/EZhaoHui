@@ -1,8 +1,8 @@
 {
   "pages": [
-    "pages/result/result",
     "pages/index/index",
     "pages/about/about",
+    "pages/result/result",
     "components/card/card"
   ],
   "subpackages": [
@@ -24,7 +24,8 @@
     "navigationStyle": "custom"
   },
   "usingComponents": {
-    "cu-custom": "/colorui/components/cu-custom"
+    "cu-custom": "/colorui/components/cu-custom",
+	"searchForm":"/components/searchForm/searchForm"
   },
   "sitemapLocation": "sitemap.json",
   "style": "v2",

@@ -1,0 +1,20 @@
+/* components/searchForm/searchForm.wxss */
+@import "../../colorui/main.wxss";
+@import "../../colorui/icon.wxss";
+.search {
+    box-sizing: border-box;
+    position: relative;
+    margin: 37.5rpx auto;
+	padding-bottom: 110rpx;
+    width: 675rpx;
+}
+
+.search .up {
+    position: absolute;
+    right: 20rpx;
+	bottom: 20rpx;
+    width: 131rpx;
+    height: 70rpx;
+    line-height: 70rpx;
+    border-radius: 10rpx;
+}

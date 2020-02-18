@@ -19,8 +19,6 @@ Page({
 
       data: {
 
-
-
       },
 
       method: 'GET',
@@ -122,5 +120,5 @@ Page({
   onShareAppMessage: function () {
 
   },
-
+  
 })

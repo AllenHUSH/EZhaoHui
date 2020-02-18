@@ -5,6 +5,6 @@
   <view slot="content" style="color:white;">E招会</view>
 </cu-custom>
 <block wx:for="{{result_content}}" wx:for-item="item">
+
 <card iscolor="{{item.iscolor}}" color="{{item.color}}" picture="{{item.picture}}" city="{{item.city}}" company="{{item.company}}" edu_back="{{item.edu_back}}" info="{{item.info}}" province="{{item.province}}" title="{{item.title}}" url="{{item.url}}"></card>
 </block>
-
