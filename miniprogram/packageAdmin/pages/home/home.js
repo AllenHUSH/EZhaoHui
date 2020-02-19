@@ -9,13 +9,15 @@ Page({
       title: '待处理',
       name: 'pending',
       color: 'cyan',
-      icon: 'writefill'
+      icon: 'writefill',
+      url:"/packageAdmin/pages/pending/pending"
     },
     {
       title: '未通过',
       name: 'not pass',
       color: 'blue',
-      icon: 'roundclosefill'
+      icon: 'roundclosefill',
+      url: "/packageAdmin/pages/nopass/nopass"
     },
     {
       title: '已过期',

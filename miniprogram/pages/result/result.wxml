@@ -1,36 +1,10 @@
 <!--miniprogram/pages/result/result.wxml-->
-<cu-custom bgImage="" style="background: linear-gradient(to right,#Ff9700,#Ed1c24);" isBack="{{true}}">
+
+<cu-custom bgImage="" bgColor="bg-gradual-orange" isBack="{{true}}">
 <view slot="backText" style="color:white;">返回</view>
   <view slot="content" style="color:white;">E招会</view>
 </cu-custom>
-
-<!-- <view class="result-return" bind:tap="onTap">
-  <image src="/images/result/return.svg" mode="widthFix" class="result-return-icon"></image>
-  <text class="result-return-font">返回首页</text>
-</view> -->
-
 <block wx:for="{{result_content}}" wx:for-item="item">
 
-  <view wx:if="{{item.picture!=''}}" class="bg-img bg-mask shadow-blur result-container text-white" style="background-image: url('{{item.picture}}');height: 414upx;">
-    <!-- 这是个坑bg-mask下面必须要是一个盒子，否则就会被mask遮住 -->
-    <view>
-      <text class="result-title">{{item.title}}</text>
-      <text class="result-info">教育背景：{{item.edu_back}}</text>
-      <text class="result-info">公司： {{item.company}}</text>
-      <text class="result-info">待遇：{{item.info}}</text>
-      <text class="result-companyLocation ">地点：{{item.province}} {{item.city}}</text>
-    </view>
-  </view>
-
-  <view wx:else class="light {{item.color}} shadow-blur result-container text-white">
-    <!-- 这是个坑bg-mask下面必须要是一个盒子，否则就会被mask遮住 -->
-    <view>
-      <text class="result-title">{{item.title}}</text>
-      <text class="result-info">教育背景：{{item.edu_back}}</text>
-      <text class="result-info">公司： {{item.company}}</text>
-      <text class="result-info">待遇：{{item.info}}</text>
-      <text class="result-companyLocation ">地点：{{item.province}} {{item.city}}</text>
-    </view>
-  </view>
-
+<card iscolor="{{item.iscolor}}" color="{{item.color}}" picture="{{item.picture}}" city="{{item.city}}" company="{{item.company}}" edu_back="{{item.edu_back}}" info="{{item.info}}" province="{{item.province}}" title="{{item.title}}" url="{{item.url}}"></card>
 </block>

@@ -1,0 +1,13 @@
+/* packageAdmin/pages/pending/pending.wxss */
+.cu-list.menu-avatar>.cu-item .content{
+  font-size:14px;
+  /* text-align: center; */
+  left: 80rpx;
+}
+.link{
+  font-size: 16px;
+  margin-right: 3px;
+}
+.wrap{
+  margin-bottom: 1px;
+}
