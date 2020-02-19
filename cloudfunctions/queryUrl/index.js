@@ -131,17 +131,20 @@ exports.main = async (event, context) => {
     })
   }else if (event.type == "one"){
     return await db.collection('t_url').where(db.command.and([{
-      city: event.city
+      city: db.RegExp({
+        regexp: '.*' + event.city+'.*',
+        options: 'i',
+      })
     },
     {
       company: db.RegExp({
-        regexp: '.*' + event.company,
+        regexp: '.*' + event.company + '.*',
         options: 'i',
       })
     },
     {
       edu_back: db.RegExp({
-        regexp: '.*' + event.edu_back,
+        regexp: '.*' + event.edu_back + '.*',
         options: 'i',
       })
     },
@@ -153,7 +156,13 @@ exports.main = async (event, context) => {
     },
     {
       province: db.RegExp({
-        regexp: '.*' + event.province,
+        regexp: '.*' + event.province + '.*',
+        options: 'i',
+      })
+    },
+    {
+      title: db.RegExp({
+        regexp: '.*' + event.title + '.*',
         options: 'i',
       })
     },
