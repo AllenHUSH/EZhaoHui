@@ -12,6 +12,7 @@
         "pages/home/home",
         "pages/pending/pending",
         "pages/test/test",
+				"pages/overdue/overdue",
         "pages/serviceManual/serviceManual",
         "pages/personnel/personnel"
       ]

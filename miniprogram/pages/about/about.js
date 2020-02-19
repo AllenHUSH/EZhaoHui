@@ -27,7 +27,7 @@ Page({
       //传递的参数
       data: {
         target_url: this.data.urlContent,
-        username: this.data.username,
+        username: this.data.openid,
       }
     }).then(res => {
       console.log(res.result);

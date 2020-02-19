@@ -2,43 +2,27 @@ var app = getApp();
 Page({
 	data: {
 		cardCur: 0,
-		swiperList: [{
-			id: 0,
-			type: 'image',
-			url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84000.jpg'
-		}, {
-				id: 1,
-				type: 'image',
-				url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84001.jpg',
-			}, {
-				id: 2,
-				type: 'image',
-				url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big39000.jpg'
-			}, {
-				id: 3,
-				type: 'image',
-				url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg'
-			}, {
-				id: 4,
-				type: 'image',
-				url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big25011.jpg'
-			}],//轮播列表
+		swiperList: [],//轮播列表
 		msg:[],//推荐列表
 		searchQuery:"",
 		recommendList:[]//推荐列表
 	},
 	onLoad() {
 		this.towerSwiper('swiperList');// 初始化轮播图
-		wx.cloud.callFunction({//获取轮播 推荐信息
-			name:"queryUrl",
-			data:{
-				state:0,
-				type:"all"
-			}
+		wx.cloud.callFunction({//获取推荐信息
+			name:"queryRecommends"
 		}).then(res=>{
 			this.setData({
-				recommendList:res.result.data
+				recommendList:res.result.list,
 			})
+		})
+		wx.cloud.callFunction({//获取轮播信息
+			name: "queryRecommendIV"
+		}).then(res => {
+			this.setData({
+				swiperList: res.result.list
+			})
+			console.log(res)
 		})
 	},
 	DotStyle(e) {
@@ -106,14 +90,19 @@ Page({
 		}
 	},
 	searchEvent(data){
-		
+		let city = data.detail.region[1] === "不限" ? "" : data.detail.region[1];
+		let province = data.detail.region[0] === "不限" ? "" : data.detail.region[0];
+		let educationBg = data.detail.educationBg === "不限" ? "" : data.detail.educationBg;
+		let money = data.detail.money === "不限" ? "" : data.detail.money;
 		let query={
-			city: data.detail.region[1],
+			title: data.detail.title,
+			city: city,
 			company: data.detail.company,
-			edu_back: data.detail.educationBg + " " + data.detail.major,
-			info: data.detail.money + data.detail.station,
-			province: data.detail.region[0],
-			type:"all"
+			edu_back: educationBg + data.detail.major,
+			info: money + data.detail.station,
+			province: province,
+			type:"one",
+			state:2
 		}
 		wx.cloud.callFunction({
 			name:"queryUrl",
@@ -123,6 +112,7 @@ Page({
 			wx.navigateTo({
 				url: '../result/result',
 			})
+			console.log(res.result)
 		})
 	}
 })

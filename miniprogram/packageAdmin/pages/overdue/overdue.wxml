@@ -1,0 +1,26 @@
+<!--miniprogram/packageAdmin/pages/overdue/overdue.wxml-->
+<cu-custom bgColor="bg-gradual-pink" isBack="{{true}}">
+	<view slot="content">已过期</view>
+</cu-custom>
+
+
+
+<view class="content">
+	<view 
+		wx:if="{{!overdueList.length}}"
+		class="text-xl padding"
+	>
+		<text class="text-black text-bold">暂无过期数据哦 !</text>
+	</view>
+	<view wx:else>
+		<view
+			wx:for="{{overdueList}}"
+			wx:key="item"
+			bindtap=""
+			style="width:93%;margin:auto;"
+		>
+			<card card="{{item}}" number="{{index%6}}"></card>
+		</view>
+	</view>
+	
+</view>

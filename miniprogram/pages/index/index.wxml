@@ -4,7 +4,7 @@
     <swiper-item wx:for="{{swiperList}}" wx:key="item" class="{{cardCur==index?'cur':''}}">
         <view class="swiper-item">
             <!-- <image src="{{item.url}}" mode="aspectFill"></image> -->
-			<card card="{{item}}" number="{{index%6}}"></card>
+			<card card="{{item.recommendList[0]}}" number="{{index%6}}"></card>
         </view>
     </swiper-item>
 </swiper>
@@ -13,7 +13,7 @@
 <searchForm bind:queryEvent="searchEvent"></searchForm>
 
 <!-- 推荐列表 -->
-<view class="recommend radius shadow-lg  bg-white">
+<view class="recommend radius shadow-lg bg-white">
     <view class="cu-bar">
         <view class="action sub-title">
             <text class="text-xl text-bold text-blue">推荐岗位</text>
@@ -23,6 +23,6 @@
     <view wx:for="{{recommendList}}" wx:key="item"
 		style="width:93%;margin:auto;overflow:hidden"
 	>
-        <card card="{{item}}" number="{{index%6}}"></card>
+        <card card="{{item.recommendList[0]}}" number="{{index%6}}"></card>
     </view>
 </view>

@@ -1,13 +1,13 @@
 <!--components/card/card.wxml
-	style="{{card.picture ? 'background-image:url('+ card.picture +');height: 414rpx;':''}}"
+	style="{{card.picture ? 'background-image:url('+'''+ card.picture+''' +');height: 414rpx;':''}}"
 -->
 
 <view 
 	bindtap="copyUrl" 
 	data-url="{{card.url}}" 
-	style="{{card.picture ? 'background-image:url('+ card.picture +');height: 414rpx;':''}}"
-	class="{{'result-container padding radius '+ color[number]}}"
+	class="{{'result-container padding radius '+(card.picture?'':color[number])}}"
 >
+	<image class="bg1" wx:if="{{card.picture}}" src="{{card.picture}}"></image>
 	<view class="bg" wx:if="{{card.picture}}"></view>
 	<view
 		class=' padding-sm flex flex-wrap'
@@ -24,7 +24,7 @@
 			wx:if="{{card.province || card.city}}"
 		>{{card.province}} {{card.city}}</text><!-- 城市 -->
 		<text 
-			class="cu-tag light bg-brown result-tag radius" 
+			class="cu-tag light bg-red result-tag radius" 
 			wx:if="{{card.edu_back}}"
 		>{{card.edu_back}}</text><!-- 城市 -->
 		<view 
