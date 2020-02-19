@@ -1,17 +1,17 @@
 # Url对象及其属性（数据库中）
-|字段名字|name|描述|
-|--|--|--|
-|城市|city||
-|企业|company||
-|开始时间|creat_time||
-|结束时间|end_time||
-|备注|info||
-|图片地址|picture||
-|省区|province||
-|状态|state||
-|标题（职位名称）|title||
-|招聘连接|url||
-|创建用户|username||
+|字段名字|name|类型|描述|
+|--|--|--|--|
+|城市|city|String||
+|企业|company|String|
+|开始时间|creat_time|String|
+|结束时间|end_time|String|
+|备注|info|String|格式为薪资空格加上岗位描述，两个都有以这种格式才查得到|
+|图片地址|picture|String||
+|省区|province|String||
+|状态|state|number||
+|标题（职位名称）|title|String||
+|招聘连接|url|String||
+|创建用户|username|Stirng||
 
 # insertUrl接口文档
 
@@ -91,12 +91,12 @@ create_time|date|招聘开始时间|否
 
 |type|需要参数|说明|
 |--|--|--|
-|one|city，company，edu_back，info,province，state|city，state为不可缺数据|
+|one|city，company，edu_back，info,province，state,title|state必须|
 |two|state|按照state的值查询|
 |all|-|后台全部数据|
 |city|city|按照city查询|
-||||
-*info 说明格式是（薪资 岗位信息）*
+
+*接口里面每一个类型都可用同名的type来查询，info 说明格式是（薪资 岗位信息）*
 
 # 管理员与轮播图
 author: ljx
