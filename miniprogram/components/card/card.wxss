@@ -29,12 +29,12 @@
 	height: 45rpx;
 	line-height: 45rpx;
     font-size: 30rpx;
-    display: inline-block;
-    vertical-align: center;
+    display: block;
     overflow: hidden; /*超出的部分隐藏起来。*/
     white-space: nowrap; /*不换行*/
     text-overflow: ellipsis;
     max-width: 656rpx;
+	width: 656rpx;
 	color: #fff;
 }
 .result-tag{

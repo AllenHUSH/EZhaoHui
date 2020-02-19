@@ -23,6 +23,7 @@ Page({
       name: 'out of date',
       color: 'purple',
       icon: 'timefill',
+		url:"/packageAdmin/pages/overdue/overdue"
     },
     {
       title: '公布中',
@@ -99,7 +100,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+	 
   },
 
   /**

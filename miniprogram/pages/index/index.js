@@ -9,28 +9,21 @@ Page({
 	},
 	onLoad() {
 		this.towerSwiper('swiperList');// 初始化轮播图
-		// wx.cloud.callFunction({//获取推荐信息
-		// 	name:"insertRecommend",
-		// 	data:{
-		// 		type:1
-		// 	}
-		// }).then(res=>{
-		// 	this.setData({
-		// 		recommendList:res.result.data,
-		// 	})
-		// 	console.log(res)
-		// })
-		// wx.cloud.callFunction({//获取轮播信息
-		// 	name: "insertRecommend",
-		// 	data: {
-		// 		type: 2
-		// 	}
-		// }).then(res => {
-		// 	this.setData({
-		// 		swiperList: res.result.data
-		// 	})
-		// 	console.log(res)
-		// })
+		wx.cloud.callFunction({//获取推荐信息
+			name:"queryRecommends"
+		}).then(res=>{
+			this.setData({
+				recommendList:res.result.list,
+			})
+		})
+		wx.cloud.callFunction({//获取轮播信息
+			name: "queryRecommendIV"
+		}).then(res => {
+			this.setData({
+				swiperList: res.result.list
+			})
+			console.log(res)
+		})
 	},
 	DotStyle(e) {
 		this.setData({
