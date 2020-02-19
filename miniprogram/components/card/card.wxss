@@ -8,7 +8,7 @@
     padding: 20rpx;
 	margin: 20rpx auto;
 	max-height: 280rpx;
-	min-height: 280rpx;
+	min-height: 180rpx;
 	width: 100%;
 	border-radius: 15rpx;
 }
@@ -21,7 +21,7 @@
     width: 656rpx;
     font-size: 40rpx;
     font-weight: 600;
-    color: #424242;
+    color: #fff;
 }
 
 .result-info {
@@ -35,7 +35,7 @@
     white-space: nowrap; /*不换行*/
     text-overflow: ellipsis;
     max-width: 656rpx;
-	color: #424242;
+	color: #fff;
 }
 .result-tag{
 	display: inline-block;
@@ -50,9 +50,21 @@
 	position: absolute;
 	top: 0;
 	left: 0;
+	z-index: -1;
 	width: 100%;
 	height: 100%;
 	border-radius: 15rpx;
 	background-color: rgb(0, 0, 0);
-	opacity: 0.15;
+	opacity: .4;
+}
+.bg1{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -2;
+	border-radius: 15rpx;
+	background-color: rgb(0, 0, 0);
+	opacity: 1;
 }

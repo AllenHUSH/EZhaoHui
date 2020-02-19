@@ -2,44 +2,35 @@ var app = getApp();
 Page({
 	data: {
 		cardCur: 0,
-		swiperList: [{
-			id: 0,
-			type: 'image',
-			url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84000.jpg'
-		}, {
-				id: 1,
-				type: 'image',
-				url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84001.jpg',
-			}, {
-				id: 2,
-				type: 'image',
-				url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big39000.jpg'
-			}, {
-				id: 3,
-				type: 'image',
-				url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg'
-			}, {
-				id: 4,
-				type: 'image',
-				url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big25011.jpg'
-			}],//轮播列表
+		swiperList: [],//轮播列表
 		msg:[],//推荐列表
 		searchQuery:"",
 		recommendList:[]//推荐列表
 	},
 	onLoad() {
 		this.towerSwiper('swiperList');// 初始化轮播图
-		wx.cloud.callFunction({//获取轮播 推荐信息
-			name:"queryUrl",
-			data:{
-				state:0,
-				type:"all"
-			}
-		}).then(res=>{
-			this.setData({
-				recommendList:res.result.data
-			})
-		})
+		// wx.cloud.callFunction({//获取推荐信息
+		// 	name:"insertRecommend",
+		// 	data:{
+		// 		type:1
+		// 	}
+		// }).then(res=>{
+		// 	this.setData({
+		// 		recommendList:res.result.data,
+		// 	})
+		// 	console.log(res)
+		// })
+		// wx.cloud.callFunction({//获取轮播信息
+		// 	name: "insertRecommend",
+		// 	data: {
+		// 		type: 2
+		// 	}
+		// }).then(res => {
+		// 	this.setData({
+		// 		swiperList: res.result.data
+		// 	})
+		// 	console.log(res)
+		// })
 	},
 	DotStyle(e) {
 		this.setData({

@@ -3,6 +3,7 @@
 .recommend {
     box-sizing: border-box;
     position: relative;
+	z-index: -3;
     margin: 37.5rpx auto;
 	padding-bottom: 20rpx;
     width: 675rpx;

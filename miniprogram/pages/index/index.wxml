@@ -13,7 +13,7 @@
 <searchForm bind:queryEvent="searchEvent"></searchForm>
 
 <!-- 推荐列表 -->
-<view class="recommend radius shadow-lg  bg-white">
+<view class="recommend radius shadow-lg bg-white">
     <view class="cu-bar">
         <view class="action sub-title">
             <text class="text-xl text-bold text-blue">推荐岗位</text>
