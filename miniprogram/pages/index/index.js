@@ -102,9 +102,8 @@ Page({
 			info: money + data.detail.station,
 			province: province,
 			type:"one",
-			state:0
+			state:2
 		}
-		console.log(query)
 		wx.cloud.callFunction({
 			name:"queryUrl",
 			data:query
