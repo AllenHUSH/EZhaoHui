@@ -3,8 +3,8 @@
 |--|--|--|--|
 |城市|city|String||
 |企业|company|String|
-|开始时间|creat_time|String|
-|结束时间|end_time|String|
+|开始时间|creat_time|date|
+|结束时间|end_time|date|
 |备注|info|String|格式为薪资空格加上岗位描述，两个都有以这种格式才查得到|
 |图片地址|picture|String||
 |省区|province|String||
