@@ -18,9 +18,11 @@
 author: tangwj 
 
 #### 接口名:insertUrl    
+
 ######集合名（set）t_url
+
 字段 |字段类型  | 字段说明  |是否能为空|
--|-|-|-
+--|--|--|--
 province|String|招聘公司省市|否
  city|String|招聘公司城市|否
  company|String|公司名称|否
