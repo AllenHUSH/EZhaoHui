@@ -75,14 +75,14 @@ Page({
     wx.cloud.callFunction({
       name: 'getOpenid',
       complete: res => {
-        console.log('云函数获取到的openid: ', res.result.openId)
+        // console.log('云函数获取到的openid: ', res.result.openId)
         var openid = res.result.openId;
         that.setData({
           openid: openid
         })
-        console.log(that.data.openid);
+        // console.log(that.data.openid);
 
-        console.log(that.data.superP);
+        // console.log(that.data.superP);
         //将得到的openid传给后端进行判断
         wx.cloud.callFunction({
           //云函数名称
@@ -100,6 +100,19 @@ Page({
       }
     });
     
+  },
+  // 长按头像复制openID
+  copyOpenid(){
+    wx.setClipboardData({
+      data: this.data.openid,
+      // success: function (res) {
+      //   wx.showModal({
+      //     title: '提示',
+      //     content: '复制成功',
+      //     showCancel: false
+      //   });
+      // }
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

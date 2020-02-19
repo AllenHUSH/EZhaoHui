@@ -2,7 +2,7 @@
 <view class="container">
   <image src="../../images/nav_about.png" class="background" mode="widthFix"></image>
   <!-- <text>miniprogram/pages/about/about.wxml</text> -->
-  <view class="userinfo-avatar">
+  <view bindlongpress="copyOpenid" class="userinfo-avatar">
     <open-data default-avatar="../../images/tarbar_icon/about.png" type="userAvatarUrl" class="touxiang"></open-data>
   </view>
   <open-data default-text="请完成授权" type="userNickName" class="nick"></open-data>

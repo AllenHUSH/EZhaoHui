@@ -11,7 +11,9 @@
       "pages": [
         "pages/home/home",
         "pages/pending/pending",
-        "pages/test/test"
+        "pages/test/test",
+        "pages/serviceManual/serviceManual",
+        "pages/personnel/personnel"
       ]
     }
   ],
