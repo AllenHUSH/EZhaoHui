@@ -7,11 +7,11 @@
 	<view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg">
 		<view class="cu-item arrow {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{pend_infoList}}" wx:for-item="item" catchlongtap="onLongpress" bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}" data-url="{{item.url}}">
 			<view class="content">
-				<text class="cuIcon-github text-grey"></text>
+				<text class="cuIcon-discoverfill text-grey"></text>
 				<text class="text-gray pend-url">{{item.url}}</text>
 				<view class="move" style="height:100rpx; position:absolute; top:0rpx">
-					<view class="bg-grey" bindtap="showModal" data-target="viewModal" data-username="{{item.username}}" data-id="{{item._id}}" data-index="{{index}}">编辑</view>
-					<view class="bg-red" bindtap="onDelete" data-index="{{index}}" data-target="viewModal" data-username="{{item.username}}" data-id="{{item._id}}">删除</view>
+					<view class="bg-grey" bindtap="showModal" data-target="viewModal" data-username="{{item.username}}" data-id="{{item._id}}" data-index="{{index}}" data-url="{{item.url}}">通过</view>
+					<view class="bg-red" bindtap="onDelete" data-index="{{index}}" data-target="viewModal" data-username="{{item.username}}" data-id="{{item._id}}">不通过</view>
 				</view>
 			</view>
 		</view>
@@ -28,28 +28,28 @@
 			<!-- 标题 -->
 			<view class="cu-form-group margin-top">
 				<view class="title">标题</view>
-				<input placeholder="请输入标题" bindchange="onTitle"></input>
+				<input placeholder="请输入标题" bindchange="onTitle" value="{{title}}"></input>
 			</view>
 			<!-- 专业 -->
 			<view class="cu-form-group">
 				<view class="title">专业</view>
-				<input placeholder="请输入专业" bindchange="onMajor"></input>
+				<input placeholder="请输入专业" bindchange="onMajor" value="{{major}}"></input>
 			</view>
 			<!-- 公司 -->
 			<view class="cu-form-group">
 				<view class="title">公司名称</view>
-				<input placeholder="请输入公司名称" bindchange="onCompany"></input>
+				<input placeholder="请输入公司名称" bindchange="onCompany" value="{{company}}"></input>
 			</view>
 			<!-- 招募人数 -->
 			<view class="cu-form-group">
 				<view class="title">招募人数</view>
-				<input placeholder="请输入招募人数" bindchange="onPeopleNum"></input>
+				<input placeholder="请输入招募人数" bindchange="onPeopleNum" value="{{peopleNum}}"></input>
 			</view>
 			<!-- 网页链接 -->
-			<view class="cu-form-group">
+			<!-- <view class="cu-form-group">
 				<view class="title">网页链接</view>
 				<input placeholder="请输入网页链接" bindchange="onPageUrl"></input>
-			</view>
+			</view> -->
 			<!-- 薪资 -->
 			<view class="cu-form-group">
 				<view class="title">薪资</view>
@@ -69,18 +69,18 @@
 				</picker>
 			</view>
 			<!-- 招聘开始时间 -->
-			<view class="cu-form-group">
+			<!-- <view class="cu-form-group">
 				<view class="title">开始日期</view>
 				<picker mode="date" value="{{start_date}}" start="2015-09-01" end="2080-09-01" bindchange="DateStartChange">
 					<view class="picker">
 						{{start_date}}
 					</view>
 				</picker>
-			</view>
+			</view> -->
 			<!-- 招聘结束时间 -->
 			<view class="cu-form-group">
-				<view class="title">开始日期</view>
-				<picker mode="date" value="{{end_date}}" start="2015-09-01" end="2080-09-01" bindchange="DateEndChange">
+				<view class="title">结束日期</view>
+				<picker mode="date" value="{{end_date}}" start="2020-01-01" end="2080-09-01" bindchange="DateEndChange">
 					<view class="picker">
 						{{end_date}}
 					</view>
@@ -97,7 +97,7 @@
 			</view>
 			<!-- 补充简要说明 -->
 			<view class="cu-form-group">
-				<textarea maxlength="-1" bindinput="textareaAInput" placeholder="请补充说明"></textarea>
+				<textarea maxlength="-1" bindinput="textareaAInput" placeholder="请补充说明" value="{{textareaAValue}}"></textarea>
 			</view>
 			<!-- 设置背景图片 -->
 			<view class="cu-bar bg-white margin-top">
@@ -124,14 +124,27 @@
 			<!-- 是否推荐为轮播图 -->
 			<view class="cu-form-group">
 				<view class="title">设为轮播</view>
-				<switch bindchange="onCarousel"></switch>
+				<switch bindchange="onCarousel" checked="{{carousel}}"></switch>
 			</view>
 			<!-- 是否设置为推荐图片 -->
 			<view class="cu-form-group margin-bottom">
 				<view class="title">设为推荐</view>
-				<switch bindchange="onRecommend"></switch>
+				<switch bindchange="onRecommend" checked="{{recommend}}"></switch>
 			</view>
 			<button class="cu-btn bg-gradual-red lg margin-bottom" catchtap="onSubmit">提交</button>
+			<view class="cu-modal {{modalTName=='Modal'?'show':''}}">
+				<view class="cu-dialog">
+					<view class="cu-bar bg-white justify-end" style="width:100%">
+						<view class="content">提示</view>
+						<view class="action" bindtap="hideTModal">
+							<text class="cuIcon-close text-red"></text>
+						</view>
+					</view>
+					<view class="padding-xl" style="font-size:30rpx;">
+						标题不能为空
+					</view>
+				</view>
+			</view>
 		</view>
 	</view>
 </scroll-view>
