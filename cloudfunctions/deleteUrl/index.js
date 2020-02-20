@@ -15,9 +15,14 @@ exports.main = async (event, context) => {
   
   const recommend_id = data["data"][0]["_id"]
   
-  // return recommend_id
+ 
 
   const flag = 0
+  const tap = 0
+
+  if (recommend_id == null || recommend_id.length == 0) {
+    tap+=1
+  }
 
   await db.collection('t_url').doc(event.id).remove({
     fail:function(res){
@@ -25,6 +30,14 @@ exports.main = async (event, context) => {
     }
   })
 
+  if(tap==1){
+    return {
+      data: {
+        info: 1,
+        msg: "delete_url_success"
+      }
+    }
+  }
 
   await db.collection('t_recommend').doc(recommend_id).remove({
     fail:function(res){
@@ -49,7 +62,7 @@ exports.main = async (event, context) => {
   }else if(falg==2){
     return {
       data: {
-        info: 0,
+        info: 1,
         msg: "delete_recommend_fail"
       }
     }
