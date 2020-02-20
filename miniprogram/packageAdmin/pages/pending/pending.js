@@ -5,20 +5,358 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    region: ['吉林省', '长春市 ', '南关区'],
+    customItem: ['不限'],
+    start_date: '2020-2-19',
+    end_date: '2020-2-19',
+    date: '2020-2-19',
+    salaryAList: ['不限', '5k-10k', '10k-15k', '15k-20k', '20k+'],
+    eduList: ['不限', '本科', '研究生'],
+    textareaAValue: '',
+    imgList: [],
+    carousel: false,
+    recommend: false,
+  },
+  //标题
+  onTitle: function (e) {
+    this.setData({
+      title: e.detail.value
+    });
+  },
+  //专业
+  onMajor: function (e) {
+    this.setData({
+      major: e.detail.value
+    })
+  },
+  //公司名称
+  onCompany: function (e) {
+    this.setData({
+      company: e.detail.value
+    })
+  },
+  //招聘人数
+  onPeopleNum: function (e) {
+    this.setData({
+      peopleNum: e.detail.value
+    })
+  },
+  //网页地址
+  onPageUrl: function (e) {
+    this.setData({
+      pageUrl: e.detail.value
+    })
+  },
+  //薪资
+  PickerChangeA(e) {
+    this.setData({
+      salary: e.detail.value
+    })
+  },
+  //学历
+  PickerChangeB(e) {
+    this.setData({
+      edu: e.detail.value,
+    })
+  },
+  //改变开始时间
+  DateStartChange: function (e) {
+    this.setData({
+      start_date: e.detail.value
+    })
+  },
+  // 改变结束时间
+  DateEndChange: function (e) {
+    this.setData({
+      end_date: e.detail.value
+    })
+  },
+  //地址
+  RegionChange: function (e) {
+    this.setData({
+      region: e.detail.value
+    })
+  },
+  //多行文本
+  textareaAInput(e) {
+    this.setData({
+      textareaAValue: e.detail.value
+    })
+  },
+  //图片
+  ChooseImage() {
+    wx.chooseImage({
+      count: 1, //默认9
+      sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album'], //从相册选择
+      success: (res) => {
+        if (this.data.imgList.length != 0) {
+          this.setData({
+            imgList: this.data.imgList.concat(res.tempFilePaths)
+          })
+        } else {
+          this.setData({
+            imgList: res.tempFilePaths
+          });
+        }
+      }
+    });
+  },
+  ViewImage(e) {
+    wx.previewImage({
+      urls: this.data.imgList,
+      current: e.currentTarget.dataset.url
+    });
+  },
+  DelImg(e) {
+    wx.showModal({
+      title: '',
+      content: '确定要删除吗？',
+      cancelText: '取消',
+      confirmText: '确定',
+      success: res => {
+        if (res.confirm) {
+          this.data.imgList.splice(e.currentTarget.dataset.index, 1);
+          this.setData({
+            imgList: this.data.imgList
+          })
+        }
+      }
+    })
+  },
+  //是否设为轮播
+  onCarousel(e) {
+    this.setData({
+      carousel: e.detail.value
+    })
+  },
+  //是否设为推荐
+  onRecommend(e) {
+    this.setData({
+      recommend: e.detail.value
+    })
+  },
+  // ListTouch触摸开始
+  ListTouchStart(e) {
+    this.setData({
+      ListTouchStart: e.touches[0].pageX
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
+  // ListTouch计算方向
+  ListTouchMove(e) {
+    this.setData({
+      ListTouchDirection: e.touches[0].pageX - this.data.ListTouchStart > 0 ? 'right' : 'left'
+    })
+  },
+
+  // ListTouch计算滚动
+  ListTouchEnd(e) {
+    if (this.data.ListTouchDirection == 'left') {
+      this.setData({
+        modalName: e.currentTarget.dataset.target
+      })
+    } else {
+      this.setData({
+        modalName: null
+      })
+    }
+    this.setData({
+      ListTouchDirection: null
+    })
+  },
+  //长按复制url
+  onLongpress: function (event) {
+    var url = event.currentTarget.dataset.url;
+    wx.setClipboardData({
+      data: url,
+      success: function (res) {
+        wx.getClipboardData({
+          success: function (res) {
+            console.log(res.data);
+          }
+        })
+      }
+    })
+  },
+  //显示抽屉
+  showModal(e) {
+    this.setData({
+      modalName: e.currentTarget.dataset.target,
+      id: e.currentTarget.dataset.id,
+      username: e.currentTarget.dataset.username,
+      list_index: e.currentTarget.dataset.index
+    })
+  },
+  //隐藏抽屉
+  hideModal(e) {
+    this.setData({
+      modalName: null
+    })
+  },
+  //删除
+  onDelete(e) {
+    var index = e.currentTarget.dataset.index;
+    var infoList = this.data.pend_infoList;
+    console.log(infoList);
+    infoList.splice(index, 1);
+    this.setData({
+      pend_infoList: infoList,
+    });
+
+    var username = e.currentTarget.dataset.username;
+    var id = e.currentTarget.dataset.id;
+    console.log(id);
+
+    wx.cloud.callFunction({
+      // 要调用的云函数名称
+      name: 'updateUrl',
+      // 传递给云函数的参数
+      data: {
+        id: id,
+        province: '',
+        city: '',
+        company: '',
+        create_time: JSON.stringify(2020 - 2 - 19),
+        end_time: JSON.stringify(2020 - 2 - 19),
+        salary: '',
+        menbers: '',
+        edu_back: '',
+        info: '',
+        picture: '',
+        state: 1,
+        title: '',
+        url: '',
+        username: username,
+      },
+      success: res => {
+        console.log(res);
+        console.log("成功了");
+      },
+      fail: err => {
+        // handle error
+        console.log(err);
+      }
+    })
+
+  },
+  //编辑键
+  onSubmit(e) {
+    var nowDate = new Date();
+    //以年份和月份生成文件夹名字
+    var month = nowDate.getMonth() + 1;
+    var year = nowDate.getFullYear();
+    // 图像命名 时间戳 + 本身名字
+    var timestamp = Date.parse(nowDate);
+    var filePath = this.data.imgList[0];
+    const cloudPath = "url_images/" + month + year + '/' + timestamp + filePath.match(/\.[^.]+?$/)[0];
+    //上传图像
+    wx.cloud.uploadFile({
+      cloudPath,
+      filePath,
+      success: res => {
+        // console.log('[上传文件] 成功：', cloudPath, res, res.fileID);
+        // 成功则将表单推送到后台，因为图像传的比较慢，而表单里有picture，所以图像传成功之后传表单
+        var infoList = {
+          id: this.data.id,
+          province: this.data.region[0],
+          city: this.data.region[1],
+          company: this.data.company,
+          create_time: JSON.stringify(this.data.start_date),
+          end_time: JSON.stringify(this.data.end_date),
+          salary: this.data.salaryAList[this.data.salary],
+          menbers: this.data.peopleNum,
+          edu_back: this.data.eduList[this.data.edu] + ' ' + this.data.major,
+          info: this.data.textareaAValue,
+          picture: res.fileID,
+          state: 2,
+          title: this.data.title,
+          url: this.data.pageUrl,
+          username: this.data.username,
+        };
+        console.log(infoList);
+        wx.cloud.callFunction({
+          // 要调用的云函数名称
+          name: 'updateUrl',
+          // 传递给云函数的参数
+          data: infoList,
+          success: res => {
+            var index = this.data.list_index;
+            var infoList = this.data.pend_infoList;
+            infoList.splice(index, 1);
+            this.setData({
+              pend_infoList: infoList,
+            });
+          },
+          fail: err => {
+            // handle error
+            console.log(err);
+          }
+        })
+      }
+    });
+    //设为轮播图
+    if (this.data.carousel) {
+      wx.cloud.callFunction({
+        // 要调用的云函数名称
+        name: 'insertRecommend',
+        // 传递给云函数的参数
+        data: {
+          type: 2,
+          url_id: this.data.id
+        },
+        success: res => {
+          console.log(res);
+        },
+        fail: err => {
+          console.log(err);
+        }
+      })
+    };
+    //设为推荐列表
+    if (this.data.recommend) {
+      wx.cloud.callFunction({
+        // 要调用的云函数名称
+        name: 'insertRecommend',
+        // 传递给云函数的参数
+        data: {
+          type: 1,
+          url_id: this.data.id,
+        },
+        success: res => {
+          console.log(res);
+        },
+        fail: err => {
+          // handle error
+          console.log(err);
+        }
+      })
+    }
+  },
   onLoad: function (options) {
     wx.cloud.callFunction({
+      // 要调用的云函数名称
       name: 'queryUrl',
+      // 传递给云函数的参数
       data: {
-        state:0
+        type: "two",
+        state: 0
+      },
+      success: res => {
+        //console.log(res.result.data);
+        this.setData({
+          pend_infoList: res.result.data
+        })
+
+      },
+      fail: err => {
+        // handle error
+        console.log(err);
+
+      },
+      complete: () => {
+        // ...
       }
-    }).then((res)=>{
-      console.log(res.result.data)
     })
   },
 
