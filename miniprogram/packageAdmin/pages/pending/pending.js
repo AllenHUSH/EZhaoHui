@@ -251,8 +251,7 @@ Page({
         modalTName: 'Modal'
       });
       // console.log(this.data.modalTName);
-    } 
-    else {
+    } else {
       if (this.data.end_date == "不限") {
         this.data.end_date = '2030-02-20'
       };
@@ -291,7 +290,6 @@ Page({
           success: res => {
             // console.log('[上传文件] 成功：', cloudPath, res, res.fileID);
             // 成功则将表单推送到后台，因为图像传的比较慢，而表单里有picture，所以图像传成功之后传表单
-
             infoList.picture = res.fileID;
             console.log(infoList);
             wx.cloud.callFunction({
@@ -300,12 +298,7 @@ Page({
               // 传递给云函数的参数
               data: infoList,
               success: res => {
-                var index = this.data.list_index;
-                var infoList = this.data.pend_infoList;
-                infoList.splice(index, 1);
-                this.setData({
-                  pend_infoList: infoList,
-                });
+                console.log(res.result.data);
               },
               fail: err => {
                 // handle error
@@ -323,12 +316,7 @@ Page({
           // 传递给云函数的参数
           data: infoList,
           success: res => {
-            var index = this.data.list_index;
-            var infoList = this.data.pend_infoList;
-            infoList.splice(index, 1);
-            this.setData({
-              pend_infoList: infoList,
-            });
+            console.log(res.result.data);
           },
           fail: err => {
             // handle error
@@ -336,6 +324,12 @@ Page({
           }
         })
       }
+      var index = this.data.list_index;
+      var infoList = this.data.pend_infoList;
+      infoList.splice(index, 1);
+      this.setData({
+        pend_infoList: infoList,
+      });
       //设为轮播图
       if (this.data.carousel) {
         wx.cloud.callFunction({
@@ -373,7 +367,9 @@ Page({
           }
         })
       };
-      this.setData({ modalName: null,});
+      this.setData({
+        modalName: null,
+      });
     }
   },
   //加载页面
@@ -384,7 +380,7 @@ Page({
       // 传递给云函数的参数
       data: {
         type: "two",
-        state:0
+        state: 0
       },
       success: res => {
         console.log(res.result.data);
