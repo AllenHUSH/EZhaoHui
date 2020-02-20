@@ -103,6 +103,7 @@ Page({
         type:"two"
       }
     }).then((res)=>{
+      console.log(res);
       if (res.result.data[0])
       console.log(res);
       console.log(res.result.data[0].url);
