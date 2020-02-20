@@ -59,6 +59,11 @@
 					"id": -3,
 					"name": "result",
 					"pathName": "pages/result/result"
+				},
+				{
+					"id": -4,
+					"name": "pending",
+					"pathName": "packageAdmin/pages/pending/pending"
 				}
 			]
 		}

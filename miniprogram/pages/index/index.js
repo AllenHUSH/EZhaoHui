@@ -112,7 +112,7 @@ Page({
 			wx.navigateTo({
 				url: '../result/result',
 			})
-			console.log(res.result)
+			console.log(app.globalData.msgList)
 		})
 	}
 })
