@@ -45,11 +45,6 @@
 				<view class="title">招募人数</view>
 				<input placeholder="请输入招募人数" bindchange="onPeopleNum" value="{{peopleNum}}"></input>
 			</view>
-			<!-- 网页链接 -->
-			<!-- <view class="cu-form-group">
-				<view class="title">网页链接</view>
-				<input placeholder="请输入网页链接" bindchange="onPageUrl"></input>
-			</view> -->
 			<!-- 薪资 -->
 			<view class="cu-form-group">
 				<view class="title">薪资</view>
@@ -68,15 +63,6 @@
 					</view>
 				</picker>
 			</view>
-			<!-- 招聘开始时间 -->
-			<!-- <view class="cu-form-group">
-				<view class="title">开始日期</view>
-				<picker mode="date" value="{{start_date}}" start="2015-09-01" end="2080-09-01" bindchange="DateStartChange">
-					<view class="picker">
-						{{start_date}}
-					</view>
-				</picker>
-			</view> -->
 			<!-- 招聘结束时间 -->
 			<view class="cu-form-group">
 				<view class="title">结束日期</view>
