@@ -1,6 +1,5 @@
 // miniprogram/pages/about/about.js
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -17,8 +16,6 @@ Page({
   urlInp: function(e){
     this.data.urlContent = e.detail.value;
   },
-
-
   // 点击go向后端传参
   bindtest: function() {
     wx.cloud.callFunction({
@@ -33,7 +30,6 @@ Page({
       console.log(res.result);
     })
     .catch(console.error);
-
   //将input中的内容还原
     this.setData({
       orignContent: "分享你的咨询链接",
@@ -42,8 +38,6 @@ Page({
     // console.log(this.data.orignContent);
     // console.log(this.data.urlContent);
   },
-
-
   /**
    * 生命周期函数--监听页面加载
    */
@@ -81,7 +75,6 @@ Page({
           openid: openid
         })
         // console.log(that.data.openid);
-
         // console.log(that.data.superP);
         //将得到的openid传给后端进行判断
         wx.cloud.callFunction({
@@ -118,49 +111,37 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-
   },
-
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
     
   },
-
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function() {
-
   },
-
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function() {
-
   },
-
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
-
   },
-
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function() {
-
   },
-
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function() {
-
   },
   //得到用户信息
   bindGetUserInfo(e) {

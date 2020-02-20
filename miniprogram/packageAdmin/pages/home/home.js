@@ -16,7 +16,8 @@ Page({
         title: '未通过',
         name: 'not pass',
         color: 'blue',
-        icon: 'roundclosefill'
+        icon: 'roundclosefill',
+        url: "/packageAdmin/pages/nopass/nopass"
       },
       {
         title: '已过期',
