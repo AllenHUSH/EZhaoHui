@@ -19,7 +19,7 @@ Component({
      * 组件的初始数据
      */
     data: {
-		color: ["bg-gradual-red", "bg-gradual-orange", "bg-gradual-green", "bg-gradual-blue", "bg-gradual-purple", "bg-gradual-pink"],
+		color: ["bg-gradual-red", "bg-gradual-orange", "bg-gradual-green", "bg-gradual-blue", "bg-gradual-purple", "bg-gradual-pink",],
 		number:Math.floor(Math.random()*6)
     },
 

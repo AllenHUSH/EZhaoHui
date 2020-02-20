@@ -13,7 +13,7 @@
         "pages/home/home",
         "pages/pending/pending",
         "pages/test/test",
-				"pages/overdue/overdue",
+		"pages/overdue/overdue",
         "pages/serviceManual/serviceManual",
         "pages/personnel/personnel"
       ]
@@ -30,7 +30,8 @@
   "usingComponents": {
     "cu-custom": "/colorui/components/cu-custom",
 	"searchForm":"/components/searchForm/searchForm",
-	"card": "/components/card/card"
+	"card": "/components/card/card",
+	"overdueCard":"/components/overdueCard/overdueCard"
   },
   "sitemapLocation": "sitemap.json",
   "style": "v2",

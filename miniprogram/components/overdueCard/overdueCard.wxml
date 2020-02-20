@@ -1,0 +1,41 @@
+<!--components/overdueCard/overdueCard.wxml-->
+<view class="card bg-white padding-sm"
+>
+	<image class="bg" wx:if="{{card.picture}}" src="{{card.picture}}"></image>
+	<view 
+		class="result-title text-black text-bold text-xl" 
+	>{{card.title}}</view><!-- 标题 -->
+	<view
+		class='resultTag flex flex-wrap'
+	>
+		<text 
+			class="cu-tag light bg-orange result-tag radius" 
+			wx:if="{{card.company}}"
+		> {{card.company}}</text><!-- 公司 -->
+		<text 
+			class="cu-tag light bg-brown result-tag radius" 
+			wx:if="{{card.province || card.city}}"
+		>{{card.province}} {{card.city}}</text><!-- 城市 -->
+		<text 
+			class="cu-tag light bg-red result-tag radius" 
+			wx:if="{{card.edu_back}}"
+		>{{card.edu_back}}</text><!-- 城市 -->
+		
+	</view>
+	<view class="result-info cu-list menu-avatar">
+        <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{1}}" wx:key="item" bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}">
+            <view class="content text-xl">
+                {{card.info}}
+				<text class="left cuIcon-back"></text>
+            </view>
+            <view class="move">
+                <view class="bg-grey"
+					bindtap="onChange"
+				>编辑</view>
+                <view class="bg-red"
+					bindtap="onDelete"
+				>删除</view>
+            </view>
+        </view>
+    </view>
+</view>
