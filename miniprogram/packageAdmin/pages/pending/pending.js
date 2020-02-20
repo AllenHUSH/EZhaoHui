@@ -1,6 +1,5 @@
 // packageAdmin/pages/pending/pending.js
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -210,11 +209,9 @@ Page({
     this.setData({
       pend_infoList: infoList,
     });
-
     var username = e.currentTarget.dataset.username;
     var id = e.currentTarget.dataset.id;
     console.log(id);
-
     wx.cloud.callFunction({
       // 要调用的云函数名称
       name: 'updateUrl',
@@ -235,7 +232,6 @@ Page({
         console.log(err);
       }
     })
-
   },
   //隐藏标题提示框
   hideTModal(e) {
@@ -251,7 +247,7 @@ Page({
         modalTName: 'Modal'
       });
       // console.log(this.data.modalTName);
-    } 
+    }
     else {
       if (this.data.end_date == "不限") {
         this.data.end_date = '2030-02-20'
@@ -291,7 +287,6 @@ Page({
           success: res => {
             // console.log('[上传文件] 成功：', cloudPath, res, res.fileID);
             // 成功则将表单推送到后台，因为图像传的比较慢，而表单里有picture，所以图像传成功之后传表单
-
             infoList.picture = res.fileID;
             console.log(infoList);
             wx.cloud.callFunction({
@@ -373,7 +368,7 @@ Page({
           }
         })
       };
-      this.setData({ modalName: null,});
+      this.setData({ modalName: null, });
     }
   },
   //加载页面
@@ -384,19 +379,17 @@ Page({
       // 传递给云函数的参数
       data: {
         type: "two",
-        state:0
+        state: 0
       },
       success: res => {
         console.log(res.result.data);
         this.setData({
           pend_infoList: res.result.data
         })
-
       },
       fail: err => {
         // handle error
         console.log(err);
-
       },
       complete: () => {
         // ...
