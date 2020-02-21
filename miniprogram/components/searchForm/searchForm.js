@@ -16,11 +16,12 @@ Component({
 		company: "",
 		educationBgList: ["不限","本科", "研究生"],
 		educationBg: 0,
-		region: ["","",""],
+		region: ["不限", "不限", "不限"],
 		region1:"不限",
 		money: 0,
 		moneyList: ["不限","5k-10k", "10k-15k", "15k-20k", "20k+"],
-		title:""
+		title:"",
+		customItem: ['不限'],
 	},
 
 	/**
@@ -67,7 +68,7 @@ Component({
 				major:this.data.major,
 				station: this.data.station,
 				company: this.data.company,
-				money: this.data.moneyList[this.data.money],
+				money: this.data.money,
 				region: this.data.region,
 				educationBg: this.data.educationBgList[this.data.educationBg],
 				title: this.data.title

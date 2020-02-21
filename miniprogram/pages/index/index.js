@@ -93,17 +93,18 @@ Page({
 		let city = data.detail.region[1] === "不限" ? "" : data.detail.region[1];
 		let province = data.detail.region[0] === "不限" ? "" : data.detail.region[0];
 		let educationBg = data.detail.educationBg === "不限" ? "" : data.detail.educationBg;
-		let money = data.detail.money === "不限" ? "" : data.detail.money;
 		let query={
 			title: data.detail.title,
 			city: city,
 			company: data.detail.company,
-			edu_back: educationBg + data.detail.major,
-			info: money + data.detail.station,
+			edu_back: educationBg +" " +data.detail.major,
+			salary:Number(data.detail.money),
+			info:"",
 			province: province,
 			type:"one",
 			state:2
 		}
+		console.log(query);
 		wx.cloud.callFunction({
 			name:"queryUrl",
 			data:query

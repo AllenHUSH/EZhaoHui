@@ -55,7 +55,6 @@ Component({
 		},
 		onDelete(e) {
 			let id = this.properties.card._id;
-			console.log(id)
 			wx.cloud.callFunction({
 				// 要调用的云函数名称
 				name: 'deleteUrl',
@@ -64,8 +63,20 @@ Component({
 					id: id,
 				},
 				success: res => {
-					console.log(res);
 					this.triggerEvent('deleteItem', this.properties.index)
+					wx.showToast({
+						title: '删除成功'
+					})
+					if(this.properties.card.picture){
+						wx.cloud.deleteFile({
+							fileList: [this.properties.card.picture]
+						}).then(res => {
+							// handle success
+							console.log(res.fileList, "删除成功")
+						}).catch(error => {
+							// handle error
+						})
+					}
 				},
 				fail: err => {
 					console.log(err);
