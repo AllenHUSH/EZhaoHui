@@ -40,7 +40,7 @@
 .result-tag{
 	display: inline-block;
 	margin-top: 20rpx;
-	max-width: 220rpx;
+	max-width: 180rpx;
 	line-height: 48rpx;
 	overflow: hidden; /*超出的部分隐藏起来。*/
     white-space: nowrap; /*不换行*/

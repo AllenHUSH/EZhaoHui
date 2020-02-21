@@ -32,6 +32,7 @@ Page({
 			})
 		})
 		
+		
 	},//删除
 	deleteItem(e){
 		let list = this.data.overdueList;
@@ -70,7 +71,6 @@ Page({
 				imgList: [e.detail.card.picture]
 			})
 		}
-
 	},//隐藏抽屉
 	hideModal(e) {
 		this.setData({
@@ -212,64 +212,83 @@ Page({
 	},
 	//编辑键
 	onSubmit(e) {
-		
 		//上传图像
-		// let infoList = {
-		// 	id: this.data.card.id,
-		// 	province: this.data.card.province,
-		// 	city: this.data.card.city,
-		// 	company: this.data.card.company,
-		// 	create_time: JSON.stringify(this.data.card.create_time),
-		// 	end_time: JSON.stringify(this.data.card.end_time),
-		// 	salary: this.data.card.salary,
-		// 	menbers: this.data.card.menbers,
-		// 	edu_back: this.data.card.edu + ' ' + this.data.card.major,
-		// 	info: this.data.card.info,
-		// 	picture: this.data.imgList[0],
-		// 	state: 2,
-		// 	title: this.data.card.title,
-		// };
-		if ((this.data.imgList[0] != this.data.card.picture) || !this.data.imgList.length){//说明有新图片上传
+		let create = this.data.card.create_time.split("-");
+		let end = this.data.card.end_time.split("-");
+		let createStr = "card.create_time";
+		let endStr = "card.end_time";
+		let start = JSON.stringify(new Date(create[0],create[1],create[2])).split('"')[1]
+		let en = JSON.stringify(new Date(end[0], end[1], end[2])).split('"')[1]
+		
+		let infoList = {
+			id: this.data.card.id,
+			province: this.data.card.province,
+			city: this.data.card.city,
+			company: this.data.card.company ? this.data.card.company:"",
+			create_time: start,
+			end_time: en,
+			salary: this.data.card.salary,
+			menbers: this.data.card.menbers,
+			edu_back: this.data.card.edu + ' ' + (this.data.card.major ? this.data.card.major:"专业不限"),
+			info: this.data.card.info,
+			picture: this.data.imgList[0],
+			state: 2,
+			title: this.data.card.title,
+		};
+		if (this.data.imgList.length&&(this.data.imgList[0]!=this.data.card.picture)){//说明有新图片上传
 			let nowDate = new Date();
 			// 图像命名 时间戳 + 本身名字
 			let filePath = this.data.imgList[0];
-			let date = JSON.stringify(new Date()).split("T")[0].split(`"`)[1];
-			const cloudPath = "url_images/" + date + "/" + this.data.card.id + filePath.match(/\.[^.]+?$/)[0];
+			let cloudPath = "url_images/" + this.data.card.id + filePath.match(/\.[^.]+?$/)[0];
 			wx.cloud.uploadFile({
 				cloudPath,
 				filePath,
 				success: res => {
 					console.log('[上传文件] 成功：', cloudPath, res, res.fileID);
 					// 成功则将表单推送到后台，因为图像传的比较慢，而表单里有picture，所以图像传成功之后传表单
+					infoList.picture = res.fileID;
 					wx.cloud.callFunction({
 						// 要调用的云函数名称
 						name: 'updateUrl',
 						// 传递给云函数的参数
-						data: this.data.card,
+						data: infoList,
 						success: res => {
 							let list = this.data.overdueList;
 							list.splice(this.data.currentIndex, 1);
 							this.setData({
 								overdueList: list
 							})
+							this.setData({
+								modalName: null
+							})
+							this.setData({
+								imgList:[]
+							})
+						
 						},
 						fail: err => {
 							console.log(err);
 						}
 					})
-				}
+				},
 			});
 		}else{
 			wx.cloud.callFunction({
 				// 要调用的云函数名称
 				name: 'updateUrl',
 				// 传递给云函数的参数
-				data: this.data.card,
+				data: infoList,
 				success: res => {
 					let list = this.data.overdueList;
 					list.splice(this.data.currentIndex, 1);
 					this.setData({
 						overdueList: list
+					})
+					this.setData({
+						modalName: null
+					})
+					this.setData({
+						imgList: []
 					})
 				},
 				fail: err => {
@@ -277,70 +296,43 @@ Page({
 				}
 			})
 		}
-		// wx.cloud.uploadFile({
-		// 	cloudPath,
-		// 	filePath,
-		// 	success: res => {
-		// 		// console.log('[上传文件] 成功：', cloudPath, res, res.fileID);
-		// 		// 成功则将表单推送到后台，因为图像传的比较慢，而表单里有picture，所以图像传成功之后传表单
-				
-		// 		console.log(infoList);
-		// 		wx.cloud.callFunction({
-		// 			// 要调用的云函数名称
-		// 			name: 'updateUrl',
-		// 			// 传递给云函数的参数
-		// 			data: infoList,
-		// 			success: res => {
-		// 				let index = this.data.list_index;
-		// 				let infoList = this.data.pend_infoList;
-		// 				infoList.splice(index, 1);
-		// 				this.setData({
-		// 					pend_infoList: infoList,
-		// 				});
-		// 			},
-		// 			fail: err => {
-		// 				// handle error
-		// 				console.log(err);
-		// 			}
-		// 		})
-		// 	}
-		// });
+
 		//设为轮播图
-		// if (this.data.carousel) {
-		// 	wx.cloud.callFunction({
-		// 		// 要调用的云函数名称
-		// 		name: 'insertRecommend',
-		// 		// 传递给云函数的参数
-		// 		data: {
-		// 			type: 2,
-		// 			url_id: this.data.id
-		// 		},
-		// 		success: res => {
-		// 			console.log(res);
-		// 		},
-		// 		fail: err => {
-		// 			console.log(err);
-		// 		}
-		// 	})
-		// };
-		// //设为推荐列表
-		// if (this.data.recommend) {
-		// 	wx.cloud.callFunction({
-		// 		// 要调用的云函数名称
-		// 		name: 'insertRecommend',
-		// 		// 传递给云函数的参数
-		// 		data: {
-		// 			type: 1,
-		// 			url_id: this.data.id,
-		// 		},
-		// 		success: res => {
-		// 			console.log(res);
-		// 		},
-		// 		fail: err => {
-		// 			// handle error
-		// 			console.log(err);
-		// 		}
-		// 	})
-		// }
+		if (this.data.carousel) {
+			wx.cloud.callFunction({
+				// 要调用的云函数名称
+				name: 'insertRecommendIV',
+				// 传递给云函数的参数
+				data: {
+					url_id: this.data.card.id
+				},
+				success: res => {
+					console.log(res);
+					console.log(this.data.card.id)
+				},
+				fail: err => {
+					console.log(err);
+				}
+			})
+		};
+		//设为推荐列表
+		if (this.data.recommend) {
+			wx.cloud.callFunction({
+				// 要调用的云函数名称
+				name: 'insertRecommend',
+				// 传递给云函数的参数
+				data: {
+					url_id: this.data.card.id,
+				},
+				success: res => {
+					console.log(res);
+					console.log(this.data.card.id)
+				},
+				fail: err => {
+					// handle error
+					console.log(err);
+				}
+			})
+		}
 	}
 })
