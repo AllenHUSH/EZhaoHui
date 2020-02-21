@@ -259,7 +259,7 @@ Page({
         company: this.data.company,
         create_time: JSON.stringify(this.data.start_date),
         end_time: JSON.stringify(this.data.end_date),
-        salary: this.data.salaryAList[this.data.salary],
+        salary: this.data.salary,
         menbers: this.data.peopleNum,
         edu_back: this.data.eduList[this.data.edu] + ' ' + this.data.major,
         info: this.data.textareaAValue,
@@ -272,14 +272,8 @@ Page({
       //console.log(infoList);
       //有imgList
       if (this.data.imgList[0]) {
-        var nowDate = new Date();
-        //以年份和月份生成文件夹名字
-        var month = nowDate.getMonth() + 1;
-        var year = nowDate.getFullYear();
-        // 图像命名 时间戳 + 本身名字
-        var timestamp = Date.parse(nowDate);
         var filePath = this.data.imgList[0];
-        const cloudPath = "url_images/" + month + year + '/' + timestamp + filePath.match(/\.[^.]+?$/)[0];
+        const cloudPath = "url_images/" + this.data.id + filePath.match(/\.[^.]+?$/)[0];
         //上传图像
         wx.cloud.uploadFile({
           cloudPath,
@@ -288,19 +282,16 @@ Page({
             // console.log('[上传文件] 成功：', cloudPath, res, res.fileID);
             // 成功则将表单推送到后台，因为图像传的比较慢，而表单里有picture，所以图像传成功之后传表单
             infoList.picture = res.fileID;
-            console.log(infoList);
+            console.log(infoList.picture);
+            
+            //console.log(infoList);
             wx.cloud.callFunction({
               // 要调用的云函数名称
               name: 'updateUrl',
               // 传递给云函数的参数
               data: infoList,
               success: res => {
-                var index = this.data.list_index;
-                var infoList = this.data.pend_infoList;
-                infoList.splice(index, 1);
-                this.setData({
-                  pend_infoList: infoList,
-                });
+                console.log(res);
               },
               fail: err => {
                 // handle error
@@ -318,12 +309,7 @@ Page({
           // 传递给云函数的参数
           data: infoList,
           success: res => {
-            var index = this.data.list_index;
-            var infoList = this.data.pend_infoList;
-            infoList.splice(index, 1);
-            this.setData({
-              pend_infoList: infoList,
-            });
+            console.log(res);
           },
           fail: err => {
             // handle error
@@ -331,6 +317,12 @@ Page({
           }
         })
       }
+      var index = this.data.list_index;
+      var pend_infoList = this.data.pend_infoList;
+      pend_infoList.splice(index, 1);
+      this.setData({
+        pend_infoList: pend_infoList,
+      });
       //设为轮播图
       if (this.data.carousel) {
         wx.cloud.callFunction({
