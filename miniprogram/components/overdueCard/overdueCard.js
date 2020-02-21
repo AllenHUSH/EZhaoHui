@@ -88,6 +88,21 @@ Component({
 		},
 		onChange(e){
 			this.triggerEvent('editShow', { card:this.properties.card, index:this.properties.index })
+		},
+		copyUrl(event) {
+			var url = event.currentTarget.dataset.url;
+			wx.setClipboardData({
+				data: this.data.card.url,//推送链接
+				success: function (res) {
+					wx.getClipboardData({
+						success: function (res) {
+							wx.showToast({
+								title: '复制链接成功'
+							})
+						}
+					})
+				}
+			})
 		}
 	}
 })

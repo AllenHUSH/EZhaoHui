@@ -1,13 +1,26 @@
 /* packageAdmin/pages/pending/pending.wxss */
-.cu-list.menu-avatar>.cu-item .content{
-  font-size:14px;
-  /* text-align: center; */
-  left: 80rpx;
+
+.cu-list.menu-avatar>.cu-item .content {
+    font-size: 14px;
+    left: 80rpx;
+    overflow: hidden;
+    width: 90%;
+    display: flex;
 }
-.link{
-  font-size: 16px;
-  margin-right: 3px;
+
+.link {
+    font-size: 16px;
+    margin-right: 6px;
 }
-.wrap{
-  margin-bottom: 1px;
+
+.wrap {
+    margin-bottom: 1px;
+}
+
+.url {
+    width: 80%;
+    overflow: hidden; /*超出的部分隐藏起来。*/
+    white-space: nowrap; /*不换行*/
+    text-overflow: ellipsis;
+    height: 22px;
 }
