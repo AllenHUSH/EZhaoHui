@@ -20,7 +20,6 @@ Component({
      */
     data: {
 		color: ["bg-gradual-red", "bg-gradual-orange", "bg-gradual-green", "bg-gradual-blue", "bg-gradual-purple", "bg-gradual-pink",],
-		number:Math.floor(Math.random()*6)
     },
 
     /**

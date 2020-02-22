@@ -1,2 +1,25 @@
 <!--packageAdmin/pages/personnel/personnel.wxml-->
-<text>packageAdmin/pages/personnel/personnel.wxml</text>
+<cu-custom bgColor="bg-gradual-red" isBack="{{true}}">
+  <view slot="content">人员管理</view>
+</cu-custom>
+<view class="cu-bar bg-white solid-bottom margin-top">
+  <view class="action">
+    <text class="cuIcon-title text-orange"></text> 菜单列表
+  </view>
+</view>
+
+<view class="cu-list menu sm-border card-menu margin-top">
+  <view class="cu-item" wx:for="{{adminList}}" wx:key="id">
+    <view class="content padding-tb-sm">
+      <view>
+        <text class="cuIcon-service text-blue margin-right-xs"></text> {{item.nickname}}</view>
+      <view class="text-gray text-sm">
+        <text class="margin-right-xs"></text> {{item.user_openid}}</view>
+    </view>
+    <view class="action">
+      <button class="cu-btn bg-red cuIcon">
+        <text class="cuIcon-deletefill"></text>
+      </button>
+    </view>
+  </view>
+</view>

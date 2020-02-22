@@ -5,15 +5,15 @@ Page({
 	 * 页面的初始数据
 	 */
 	data: {
-		overdueList:[],
+		publishingList: [],
 		customItem: ['不限'],
 		salaryAList: ['不限', '5k-10k', '10k-15k', '15k-20k', '20k+'],
 		eduList: ['不限', '本科', '研究生'],
 		imgList: [],
 		carousel: false,
 		recommend: false,
-		card:{},
-		currentIndex:0
+		card: {},
+		currentIndex: 0//当前正在编辑的卡片
 	},
 
 	/**
@@ -21,27 +21,27 @@ Page({
 	 */
 	onLoad: function (options) {//请求 过期数据
 		wx.cloud.callFunction({
-			name:"queryUrl",
-			data:{
-				type:"two",
-				state:3
+			name: "queryUrl",
+			data: {
+				type: "two",
+				state: 2
 			}
-		}).then(res=>{
+		}).then(res => {
 			this.setData({
-				overdueList:res.result.data
+				publishingList: res.result.data
 			})
 		})
-		
-		
+
+
 	},//删除
-	deleteItem(e){
-		let list = this.data.overdueList;
+	overdueItem(e) {
+		let list = this.data.publishingList;
 		list.splice(e.detail, 1);
 		this.setData({
-			overdueList: list
+			publishingList: list
 		})
 	},//显示抽屉
-	editShow(e){
+	editShow(e) {
 		let currentData = {
 			id: e.detail.card._id,
 			city: e.detail.card.city,
@@ -53,10 +53,12 @@ Page({
 			info: e.detail.card.info,
 			menbers: e.detail.card.menbers,
 			picture: e.detail.card.picture ? e.detail.card.picture:"",
+			salary: e.detail.card.salary,
 			province: e.detail.card.province,
-			title	: e.detail.card.title,
-			salary: e.detail.card.salary ? e.detail.card.salary:0 ,
-			state:2
+			title: e.detail.card.title,
+			state: 2,
+			url: e.detail.card.url,
+			username: e.detail.card.url
 		}
 		this.setData({
 			modalName: "viewModal",
@@ -67,7 +69,7 @@ Page({
 		this.setData({
 			currentIndex: e.detail.index
 		})
-		if (e.detail.card.picture){
+		if (e.detail.card.picture) {
 			this.setData({
 				imgList: [e.detail.card.picture]
 			})
@@ -213,31 +215,31 @@ Page({
 	},
 	//编辑键
 	onSubmit(e) {
-		//上传图像
 		let create = this.data.card.create_time.split("-");
 		let end = this.data.card.end_time.split("-");
 		let createStr = "card.create_time";
 		let endStr = "card.end_time";
-		let start = JSON.stringify(new Date(create[0],create[1],create[2])).split('"')[1]
+		let start = JSON.stringify(new Date(create[0], create[1], create[2])).split('"')[1]
 		let en = JSON.stringify(new Date(end[0], end[1], end[2])).split('"')[1]
-		
+
 		let infoList = {
 			id: this.data.card.id,
 			province: this.data.card.province,
 			city: this.data.card.city,
-			company: this.data.card.company ? this.data.card.company:"",
+			company: this.data.card.company ? this.data.card.company : "",
 			create_time: start,
 			end_time: en,
 			salary: Number(this.data.card.salary),
 			menbers: this.data.card.menbers,
-			edu_back: this.data.card.edu + ' ' + (this.data.card.major ? this.data.card.major:"专业不限"),
+			edu_back: this.data.card.edu + ' ' + (this.data.card.major ? this.data.card.major : "专业不限"),
 			info: this.data.card.info,
 			picture: this.data.imgList[0] ? this.data.imgList[0]:"",
 			state: 2,
 			title: this.data.card.title,
+			url: this.data.card.url,
+			username: this.data.card.username
 		};
-		console.log(infoList)
-		if (this.data.imgList.length&&(this.data.imgList[0]!=this.data.card.picture)){//说明有新图片上传
+		if (this.data.imgList.length && (this.data.imgList[0] != this.data.card.picture)) {//说明有新图片上传
 			let nowDate = new Date();
 			// 图像命名 时间戳 + 本身名字
 			let filePath = this.data.imgList[0];
@@ -255,18 +257,19 @@ Page({
 						// 传递给云函数的参数
 						data: infoList,
 						success: res => {
-							let list = this.data.overdueList;
-							list.splice(this.data.currentIndex, 1);
+							let str = "publishingList[" + this.data.currentIndex + "]"
 							this.setData({
-								overdueList: list
+								[str]: infoList
+							})
+							wx.showToast({
+								title: '编辑成功'
 							})
 							this.setData({
 								modalName: null
 							})
 							this.setData({
-								imgList:[]
+								imgList: []
 							})
-						
 						},
 						fail: err => {
 							console.log(err);
@@ -274,23 +277,22 @@ Page({
 					})
 				},
 			});
-		}else{
+		} else {
 			wx.cloud.callFunction({
 				// 要调用的云函数名称
 				name: 'updateUrl',
 				// 传递给云函数的参数
 				data: infoList,
 				success: res => {
-					let list = this.data.overdueList;
-					list.splice(this.data.currentIndex, 1);
+					let str = "publishingList["+this.data.currentIndex+"]"
 					this.setData({
-						overdueList: list
+						[str]: infoList
+					})
+					wx.showToast({
+						title: '编辑成功'
 					})
 					this.setData({
 						modalName: null
-					})
-					this.setData({
-						imgList: []
 					})
 				},
 				fail: err => {

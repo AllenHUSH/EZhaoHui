@@ -1,7 +1,6 @@
 <!-- miniprogram/packageAdmin/pages/overdue/overdue.wxml-->
-<text>sdfbsebt</text>
 <scroll-view scroll-y class="DrawerPage {{modalName=='viewModal'?'show':''}}">
-	<cu-custom bgColor="bg-gradual-pink" isBack="{{true}}">
+	<cu-custom bgColor="bg-gradual-red" isBack="{{true}}">
 		<view slot="content">已过期</view>
 	</cu-custom>
 
@@ -62,9 +61,9 @@
 			<!-- 薪资 -->
 			<view class="cu-form-group">
 				<view class="title">薪资</view>
-				<picker bindchange="PickerChangeA" value="{{salaryAList[card.salary]}}" range="{{salaryAList}}">
+				<picker bindchange="PickerChangeA" value="{{card.salary}}" range="{{salaryAList}}">
 					<view class="picker">
-						{{salaryAList[card.salary]?salaryAList[card.salary]:'不限'}}
+						{{salaryAList[card.salary]}}
 					</view>
 				</picker>
 			</view>

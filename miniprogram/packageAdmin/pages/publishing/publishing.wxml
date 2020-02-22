@@ -1,90 +1,99 @@
-<!--packageAdmin/pages/pending/pending.wxml-->
+<!--packageAdmin/pages/publishing/publishing.wxml-->
 <scroll-view scroll-y class="DrawerPage {{modalName=='viewModal'?'show':''}}">
   <cu-custom bgColor="bg-gradual-red" isBack="{{true}}">
-    <view slot="content">待处理</view>
+    <view slot="content">公布中</view>
   </cu-custom>
-  <!-- 显示页面 -->
-  <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg">
-    <view class="cu-item arrow {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{pend_infoList}}" wx:for-item="item" catchlongtap="onLongpress" bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}"
-      data-url="{{item.url}}">
-      <view class="content">
-        <text class="cuIcon-discoverfill text-grey"></text>
-        <text class="text-gray pend-url">{{item.url}}</text>
-        <view class="move" style="height:100rpx; position:absolute; top:0rpx">
-          <view class="bg-grey" bindtap="showModal" data-target="viewModal" data-username="{{item.username}}" data-id="{{item._id}}" data-index="{{index}}" data-url="{{item.url}}">通过</view>
-          <view class="bg-red" bindtap="onDelete" data-index="{{index}}" data-target="viewModal" data-username="{{item.username}}" data-id="{{item._id}}">不通过</view>
-        </view>
+
+  <view class="content">
+    <view wx:if="{{!publishingList.length}}" class="text-xl padding">
+      <text class="text-black text-bold">暂无公布中数据哦 !</text>
+    </view>
+    <view wx:else>
+      <view wx:for="{{publishingList}}" wx:key="item" bindtap="" style="width:93%;margin:auto;">
+        <overdueCard card="{{item}}" index="{{index}}" bind:overdueItem="overdueItem" bind:editShow="editShow" data-target="viewModal"></overdueCard>
       </view>
     </view>
+
   </view>
 </scroll-view>
-<!-- 点击消失 -->
+
+
 <view class="DrawerClose {{modalName=='viewModal'?'show':''}}" bindtap="hideModal">
   <text class="cuIcon-pullright"></text>
 </view>
-<!-- 抽屉 -->
+
+
 <scroll-view scroll-y class="DrawerWindow {{modalName=='viewModal'?'show':''}}">
   <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg">
     <view class="cu-item pend-form">
       <!-- 标题 -->
       <view class="cu-form-group margin-top">
         <view class="title">标题</view>
-        <input placeholder="请输入标题" bindchange="onTitle" value="{{title}}"></input>
+        <input value="{{card.title}}" bindinput="onTitle" required="required"></input>
       </view>
       <!-- 专业 -->
       <view class="cu-form-group">
         <view class="title">专业</view>
-        <input placeholder="请输入专业" bindchange="onMajor" value="{{major}}"></input>
+        <input value="{{card.major}}" bindchange="onMajor"></input>
       </view>
       <!-- 公司 -->
       <view class="cu-form-group">
         <view class="title">公司名称</view>
-        <input placeholder="请输入公司名称" bindchange="onCompany" value="{{company}}"></input>
+        <input value="{{card.company}}" bindchange="onCompany"></input>
       </view>
       <!-- 招募人数 -->
       <view class="cu-form-group">
         <view class="title">招募人数</view>
-        <input placeholder="请输入招募人数" bindchange="onPeopleNum" value="{{peopleNum}}"></input>
+        <input value="{{card.menbers}}" bindchange="onPeopleNum"></input>
       </view>
       <!-- 薪资 -->
       <view class="cu-form-group">
         <view class="title">薪资</view>
-        <picker bindchange="PickerChangeA" value="{{salary}}" range="{{salaryAList}}">
+        <picker bindchange="PickerChangeA" value="{{card.salary}}" range="{{salaryAList}}">
           <view class="picker">
-            {{salary?salaryAList[salary]:'不限'}}
+            {{salaryAList[card.salary]}}
           </view>
         </picker>
       </view>
       <!-- 学历 -->
       <view class="cu-form-group">
         <view class="title">学历</view>
-        <picker bindchange="PickerChangeB" value="{{edu}}" range="{{eduList}}">
+        <picker bindchange="PickerChangeB" value="{{card.edu}}" range="{{eduList}}">
           <view class="picker">
-            {{edu?eduList[edu]:'不限'}}
+            {{card.edu?card.edu:'不限'}}
+          </view>
+        </picker>
+      </view>
+      <!-- 招聘开始时间 -->
+      <view class="cu-form-group">
+        <view class="title">开始日期</view>
+        <picker mode="date" value="{{card.create_time}}" start="2015-09-01" end="2080-09-01" bindchange="DateStartChange">
+          <view class="picker">
+            {{card.create_time}}
           </view>
         </picker>
       </view>
       <!-- 招聘结束时间 -->
       <view class="cu-form-group">
         <view class="title">结束日期</view>
-        <picker mode="date" value="{{end_date}}" start="2020-01-01" end="2080-09-01" bindchange="DateEndChange">
+        <picker mode="date" value="{{card.end_time}}" start="2015-09-01" end="2080-09-01" bindchange="DateEndChange">
           <view class="picker">
-            {{end_date}}
+            {{card.end_time}}
           </view>
         </picker>
       </view>
       <!-- 地址 -->
       <view class="cu-form-group">
         <view class="title">公司地址</view>
-        <picker mode="region" bindchange="RegionChange" value="{{region}}" custom-item="{{customItem}}">
+        <picker mode="region" bindchange="RegionChange" value="{{[card.province,card.city,'不限']}}" custom-item="{{customItem}}">
           <view class="picker">
-            {{region}}
+            {{[card.province,card.city,'不限']}}
           </view>
         </picker>
       </view>
       <!-- 补充简要说明 -->
       <view class="cu-form-group">
-        <textarea maxlength="-1" bindinput="textareaAInput" placeholder="请补充说明" value="{{textareaAValue}}"></textarea>
+        <textarea maxlength="-1" bindinput="textareaAInput" value="{{card.info}}"></textarea>
       </view>
       <!-- 设置背景图片 -->
       <view class="cu-bar bg-white margin-top">
@@ -97,7 +106,7 @@
       </view>
       <view class="cu-form-group">
         <view class="grid col-4 grid-square flex-sub">
-          <view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
+          <view class="bg-img" wx:for="{{imgList}}" wx:key="index" bindtap="ViewImage" data-url="{{imgList[index]}}">
             <image src='{{imgList[index]}}' mode='aspectFill'></image>
             <view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
               <text class="cuIcon-close"></text>
@@ -111,27 +120,14 @@
       <!-- 是否推荐为轮播图 -->
       <view class="cu-form-group">
         <view class="title">设为轮播</view>
-        <switch bindchange="onCarousel" checked="{{carousel}}"></switch>
+        <switch bindchange="onCarousel"></switch>
       </view>
       <!-- 是否设置为推荐图片 -->
       <view class="cu-form-group margin-bottom">
         <view class="title">设为推荐</view>
-        <switch bindchange="onRecommend" checked="{{recommend}}"></switch>
+        <switch bindchange="onRecommend"></switch>
       </view>
       <button class="cu-btn bg-gradual-red lg margin-bottom" catchtap="onSubmit">提交</button>
-      <view class="cu-modal {{modalTName=='Modal'?'show':''}}">
-        <view class="cu-dialog">
-          <view class="cu-bar bg-white justify-end" style="width:100%">
-            <view class="content">提示</view>
-            <view class="action" bindtap="hideTModal">
-              <text class="cuIcon-close text-red"></text>
-            </view>
-          </view>
-          <view class="padding-xl" style="font-size:30rpx;">
-            标题不能为空
-          </view>
-        </view>
-      </view>
     </view>
   </view>
 </scroll-view>

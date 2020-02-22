@@ -5,14 +5,33 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    adminList: [
+      {
+        nickname: "Ian Nader",
+        user_openid: "36306425"
+      },
+      {
+        nickname: "Ian Nader",
+        user_openid: "36306425"
+      },
+      {
+        nickname: "Ian Nader",
+        user_openid: "36306425"
+      }
+    ]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    wx.cloud.callFunction({
+      name: 'queryAdmin',
+    }).then(
+      (res) => {
+        console.log(res.result);
+      }
+    )
   },
 
   /**
