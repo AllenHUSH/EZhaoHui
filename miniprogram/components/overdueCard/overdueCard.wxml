@@ -1,5 +1,6 @@
 <!--components/overdueCard/overdueCard.wxml-->
 <view class="card bg-white padding-sm"
+	bindlongtap="copyUrl"
 >
 	<image class="bg" wx:if="{{card.picture}}" src="{{card.picture}}"></image>
 	<view 
@@ -34,7 +35,7 @@
 				>编辑</view>
                 <view class="bg-red"
 					bindtap="onDelete"
-				>删除</view>
+				> {{card.state===3?'删除':'过期'}} </view>
             </view>
         </view>
     </view>

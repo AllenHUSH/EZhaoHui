@@ -2,21 +2,19 @@
 <text>sdfbsebt</text>
 <scroll-view scroll-y class="DrawerPage {{modalName=='viewModal'?'show':''}}">
 	<cu-custom bgColor="bg-gradual-pink" isBack="{{true}}">
-		<view slot="content">已过期</view>
+		<view slot="content">公布中</view>
 	</cu-custom>
-
-
 
 	<view class="content">
 		<view 
-			wx:if="{{!overdueList.length}}"
+			wx:if="{{!publishingList.length}}"
 			class="text-xl padding"
 		>
-			<text class="text-black text-bold">暂无过期数据哦 !</text>
+			<text class="text-black text-bold">暂无公布中数据哦 !</text>
 		</view>
 		<view wx:else>
 			<view
-				wx:for="{{overdueList}}"
+				wx:for="{{publishingList}}"
 				wx:key="item"
 				bindtap=""
 				style="width:93%;margin:auto;"
@@ -24,7 +22,7 @@
 				<overdueCard 
 					card="{{item}}" 
 					index="{{index}}"
-					bind:deleteItem="deleteItem"
+					bind:overdueItem="overdueItem"
 					bind:editShow="editShow"
 					data-target="viewModal"
 				></overdueCard>
@@ -33,9 +31,13 @@
 		
 	</view>
 </scroll-view>
+
+
 <view class="DrawerClose {{modalName=='viewModal'?'show':''}}" bindtap="hideModal">
     <text class="cuIcon-pullright"></text>
 </view>
+
+
 <scroll-view scroll-y class="DrawerWindow {{modalName=='viewModal'?'show':''}}">
     <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg">
 		<view class="cu-item pend-form">

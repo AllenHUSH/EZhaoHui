@@ -30,7 +30,8 @@ Page({
         title: '公布中',
         name: 'publishing',
         color: 'mauve',
-        icon: 'settingsfill'
+        icon: 'settingsfill',
+		url: "/packageAdmin/pages/publishing/publishing"
       },
       {
         title: '人员管理',

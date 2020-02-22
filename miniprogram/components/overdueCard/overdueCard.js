@@ -17,7 +17,7 @@ Component({
 	 * 组件的初始数据
 	 */
 	data: {
-
+		
 	},
 
 	/**
@@ -53,38 +53,76 @@ Component({
 				ListTouchDirection: null
 			})
 		},
-		onDelete(e) {
-			let id = this.properties.card._id;
-			wx.cloud.callFunction({
-				// 要调用的云函数名称
-				name: 'deleteUrl',
-				// 传递给云函数的参数
-				data: {
-					id: id,
-				},
-				success: res => {
-					this.triggerEvent('deleteItem', this.properties.index)
-					wx.showToast({
-						title: '删除成功'
-					})
-					if(this.properties.card.picture){
-						wx.cloud.deleteFile({
-							fileList: [this.properties.card.picture]
-						}).then(res => {
-							// handle success
-							console.log(res.fileList, "删除成功")
-						}).catch(error => {
-							// handle error
-						})
-					}
-				},
-				fail: err => {
-					console.log(err);
-					wx.showToast({
-						title: '删除失败'
+		copyUrl(){
+			wx.setClipboardData({
+				data: this.properties.card.url,//推送链接
+				success: function (res) {
+					wx.getClipboardData({
+						success: function (res) {
+							wx.showToast({
+								title: '复制链接成功'
+							})
+						}
 					})
 				}
 			})
+		},
+		onDelete(e) {
+			let id = this.properties.card._id;
+			if (this.properties.card.state===3){//删除
+				wx.cloud.callFunction({
+					// 要调用的云函数名称
+					name: 'deleteUrl',
+					// 传递给云函数的参数
+					data: {
+						id: id,
+					},
+					success: res => {
+						this.triggerEvent('deleteItem', this.properties.index)
+						wx.showToast({
+							title: '删除成功'
+						})
+						if (this.properties.card.picture) {
+							wx.cloud.deleteFile({
+								fileList: [this.properties.card.picture]
+							}).then(res => {
+								// handle success
+								console.log(res.fileList, "删除成功")
+							}).catch(error => {
+								// handle error
+							})
+						}
+					},
+					fail: err => {
+						console.log(err);
+						wx.showToast({
+							title: '删除失败'
+						})
+					}
+				})
+			}else{//手动过期
+				wx.cloud.callFunction({
+					// 要调用的云函数名称
+					name: 'updateUrl',
+					// 传递给云函数的参数
+					data: {
+						id:id,
+						state:3,
+						end_time:JSON.stringify(new Date(1970,0,0)).split('"')[1]
+					},
+					success: res => {
+						this.triggerEvent('overdueItem', this.properties.index)
+						wx.showToast({
+							title: '过期成功'
+						})
+					},
+					fail: err => {
+						console.log(err);
+					}
+				})
+				
+			}
+			
 		},
 		onChange(e){
 			this.triggerEvent('editShow', { card:this.properties.card, index:this.properties.index })

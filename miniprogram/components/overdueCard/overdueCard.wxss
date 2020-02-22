@@ -56,6 +56,8 @@
 .cu-item .content{
 	left:20rpx !important;
 	width: 100% !important;
+	height: 100rpx;
+	line-height: 100rpx !important;
 	overflow: hidden;
 	white-space: nowrap; /*不换行*/
     text-overflow: ellipsis;
