@@ -4,8 +4,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    superP: false,
-    condition: true,
+    identity: "user",
+    d: true,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     urlContent:"",
     orignContent: "分享你的咨询链接",//value值
@@ -50,7 +50,6 @@ Page({
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称
           wx.getUserInfo({
             success: function(res) {
-              console.log(res.userInfo.nickName)
               _this.setData({
                 username: res.userInfo.nickName,
                 condition: false
@@ -65,34 +64,29 @@ Page({
   },
   //获取用户openid，并判断是否为管理员的openid
   getOpenid() {
-    let that = this;
     wx.cloud.callFunction({
       name: 'getOpenid',
       complete: res => {
         // console.log('云函数获取到的openid: ', res.result.openId)
-        var openid = res.result.openId;
-        that.setData({
+        let openid = res.result.openId;
+        this.setData({
           openid: openid
         })
-        // console.log(that.data.openid);
-        // console.log(that.data.superP);
         //将得到的openid传给后端进行判断
         wx.cloud.callFunction({
           //云函数名称
           name: "queryAuthority",
           //传递的参数
           data: {
-            msg: that.data.openid,
+            user_openid: this.data.openid,
           }
         }).then(res => {
-          console.log(res.result);
-          that.setData({
-            superP: res.result
+          this.setData({
+            identity: res.result
           })
         }).catch(console.error);
       }
     });
-    
   },
   // 长按头像复制openID
   copyOpenid(){
