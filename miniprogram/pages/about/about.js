@@ -4,6 +4,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+
     identity: "user",
     d: true,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
@@ -12,46 +13,86 @@ Page({
     username:"",
     openid:""
   },
+  onMyEvent: function (e) {
+    var that = this;
+    console.log("e.detail :", e.detail)
+    that.setData({
+      isHidden: true,
+      // inputHidden: false
+    })
+  },
+  showCompomentDialog: function () {
+    var that = this;
+    that.setData({
+      isHidden: false,
+      titleMsg: "你的分享的咨询不能为空",
+      // inputPlaceHolder: "请输入想要发送的内容",
+      inputHidden: true,
+      // cancleBtn: true,
+    })
+  },
+
+
   //监听输入的url
   urlInp: function(e){
     this.data.urlContent = e.detail.value;
   },
   // 点击go向后端传参
   bindtest: function() {
-    wx.cloud.callFunction({
-      //云函数名称
-      name: "insertUrl",
-      //传递的参数
-      data: {
-        target_url: this.data.urlContent,
-        username: this.data.openid
-
-        // url: this.data.urlContent,
-        // username: this.data.openid,
-        // city:"",
-        // company:"",
-        // create_time:"",
-        // edu_back:"",
-        // end_time:"",
-        // info:"",
-        // menbers:"",
-        // picture:"",
-        // province:"",
-        // salary:"",
-        
-
-      }
-    }).then(res => {
-      console.log(res.result);
-    })
-    .catch(console.error);
-  //将input中的内容还原
-    this.setData({
-      orignContent: "分享你的咨询链接",
-      urlContent: ""
-    });
+    if(this.data.urlContent!=''){
+      wx.cloud.callFunction({
+        //云函数名称
+        name: "insertUrl",
+        //传递的参数
+        data: {
+          target_url: this.data.urlContent,
+          username: this.data.openid,
+        }
+      }).then(res => {
+        console.log(res);
+        if(res.result!=null){
+          wx.showModal({
+            title: '提示',
+            content: '已有此条咨询，发送失败',
+            success(res) {
+              if (res.confirm) {
+                console.log('用户点击确定')
+              } else if (res.cancel) {
+                console.log('用户点击取消')
+              }
+            }
+          })
+        }
+        else{
+          wx.showToast({
+            title: '传送成功',
+            icon: 'success',
+            duration: 2000
+          });
+        }
+      })
+        .catch(console.error);
+      //将input中的内容还原
+      this.setData({
+        orignContent: "分享你的咨询链接",
+        urlContent: ""
+      });
     // console.log(this.data.orignContent);
     // console.log(this.data.urlContent);
+    }
+    else{
+      wx.showModal({
+        title: '提示',
+        content: '传送的咨询不能为空',
+        success(res) {
+          if (res.confirm) {
+            console.log('用户点击确定')
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面加载

@@ -9,6 +9,7 @@ Page({
     modalName: null,
     listTouchStart: 0,
     listTouchDirection: null,
+    none:true,
   },
   // ListTouch触摸开始
   ListTouchStart(e) {
@@ -103,9 +104,13 @@ Page({
         type:"two"
       }
     }).then((res)=>{
-      if (res.result.data[0])
       console.log(res);
-      console.log(res.result.data[0].url);
+      if (res.result.data.length!=0){
+        that.setData({
+          none:false
+        })
+      // console.log(res);
+      // console.log(res.result.data[0].url);
       let array=res.result.data;
       array.forEach(function (item,index){
         console.log(item.url);
@@ -120,9 +125,8 @@ Page({
         that.setData({
           list: list
         })
-
-        
       })
+      }
     })
   },
 

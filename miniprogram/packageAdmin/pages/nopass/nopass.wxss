@@ -1,4 +1,9 @@
 /* packageAdmin/pages/pending/pending.wxss */
+.textNone{
+  padding:10px;
+  font-size:14px;
+  font-weight: bold;
+}
 .cu-list.menu-avatar>.cu-item .content{
   font-size:14px;
   left: 80rpx;
