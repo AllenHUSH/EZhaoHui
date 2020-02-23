@@ -13,24 +13,6 @@ Page({
     username:"",
     openid:""
   },
-  onMyEvent: function (e) {
-    var that = this;
-    console.log("e.detail :", e.detail)
-    that.setData({
-      isHidden: true,
-      // inputHidden: false
-    })
-  },
-  showCompomentDialog: function () {
-    var that = this;
-    that.setData({
-      isHidden: false,
-      titleMsg: "你的分享的咨询不能为空",
-      // inputPlaceHolder: "请输入想要发送的内容",
-      inputHidden: true,
-      // cancleBtn: true,
-    })
-  },
 
 
   //监听输入的url
