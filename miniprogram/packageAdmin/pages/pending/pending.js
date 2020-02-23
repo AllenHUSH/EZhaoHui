@@ -213,7 +213,7 @@ Page({
 
     var username = e.currentTarget.dataset.username;
     var id = e.currentTarget.dataset.id;
-    console.log(id);
+    //console.log(id,username);
 
     wx.cloud.callFunction({
       // 要调用的云函数名称
@@ -221,14 +221,16 @@ Page({
       // 传递给云函数的参数
       data: {
         id: id,
-        create_time: JSON.stringify(2020 - 2 - 19),
-        end_time: JSON.stringify(2020 - 2 - 19),
+        create_time: JSON.stringify('2020-2-19'),
+        end_time: JSON.stringify('2040-02-20'),
         state: 1,
         username: username,
       },
       success: res => {
-        console.log(res);
+        // console.log(res);
         console.log("成功了");
+        console.log(this.data.pend_infoList);
+        
       },
       fail: err => {
         // handle error
@@ -255,6 +257,8 @@ Page({
       if (this.data.end_date == "不限") {
         this.data.end_date = '2030-02-20'
       };
+      console.log(this.data.end_date);
+      
       var infoList = {
         id: this.data.id,
         province: this.data.region[0],
@@ -312,6 +316,8 @@ Page({
           // 传递给云函数的参数
           data: infoList,
           success: res => {
+            console.log(infoList);
+            
             console.log(res);
           },
           fail: err => {
@@ -376,7 +382,7 @@ Page({
       // 传递给云函数的参数
       data: {
         type: "two",
-        state: 0
+        state:0 
       },
       success: res => {
         console.log(res.result.data);

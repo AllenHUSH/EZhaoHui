@@ -5,7 +5,7 @@
 	</cu-custom>
 	<!-- 显示页面 -->
 	<view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg">
-		<view class="cu-item arrow {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{pend_infoList}}" wx:for-item="item" catchlongtap="onLongpress" bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}" data-url="{{item.url}}">
+		<view class="cu-item arrow {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{pend_infoList}}" wx:for-item="item" wx:key="index" catchlongtap="onLongpress" bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}" data-url="{{item.url}}"  wx:if="{{item.url}}">
 			<view class="content">
 				<text class="cuIcon-discoverfill text-grey"></text>
 				<text class="text-gray pend-url">{{item.url}}</text>
@@ -96,7 +96,7 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="grid col-4 grid-square flex-sub">
-					<view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
+					<view class="bg-img" wx:for="{{imgList}}" wx:for-item="item" wx:for-index="index"		wx:key="index" bindtap="ViewImage" data-url="{{ imgList[index] }}" >
 						<image src='{{imgList[index]}}' mode='aspectFill'></image>
 						<view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
 							<text class="cuIcon-close"></text>
