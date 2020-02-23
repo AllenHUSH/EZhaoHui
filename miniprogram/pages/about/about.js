@@ -4,7 +4,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-
     identity: "user",
     d: true,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
@@ -76,6 +75,7 @@ Page({
       })
     }
   },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -119,7 +119,6 @@ Page({
             user_openid: this.data.openid,
           }
         }).then(res => {
-          console.log(res);
           this.setData({
             identity: res.result
           })

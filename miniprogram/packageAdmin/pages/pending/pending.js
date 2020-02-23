@@ -165,9 +165,7 @@ Page({
       success: function (res) {
         wx.getClipboardData({
           success: function (res) {
-            wx.showToast({
-              title: '复制链接成功'
-            })
+            console.log(res.data);
           }
         })
       }
@@ -213,24 +211,21 @@ Page({
     });
     var username = e.currentTarget.dataset.username;
     var id = e.currentTarget.dataset.id;
-    //console.log(id,username);
-
+    console.log(id);
     wx.cloud.callFunction({
       // 要调用的云函数名称
       name: 'updateUrl',
       // 传递给云函数的参数
       data: {
         id: id,
-        create_time: JSON.stringify('2020-2-19'),
-        end_time: JSON.stringify('2040-02-20'),
+        create_time: JSON.stringify(2020 - 2 - 19),
+        end_time: JSON.stringify(2020 - 2 - 19),
         state: 1,
         username: username,
       },
       success: res => {
-        // console.log(res);
+        console.log(res);
         console.log("成功了");
-        console.log(this.data.pend_infoList);
-        
       },
       fail: err => {
         // handle error
@@ -252,12 +247,11 @@ Page({
         modalTName: 'Modal'
       });
       // console.log(this.data.modalTName);
-    } else {
+    }
+    else {
       if (this.data.end_date == "不限") {
         this.data.end_date = '2030-02-20'
       };
-      console.log(this.data.end_date);
-      
       var infoList = {
         id: this.data.id,
         province: this.data.region[0],
@@ -315,9 +309,7 @@ Page({
           // 传递给云函数的参数
           data: infoList,
           success: res => {
-            console.log(infoList);
-            
-           // console.log(res);
+            console.log(res);
           },
           fail: err => {
             // handle error
@@ -368,9 +360,7 @@ Page({
           }
         })
       };
-      this.setData({
-        modalName: null,
-      });
+      this.setData({ modalName: null, });
     }
   },
   //加载页面
@@ -381,7 +371,7 @@ Page({
       // 传递给云函数的参数
       data: {
         type: "two",
-        state:0 
+        state: 0
       },
       success: res => {
         console.log(res.result.data);

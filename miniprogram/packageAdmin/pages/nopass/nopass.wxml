@@ -3,8 +3,10 @@
   <view slot="content">未通过</view>
 </cu-custom>
 
+
 <view wx:if="{{!list.length}}" class="text-black text-bold textNone">暂时没有未通过数据哦!</view>
 <view wx:else class="cu-list menu-avatar">
+<view class="cu-list menu-avatar">
     <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}} wrap"  wx:for="{{list}}" wx:key bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}">
       <view class="content">
         <view class="cuIcon-link lg text-gray link"></view>
@@ -15,4 +17,5 @@
         <view class="bg-red" bindtap="delete" data-indexdel="{{index}}">删除</view>
       </view>
     </view>
+  </view>
   </view>

@@ -167,6 +167,3 @@ page {
   justify-content: center;
   max-width: 100%;
 }
-.cu-list.menu>.cu-item.arrow:before{
-  content: "\e679";
-  }

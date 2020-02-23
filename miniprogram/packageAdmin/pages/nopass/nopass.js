@@ -9,7 +9,6 @@ Page({
     modalName: null,
     listTouchStart: 0,
     listTouchDirection: null,
-    none:true,
   },
   // ListTouch触摸开始
   ListTouchStart(e) {
