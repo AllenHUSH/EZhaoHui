@@ -10,7 +10,7 @@
     <input class="link text-center" placeholder="{{orignContent}}" value="{{urlContent}}" placeholder-style="color: #fff; font-size: 16px;" bindinput="urlInp"></input>
   </view>
   <view class="go" bindtap="bindtest">GO</view>
-  <view class="houtai" hidden="{{!superP}}">
+  <view class="houtai" hidden="{{identity=='user'}}">
     <navigator open-type="redirect" url="/packageAdmin/pages/home/home">后台管理</navigator>
   </view>
   <view hidden="{{!condition}}">

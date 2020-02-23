@@ -26,3 +26,4 @@
         <card card="{{item.recommendList[0]}}" number="{{index%6}}"></card>
     </view>
 </view>
+

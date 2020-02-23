@@ -1,11 +1,12 @@
-<!--packageAdmin/pages/pending/pending.wxml-->
+<!-- packageAdmin/pages/pending/pending.wxml -->
 <scroll-view scroll-y class="DrawerPage {{modalName=='viewModal'?'show':''}}">
+
 	<cu-custom bgColor="bg-gradual-red" isBack="{{true}}">
 		<view slot="content">待处理</view>
 	</cu-custom>
 	<!-- 显示页面 -->
 	<view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg">
-		<view class="cu-item arrow {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{pend_infoList}}" wx:for-item="item" wx:key="index" catchlongtap="onLongpress" bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}" data-url="{{item.url}}"  wx:if="{{item.url}}">
+		<view class="cu-item arrow {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{pend_infoList}}" wx:for-item="item" wx:key="index" catchtap="onLongpress" bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}" data-url="{{item.url}}"  wx:if="{{item.url}}">
 			<view class="content">
 				<text class="cuIcon-discoverfill text-grey"></text>
 				<text class="text-gray pend-url">{{item.url}}</text>
@@ -16,10 +17,11 @@
 			</view>
 		</view>
 	</view>
+
 </scroll-view>
 <!-- 点击消失 -->
 <view class="DrawerClose {{modalName=='viewModal'?'show':''}}" bindtap="hideModal">
-	<text class="cuIcon-pullright"></text>
+  <text class="cuIcon-pullright"></text>
 </view>
 <!-- 抽屉 -->
 <scroll-view scroll-y class="DrawerWindow {{modalName=='viewModal'?'show':''}}">

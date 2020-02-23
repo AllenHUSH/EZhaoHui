@@ -1,6 +1,5 @@
 // packageAdmin/pages/pending/pending.js
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -166,7 +165,9 @@ Page({
       success: function (res) {
         wx.getClipboardData({
           success: function (res) {
-            console.log(res.data);
+            wx.showToast({
+              title: '复制链接成功'
+            })
           }
         })
       }
@@ -210,7 +211,6 @@ Page({
     this.setData({
       pend_infoList: infoList,
     });
-
     var username = e.currentTarget.dataset.username;
     var id = e.currentTarget.dataset.id;
     //console.log(id,username);
@@ -237,7 +237,6 @@ Page({
         console.log(err);
       }
     })
-
   },
   //隐藏标题提示框
   hideTModal(e) {
@@ -318,7 +317,7 @@ Page({
           success: res => {
             console.log(infoList);
             
-            console.log(res);
+           // console.log(res);
           },
           fail: err => {
             // handle error
@@ -389,12 +388,10 @@ Page({
         this.setData({
           pend_infoList: res.result.data
         })
-
       },
       fail: err => {
         // handle error
         console.log(err);
-
       },
       complete: () => {
         // ...
