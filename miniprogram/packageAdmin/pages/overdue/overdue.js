@@ -7,7 +7,7 @@ Page({
 	data: {
 		overdueList:[],
 		customItem: ['不限'],
-		salaryAList: ['不限', '5k-10k', '10k-15k', '15k-20k', '20k+'],
+		salaryAList: ['不限', "1k-5k", '5k-10k', '10k-15k', '15k-20k', '20k+'],
 		eduList: ['不限', '本科', '研究生'],
 		imgList: [],
 		carousel: false,
@@ -266,6 +266,12 @@ Page({
 							this.setData({
 								imgList:[]
 							})
+							this.setData({
+								carousel: false,
+							})
+							this.setData({
+								recommend: false
+							})
 						
 						},
 						fail: err => {
@@ -291,6 +297,12 @@ Page({
 					})
 					this.setData({
 						imgList: []
+					})
+					this.setData({
+						carousel: false,
+					})
+					this.setData({
+						recommend: false
 					})
 				},
 				fail: err => {
