@@ -1,0 +1,11 @@
+<!--packageAdmin/pages/home/home.wxml-->
+<image style="width:100%;" mode="widthFix" src="../../images/nav_admin.png"></image>
+<view class="main-box">
+  <view class='nav-list'>
+    <navigator open-type="{{item.type?item.type:'navigate'}}" hover-class='none' url="{{item.url?item.url:''}}" class="nav-li bg-{{item.color}}" wx:for="{{elements}}" wx:key="item">
+      <view class="nav-title">{{item.title}}</view>
+      <view class="nav-name">{{item.name}}</view>
+      <text class='cuIcon-{{item.icon}}'></text>
+    </navigator>
+  </view>
+</view>

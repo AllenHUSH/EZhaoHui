@@ -1,0 +1,5 @@
+/* packageAdmin/pages/personnel/personnel.wxss */
+.card-menu button{
+  margin: 10px;
+  max-width: 80px;
+}

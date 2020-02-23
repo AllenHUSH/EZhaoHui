@@ -1,0 +1,19 @@
+<!--miniprogram/pages/about/about.wxml-->
+<view class="container">
+  <image src="../../images/nav_about.png" class="background" mode="widthFix"></image>
+  <!-- <text>miniprogram/pages/about/about.wxml</text> -->
+  <view bindlongpress="copyOpenid" class="userinfo-avatar">
+    <open-data default-avatar="../../images/tarbar_icon/about.png" type="userAvatarUrl" class="touxiang"></open-data>
+  </view>
+  <open-data default-text="请完成授权" type="userNickName" class="nick"></open-data>
+  <view class="consult">
+    <input class="link text-center" placeholder="{{orignContent}}" value="{{urlContent}}" placeholder-style="color: #fff; font-size: 16px;" bindinput="urlInp"></input>
+  </view>
+  <view class="go" bindtap="bindtest">GO</view>
+  <view class="houtai" hidden="{{identity=='user'}}">
+    <navigator open-type="redirect" url="/packageAdmin/pages/home/home">后台管理</navigator>
+  </view>
+  <view hidden="{{!condition}}">
+    <button open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
+  </view>
+</view>

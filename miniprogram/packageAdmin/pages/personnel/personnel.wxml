@@ -1,0 +1,52 @@
+<!-- packageAdmin/pages/personnel/personnel.wxml -->
+<cu-custom bgColor="bg-gradual-red" isBack="{{true}}">
+  <view slot="content">人员管理</view>
+</cu-custom>
+<view class="cu-list menu sm-border card-menu margin-top" wx:if="{{identity=='superadmin'}}">
+  <view class="cu-item">
+    <view class="contene">普通管理员列表</view>
+    <view class="action">
+      <button class="cu-btn line-green round shadow" bindtap="showModal" data-target="bottomModal">
+        <text class="cuIcon-add"></text>
+      </button>
+    </view>
+  </view>
+  <view class="cu-item" wx:for="{{adminList}}" wx:key="_id">
+    <view class="content padding-tb-sm">
+      <view>
+        <text class="cuIcon-service text-blue margin-right-xs">{{item.nickname}}</text>
+      </view>
+      <view class="text-gray text-sm">
+        <text class="margin-right-xs">{{item.user_openid}}</text>
+      </view>
+    </view>
+    <view class="action">
+      <button class="cu-btn round line-red shadow" data-openid="{{item.user_openid}}"  bindtap="deleteAdmin">
+        <text class="cuIcon-deletefill"></text>
+      </button>
+    </view>
+  </view>
+</view>
+
+
+<view class="cu-modal bottom-modal {{modalName=='bottomModal'?'show':''}}">
+  <form bindsubmit="addAdmin" bindreset="reset">
+    <view class="cu-dialog">
+      <view class="cu-bar bg-white">
+        <button class="action text-red" bindtap="hideModal">取消</button>
+        <button formType="reset" class="action text-red">清空</button>
+      </view>
+      <view class="padding-xl  margin-bottom">
+        <view class="cu-form-group ">
+          <view class="title">昵称</view>
+          <input placeholder="新增管理员昵称" name="nickname"></input>
+        </view>
+        <view class="cu-form-group margin-top">
+          <view class="title">OpenID</view>
+          <input placeholder="新增管理员OpenID" name="user_openid"></input>
+        </view>
+          <button formType="submit" class="cu-btn bg-green margin-top">确定添加</button>
+      </view>
+    </view>
+  </form>
+</view>

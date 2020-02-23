@@ -1,0 +1,97 @@
+{
+	"miniprogramRoot": "miniprogram/",
+	"cloudfunctionRoot": "cloudfunctions/",
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"enhance": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"coverView": true,
+		"nodeModules": false,
+		"autoAudits": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		}
+	},
+	"appid": "wx00978ee08446aea8",
+	"projectname": "E%E6%8B%9B%E6%B1%87",
+	"libVersion": "2.8.1",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"cloudfunctionTemplateRoot": "cloudfunctionTemplate",
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"list": []
+		},
+		"gamePlugin": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 0,
+			"list": [
+				{
+					"id": -1,
+					"name": "admin",
+					"pathName": "packageAdmin/pages/home/home",
+					"query": ""
+				},
+				{
+					"id": -2,
+					"name": "test",
+					"pathName": "packageAdmin/pages/test/test",
+					"query": ""
+				},
+				{
+					"id": -3,
+					"name": "result",
+					"pathName": "pages/result/result",
+					"query": ""
+				},
+				{
+					"id": -4,
+					"name": "pending",
+					"pathName": "packageAdmin/pages/pending/pending",
+					"query": ""
+				},
+				{
+					"id": -5,
+					"name": "packageAdmin/pages/overdue/overdue",
+					"pathName": "packageAdmin/pages/overdue/overdue",
+					"scene": null
+				},
+				{
+					"id": -6,
+					"name": "personnel",
+					"pathName": "packageAdmin/pages/personnel/personnel",
+					"scene": null
+				},
+				{
+					"id": -7,
+					"name": "about",
+					"pathName": "pages/about/about",
+					"scene": null
+				}
+			]
+		}
+	}
+}

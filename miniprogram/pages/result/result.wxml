@@ -1,0 +1,13 @@
+<!--miniprogram/pages/result/result.wxml-->
+
+<cu-custom bgImage="" bgColor="bg-gradual-orange" isBack="{{true}}">
+<view slot="backText" style="color:white;">返回</view>
+  <view slot="content" style="color:white;">E招会</view>
+</cu-custom>
+<view wx:for="{{result_content}}" wx:key="item"
+	style="width:93%;margin:auto;overflow:hidden"
+>
+	<card 
+		card="{{item}}" number="{{index%6}}"
+	></card>
+</view>

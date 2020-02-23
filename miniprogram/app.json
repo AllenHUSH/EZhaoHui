@@ -1,0 +1,57 @@
+{
+	"pages": [
+		"pages/index/index",
+		"pages/about/about",
+		"pages/result/result",
+		"components/card/card"
+	],
+	"subpackages": [
+		{
+			"root": "packageAdmin",
+			"pages": [
+				"pages/home/home",
+				"pages/pending/pending",
+				"pages/test/test",
+				"pages/overdue/overdue",
+				"pages/serviceManual/serviceManual",
+				"pages/personnel/personnel",
+				"pages/publishing/publishing"
+			]
+		}
+	],
+	"window": {
+		"backgroundColor": "#F6F6F6",
+		"backgroundTextStyle": "light",
+		"navigationBarBackgroundColor": "#F6F6F6",
+		"navigationBarTitleText": "E招汇",
+		"navigationBarTextStyle": "black",
+		"navigationStyle": "custom"
+	},
+	"usingComponents": {
+		"cu-custom": "/colorui/components/cu-custom",
+		"searchForm": "/components/searchForm/searchForm",
+		"card": "/components/card/card",
+		"overdueCard": "/components/overdueCard/overdueCard"
+	},
+	"sitemapLocation": "sitemap.json",
+	"style": "v2",
+	"tabBar": {
+		"color": "#a9b7b7",
+		"selectedColor": "#848484",
+		"borderStyle": "white",
+		"list": [
+			{
+				"selectedIconPath": "images/tarbar_icon/index.png",
+				"iconPath": "images/tarbar_icon/index_un.png",
+				"pagePath": "pages/index/index",
+				"text": "首页"
+			},
+			{
+				"selectedIconPath": "images/tarbar_icon/about.png",
+				"iconPath": "images/tarbar_icon/about_un.png",
+				"pagePath": "pages/about/about",
+				"text": "关于"
+			}
+		]
+	}
+}

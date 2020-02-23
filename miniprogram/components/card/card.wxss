@@ -1,0 +1,70 @@
+@import "../../colorui/icon.wxss";
+@import "../../colorui/main.wxss";
+
+.result-container {
+	position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 20rpx;
+	margin: 20rpx auto;
+	max-height: 280rpx;
+	min-height: 280rpx;
+	width: 100%;
+	border-radius: 15rpx;
+}
+
+.result-title {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 656rpx;
+    font-size: 40rpx;
+    font-weight: 600;
+    color: #fff;
+}
+
+.result-info {
+    margin-top: 35rpx;
+	height: 45rpx;
+	line-height: 45rpx;
+    font-size: 30rpx;
+    display: block;
+    overflow: hidden; /*超出的部分隐藏起来。*/
+    white-space: nowrap; /*不换行*/
+    text-overflow: ellipsis;
+    max-width: 656rpx;
+	width: 656rpx;
+	color: #fff;
+}
+.result-tag{
+	display: inline-block;
+	margin-top: 20rpx;
+	max-width: 180rpx;
+	line-height: 48rpx;
+	overflow: hidden; /*超出的部分隐藏起来。*/
+    white-space: nowrap; /*不换行*/
+    text-overflow: ellipsis;
+}
+.bg{
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	width: 100%;
+	height: 100%;
+	border-radius: 15rpx;
+	background-color: rgb(0, 0, 0);
+	opacity: .4;
+}
+.bg1{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -2;
+	border-radius: 15rpx;
+	background-color: rgb(0, 0, 0);
+	opacity: 1;
+}

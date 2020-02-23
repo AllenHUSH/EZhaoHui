@@ -1,0 +1,66 @@
+<!--components/searchForm/searchForm.wxml-->
+<view class="search radius shadow-lg  bg-white">
+    <view class="cu-bar">
+        <view class="action sub-title">
+            <text class="text-xl text-bold text-blue">搜索岗位 </text>
+            <text class="text-ABC text-blue">SEARCH</text>
+        </view>
+    </view>
+	<form>
+		<view class="cu-form-group">
+			<view class="title">标题</view>
+			<input placeholder="输入推送标题名称"  
+				bindchange="titleChange"
+				style="magin-left:25rpx;"
+			></input>
+		</view>
+		<view class="cu-form-group">
+			<view class="title">专业</view>
+			<input placeholder="输入专业名称"  
+				bindchange="MajorChange"
+				style="magin-left:25rpx;"
+			></input>
+		</view>
+		<view class="cu-form-group">
+			<view class="title">岗位</view>
+			<input 
+				placeholder="输入岗位名称" 
+				bindchange="stationChange"
+				style="magin-left:25rpx;"
+			></input>
+		</view>
+		<view class="cu-form-group">
+			<view class="title">公司</view>
+			<input 
+				placeholder="输入公司名称" 
+				bindchange="companyChange"
+				style="magin-left:25rpx;"
+			></input>
+		</view>
+		<view class="cu-form-group" style="border-bottom:1px solid #eee;">
+			<view class="title">期望薪资</view>
+			<picker bindchange="moneyChange" value="{{money}}" range="{{moneyList}}">
+				<view class="picker">
+					{{moneyList[money]}}
+				</view>
+			</picker>
+		</view>
+		<view class="cu-form-group" style="border-bottom:1px solid #eee;">
+			<view class="title">学历层次</view>
+			<picker bindchange="eduChange" value="{{educationBg}}" range="{{educationBgList}}">
+				<view class="picker">
+					{{educationBgList[educationBg]}}
+				</view>
+			</picker>
+		</view>
+		<view class="cu-form-group">
+			<view class="title">地区选择</view>
+			<picker mode="region" bindchange="RegionChange" value="{{region}}" custom-item="{{customItem}}">
+				<view class="picker">
+					{{region}}
+				</view>
+			</picker>
+		</view>
+	</form>
+    <view class="up bg-gradual-blue radius text-center shadow-blur text-xl" bindtap='searchRequest'>GO</view>
+</view>
