@@ -214,20 +214,14 @@ Page({
 	//编辑键
 	onSubmit(e) {
 		//上传图像
-		let create = this.data.card.create_time.split("-");
-		let end = this.data.card.end_time.split("-");
-		let createStr = "card.create_time";
-		let endStr = "card.end_time";
-		let start = JSON.stringify(new Date(create[0],create[1],create[2])).split('"')[1]
-		let en = JSON.stringify(new Date(end[0], end[1], end[2])).split('"')[1]
 		
 		let infoList = {
 			id: this.data.card.id,
 			province: this.data.card.province,
 			city: this.data.card.city,
 			company: this.data.card.company ? this.data.card.company:"",
-			create_time: start,
-			end_time: en,
+			create_time: this.data.card.create_time,
+			end_time: this.data.card.end_time,
 			salary: Number(this.data.card.salary),
 			menbers: this.data.card.menbers,
 			edu_back: this.data.card.edu + ' ' + (this.data.card.major ? this.data.card.major:"专业不限"),
