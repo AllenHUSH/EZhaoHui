@@ -1,0 +1,11 @@
+{
+  "triggers": [
+    {
+      "name": "out_date_url",
+      
+      "type": "timer",
+      
+      "config": "* */30 * * * * *"
+    }
+  ]
+}
