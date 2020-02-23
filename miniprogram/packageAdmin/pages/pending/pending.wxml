@@ -1,8 +1,0 @@
-<!--packageAdmin/pages/pending/pending.wxml-->
-<cu-custom bgColor="bg-gradual-red" isBack="{{true}}">
-	<view slot="content">待处理</view>
-</cu-custom>
-<view>
-  <!-- <view wx:for="">
-  </view> -->
-</view>
