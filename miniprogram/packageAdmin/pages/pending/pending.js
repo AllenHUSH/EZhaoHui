@@ -258,7 +258,7 @@ Page({
       });
       // console.log(this.data.modalTName);
     } else {
-      let end_time = this.data.end_date === "不限" ? JSON.stringify(new Date(2080 / 2 / 20)).split('"')[1] : this.data.end_date;
+      let end_time = this.data.end_date === "不限" ? "2080-02-20" : this.data.end_date;
       var infoList = {
         id: this.data.id,
         province: this.data.region[0],
@@ -290,7 +290,6 @@ Page({
             // 成功则将表单推送到后台，因为图像传的比较慢，而表单里有picture，所以图像传成功之后传表单
             infoList.picture = res.fileID;
             console.log(infoList.picture);
-
             //console.log(infoList);
             wx.cloud.callFunction({
               // 要调用的云函数名称
