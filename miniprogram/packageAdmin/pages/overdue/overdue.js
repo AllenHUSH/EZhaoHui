@@ -218,7 +218,7 @@ Page({
 		let end = this.data.card.end_time.split("-");
 		let createStr = "card.create_time";
 		let endStr = "card.end_time";
-		let start = JSON.stringify(new Date(create[0],create[1],create[2])).split('"')[1]
+		let start = JSON.stringify(new Date(create[0],create[1],create[2])).split('"')[1];
 		let en = JSON.stringify(new Date(end[0], end[1], end[2])).split('"')[1]
 		
 		let infoList = {

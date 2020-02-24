@@ -4,12 +4,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-    region: ['吉林省', '长春市 ', '南关区'],
+    region: ["不限", "不限", "不限"],
     customItem: ['不限'],
     start_date: '2020-02-20',
     end_date: '不限',
     date: '2020-2-19',
-    salaryAList: ['不限', '5k-10k', '10k-15k', '15k-20k', '20k+'],
+    salaryAList: ['不限', '1-5k', '5k-10k', '10k-15k', '15k-20k', '20k+'],
     eduList: ['不限', '本科', '研究生'],
     textareaAValue: '',
     imgList: [],
@@ -165,7 +165,9 @@ Page({
       success: function (res) {
         wx.getClipboardData({
           success: function (res) {
-            console.log(res.data);
+            wx.showToast({
+              title: '复制链接成功'
+            })
           }
         })
       }
@@ -202,36 +204,44 @@ Page({
   },
   //删除
   onDelete(e) {
+    var username = e.currentTarget.dataset.username;
+    var id = e.currentTarget.dataset.id;
     var index = e.currentTarget.dataset.index;
     var infoList = this.data.pend_infoList;
-    console.log(infoList);
+    wx.showModal({
+      title: '确定要删除吗',
+      cancelText: '取消',
+      confirmText: '确定',
+      success(res) {
+        if (res.confirm) {
+          wx.cloud.callFunction({
+            // 要调用的云函数名称
+            name: 'updateUrl',
+            // 传递给云函数的参数
+            data: {
+              id: id,
+              create_time: "2020-02-20",
+              end_time: "2080-02-20",
+              state: 1,
+              username: username,
+            },
+            success: res => {
+              wx.showToast({
+                title: '删除成功'
+              });
+            },
+            fail: err => {
+              // handle error
+              console.log(err);
+            }
+          })
+        }
+      }
+    });
     infoList.splice(index, 1);
     this.setData({
       pend_infoList: infoList,
     });
-    var username = e.currentTarget.dataset.username;
-    var id = e.currentTarget.dataset.id;
-    console.log(id);
-    wx.cloud.callFunction({
-      // 要调用的云函数名称
-      name: 'updateUrl',
-      // 传递给云函数的参数
-      data: {
-        id: id,
-        create_time: JSON.stringify(2020 - 2 - 19),
-        end_time: JSON.stringify(2020 - 2 - 19),
-        state: 1,
-        username: username,
-      },
-      success: res => {
-        console.log(res);
-        console.log("成功了");
-      },
-      fail: err => {
-        // handle error
-        console.log(err);
-      }
-    })
   },
   //隐藏标题提示框
   hideTModal(e) {
@@ -247,18 +257,15 @@ Page({
         modalTName: 'Modal'
       });
       // console.log(this.data.modalTName);
-    }
-    else {
-      if (this.data.end_date == "不限") {
-        this.data.end_date = '2030-02-20'
-      };
+    } else {
+      let end_time = this.data.end_date === "不限" ? "2080-02-20" : this.data.end_date;
       var infoList = {
         id: this.data.id,
         province: this.data.region[0],
         city: this.data.region[1],
         company: this.data.company,
-        create_time: JSON.stringify(this.data.start_date),
-        end_time: JSON.stringify(this.data.end_date),
+        create_time: this.data.start_date,
+        end_time: end_time,
         salary: this.data.salary,
         menbers: this.data.peopleNum,
         edu_back: this.data.eduList[this.data.edu] + ' ' + this.data.major,
@@ -269,7 +276,7 @@ Page({
         url: this.data.pageUrl,
         username: this.data.username,
       };
-      //console.log(infoList);
+      console.log(infoList);
       //有imgList
       if (this.data.imgList[0]) {
         var filePath = this.data.imgList[0];
@@ -283,7 +290,6 @@ Page({
             // 成功则将表单推送到后台，因为图像传的比较慢，而表单里有picture，所以图像传成功之后传表单
             infoList.picture = res.fileID;
             console.log(infoList.picture);
-            
             //console.log(infoList);
             wx.cloud.callFunction({
               // 要调用的云函数名称
@@ -291,7 +297,9 @@ Page({
               // 传递给云函数的参数
               data: infoList,
               success: res => {
-                console.log(res);
+                wx.showToast({
+                  title: '编辑成功'
+                })
               },
               fail: err => {
                 // handle error
@@ -301,7 +309,7 @@ Page({
           }
         });
       }
-      //无imgList
+      // 无imgList
       else {
         wx.cloud.callFunction({
           // 要调用的云函数名称
@@ -309,7 +317,10 @@ Page({
           // 传递给云函数的参数
           data: infoList,
           success: res => {
-            console.log(res);
+            //console.log(infoList);
+            wx.showToast({
+              title: '编辑成功'
+            })
           },
           fail: err => {
             // handle error
@@ -327,10 +338,9 @@ Page({
       if (this.data.carousel) {
         wx.cloud.callFunction({
           // 要调用的云函数名称
-          name: 'insertRecommend',
+          name: 'insertRecommendIV',
           // 传递给云函数的参数
           data: {
-            type: 2,
             url_id: this.data.id
           },
           success: res => {
@@ -348,7 +358,6 @@ Page({
           name: 'insertRecommend',
           // 传递给云函数的参数
           data: {
-            type: 1,
             url_id: this.data.id,
           },
           success: res => {
@@ -360,7 +369,9 @@ Page({
           }
         })
       };
-      this.setData({ modalName: null, });
+      this.setData({
+        modalName: null,
+      });
     }
   },
   //加载页面
