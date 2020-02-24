@@ -70,77 +70,89 @@ Component({
 		onDelete(e) {
 			let id = this.properties.card._id;
 			if (this.properties.card.state===3){//删除
-				wx.cloud.callFunction({
-					// 要调用的云函数名称
-					name: 'deleteUrl',
-					// 传递给云函数的参数
-					data: {
-						id: id,
-					},
-					success: res => {
-						this.triggerEvent('deleteItem', this.properties.index)
-						wx.showToast({
-							title: '删除成功'
-						})
-						if (this.properties.card.picture) {
-							wx.cloud.deleteFile({
-								fileList: [this.properties.card.picture]
-							}).then(res => {
-								// handle success
-								console.log(res.fileList, "删除成功")
-							}).catch(error => {
-								// handle error
+				wx.showModal({
+					title: '删除推送',
+					content: '是否要删除该推送？',
+					showCancel: true,//是否显示取消按钮
+					cancelText: "否",//默认是取消
+					cancelColor: '#999',//取消文字的颜色
+					confirmText: "是",//默认是“确定”
+					confirmColor: 'red',//确定文字的颜色
+					success: (res)=>{
+						if (res.cancel) {
+
+						} else {
+							wx.cloud.callFunction({
+								name: 'deleteUrl',
+								data: {
+									id: id,
+								},
+								success: res => {
+									this.triggerEvent('deleteItem', this.properties.index)
+									wx.showToast({
+										title: '删除成功'
+									})
+									if (this.properties.card.picture) {
+										wx.cloud.deleteFile({
+											fileList: [this.properties.card.picture]
+										}).then(res => {
+											console.log(res.fileList, "删除成功")
+										}).catch(error => {
+										})
+									}
+								},
+								fail: err => {
+									console.log(err);
+									wx.showToast({
+										title: '删除失败'
+									})
+								}
 							})
 						}
 					},
-					fail: err => {
-						console.log(err);
-						wx.showToast({
-							title: '删除失败'
-						})
-					}
-				})
+					fail: function (res) { },//接口调用失败的回调函数
+					complete: function (res) { },//接口调用结束的回调函数（调用成功、失败都会执行）
+				})	
 			}else{//手动过期
-				wx.cloud.callFunction({
-					// 要调用的云函数名称
-					name: 'updateUrl',
-					// 传递给云函数的参数
-					data: {
-						id:id,
-						state:3,
-						end_time:JSON.stringify(new Date(1970,0,0)).split('"')[1]
+				wx.showModal({
+					title: '过期推送',
+					content: '是否要将该推送过期？',
+					showCancel: true,//是否显示取消按钮
+					cancelText: "否",//默认是取消
+					cancelColor: '#999',//取消文字的颜色
+					confirmText: "是",//默认是“确定”
+					confirmColor: 'red',//确定文字的颜色
+					success:  (res)=>{
+						if (res.cancel) {
+						} else {
+							wx.cloud.callFunction({
+								// 要调用的云函数名称
+								name: 'updateUrl',
+								// 传递给云函数的参数
+								data: {
+									id: id,
+									state: 3,
+									end_time: JSON.stringify(new Date(1970, 0, 0)).split('"')[1]
+								},
+								success: res => {
+									this.triggerEvent('overdueItem', this.properties.index)
+									wx.showToast({
+										title: '过期成功'
+									})
+								},
+								fail: err => {
+									console.log(err);
+								}
+							})
+						}
 					},
-					success: res => {
-						this.triggerEvent('overdueItem', this.properties.index)
-						wx.showToast({
-							title: '过期成功'
-						})
-					},
-					fail: err => {
-						console.log(err);
-					}
+					fail: function (res) { },//接口调用失败的回调函数
 				})
-				
 			}
 			
 		},
 		onChange(e){
 			this.triggerEvent('editShow', { card:this.properties.card, index:this.properties.index })
-		},
-		copyUrl(event) {
-			var url = event.currentTarget.dataset.url;
-			wx.setClipboardData({
-				data: this.data.card.url,//推送链接
-				success: function (res) {
-					wx.getClipboardData({
-						success: function (res) {
-							wx.showToast({
-								title: '复制链接成功'
-							})
-						}
-					})
-				}
-			})
 		}
 	}
 })

@@ -31,10 +31,10 @@
             </view>
             <view class="move">
                 <view class="bg-grey"
-					bindtap="onChange"
+					catchtap="onChange"
 				>编辑</view>
                 <view class="bg-red"
-					bindtap="onDelete"
+					catchtap="onDelete"
 				> {{card.state===3?'删除':'过期'}} </view>
             </view>
         </view>

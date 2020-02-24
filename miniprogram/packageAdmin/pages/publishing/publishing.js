@@ -251,12 +251,12 @@ Page({
 						// 传递给云函数的参数
 						data: infoList,
 						success: res => {
+							wx.showToast({
+								title: '编辑成功'
+							})
 							let str = "publishingList[" + this.data.currentIndex + "]"
 							this.setData({
 								[str]: infoList
-							})
-							wx.showToast({
-								title: '编辑成功'
 							})
 							this.setData({
 								modalName: null
@@ -284,12 +284,12 @@ Page({
 				// 传递给云函数的参数
 				data: infoList,
 				success: res => {
+					wx.showToast({
+						title: '编辑成功'
+					})
 					let str = "publishingList["+this.data.currentIndex+"]"
 					this.setData({
 						[str]: infoList
-					})
-					wx.showToast({
-						title: '编辑成功'
 					})
 					this.setData({
 						modalName: null

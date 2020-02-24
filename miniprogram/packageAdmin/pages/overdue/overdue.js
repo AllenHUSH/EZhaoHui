@@ -249,6 +249,9 @@ Page({
 						// 传递给云函数的参数
 						data: infoList,
 						success: res => {
+							wx.showToast({
+								title: '编辑成功'
+							})
 							let list = this.data.overdueList;
 							list.splice(this.data.currentIndex, 1);
 							this.setData({
@@ -281,6 +284,9 @@ Page({
 				// 传递给云函数的参数
 				data: infoList,
 				success: res => {
+					wx.showToast({
+						title: '编辑成功'
+					})
 					let list = this.data.overdueList;
 					list.splice(this.data.currentIndex, 1);
 					this.setData({
