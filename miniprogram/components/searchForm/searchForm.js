@@ -19,7 +19,7 @@ Component({
 		region: ["不限", "不限", "不限"],
 		region1:"不限",
 		money: 0,
-		moneyList: ["不限","5k-10k", "10k-15k", "15k-20k", "20k+"],
+		moneyList: ["不限", "1k-5k","5k-10k", "10k-15k", "15k-20k", "20k+"],
 		title:"",
 		customItem: ['不限'],
 	},

@@ -22,7 +22,6 @@ Page({
 			this.setData({
 				swiperList: res.result.list
 			})
-			console.log(res)
 		})
 	},
 	DotStyle(e) {
@@ -99,7 +98,6 @@ Page({
 			company: data.detail.company,
 			edu_back: educationBg +" " +data.detail.major,
 			salary:Number(data.detail.money),
-			info:"",
 			province: province,
 			type:"one",
 			state:2

@@ -1,5 +1,7 @@
 <!--components/overdueCard/overdueCard.wxml-->
-<view class="card bg-white padding-sm" bindlongtap="copyUrl">
+<view class="card bg-white padding-sm"
+	bindlongtap="copyUrl"
+>
 	<image class="bg" wx:if="{{card.picture}}" src="{{card.picture}}"></image>
 	<view class="result-title text-black text-bold text-xl">{{card.title}}</view><!-- 标题 -->
 	<view class='resultTag flex flex-wrap'>
@@ -22,11 +24,15 @@
 			<view class="content text-xl">
 				{{card.info}}
 				<text class="left cuIcon-back"></text>
-			</view>
-			<view class="move">
-				<view class="bg-grey" bindtap="onChange">编辑</view>
-				<view class="bg-red" bindtap="onDelete"> {{card.state===3?'删除':'过期'}} </view>
-			</view>
-		</view>
-	</view>
+            </view>
+            <view class="move">
+                <view class="bg-grey"
+					catchtap="onChange"
+				>编辑</view>
+                <view class="bg-red"
+					catchtap="onDelete"
+				> {{card.state===3?'删除':'过期'}} </view>
+            </view>
+        </view>
+    </view>
 </view>
