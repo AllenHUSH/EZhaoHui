@@ -204,6 +204,7 @@ Page({
   },
   //删除
   onDelete(e) {
+    let that = this;
     var username = e.currentTarget.dataset.username;
     var id = e.currentTarget.dataset.id;
     var index = e.currentTarget.dataset.index;
@@ -214,6 +215,10 @@ Page({
       confirmText: '确定',
       success(res) {
         if (res.confirm) {
+          infoList.splice(index, 1);
+          that.setData({
+            pend_infoList: infoList,
+          });
           wx.cloud.callFunction({
             // 要调用的云函数名称
             name: 'updateUrl',
@@ -238,11 +243,8 @@ Page({
         }
       }
     });
-    infoList.splice(index, 1);
-    this.setData({
-      pend_infoList: infoList,
-    });
-  },
+  },  
+   
   //隐藏标题提示框
   hideTModal(e) {
     this.setData({
