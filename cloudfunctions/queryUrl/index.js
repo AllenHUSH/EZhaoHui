@@ -130,6 +130,7 @@ exports.main = async (event, context) => {
       }
     })
   }else if (event.type == "one"){
+    if(event.salary==0){
     return await db.collection('t_url').where(db.command.and([{
       city: db.RegExp({
         regexp: '.*' + event.city+'.*',
@@ -149,10 +150,7 @@ exports.main = async (event, context) => {
       })
     },
     {
-      info: db.RegExp({
-        regexp: '.*' + event.info + '.*',
-        options: 'i',
-      })
+      salary: db.RegExp
     },
     {
       province: db.RegExp({
@@ -175,7 +173,42 @@ exports.main = async (event, context) => {
       //     options: 'i',
       //   })
       // }
-    ])).get()
+    ])).get()}
+    else{
+      return await db.collection('t_url').where(db.command.and([{
+        city: db.RegExp({
+          regexp: '.*' + event.city + '.*',
+          options: 'i',
+        })
+      },
+      {
+        company: db.RegExp({
+          regexp: '.*' + event.company + '.*',
+          options: 'i',
+        })
+      },
+      {
+        edu_back: db.RegExp({
+          regexp: '.*' + event.edu_back + '.*',
+          options: 'i',
+        })
+      },
+      {
+        province: db.RegExp({
+          regexp: '.*' + event.province + '.*',
+          options: 'i',
+        })
+      },
+      {
+        title: db.RegExp({
+          regexp: '.*' + event.title + '.*',
+          options: 'i',
+        })
+      },
+      {
+        state: event.state
+      }])).get()
+    }
   }else if(event.type == "two"){
     return await db.collection("t_url").where({
       state: event.state,
