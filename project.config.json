@@ -79,18 +79,18 @@
 					"pathName": "packageAdmin/pages/overdue/overdue",
 					"scene": null
 				},
-        {
-          "id": -6,
-          "name": "personnel",
-          "pathName": "packageAdmin/pages/personnel/personnel",
-          "scene": null
-        },
-        {
-          "id": -7,
-          "name": "about",
-          "pathName": "pages/about/about",
-          "scene": null
-        }
+				{
+					"id": -6,
+					"name": "personnel",
+					"pathName": "packageAdmin/pages/personnel/personnel",
+					"scene": null
+				},
+				{
+					"id": -7,
+					"name": "about",
+					"pathName": "pages/about/about",
+					"scene": null
+				}
 			]
 		}
 	}
