@@ -17,20 +17,20 @@
 </view>
 <view class="cu-list sm-border card-menu margin-top radius bg-white">
   <view class="solid-bottom text-lg padding">
-    <text class="text-black">待处理</text>
+    <text class="text-black">未通过</text>
   </view>
   <view class="solid-bottom text-df padding">未通过的链接不能再次通过，只能予以删除。若需通过该链接，请复制后再次提交，进入待处理流程。</view>
 </view>
 <view class="cu-list sm-border card-menu margin-top radius bg-white">
   <view class="solid-bottom text-lg padding">
-    <text class="text-black">未通过</text>
+    <text class="text-black">发布中</text>
   </view>
   <view class="solid-bottom text-df padding">通过且未过期的链接，将展示给用户。 为设定截止日期的链接，则不会自动过期。
 发布中的链接管理员可以修改标签、强制过期（及下架）。 发布中的链接不能被直接删除。</view>
 </view>
 <view class="cu-list sm-border card-menu margin-top margin-bottom radius bg-white">
   <view class="solid-bottom text-lg padding">
-    <text class="text-black">发布中</text>
+    <text class="text-black">已过期</text>
   </view>
   <view class="solid-bottom text-df padding">已过期的链接，管理员可以通过修改截止日期，重新发布。已过期的链接还可以被修改、删除。</view>
 </view>
