@@ -10,8 +10,8 @@ Page({
 		salaryAList: ['不限', "1k-5k", '5k-10k', '10k-15k', '15k-20k', '20k+'],
 		eduList: ['不限', '本科', '研究生'],
 		imgList: [],
-		carousel: false,
-		recommend: false,
+		carousel: false,//当前设置是否是轮播图
+		recommend: false,//当前设置是否是推荐
 		card:{},
 		currentIndex:0
 	},
@@ -52,11 +52,11 @@ Page({
 			end_time: e.detail.card.end_time.split("T")[0],
 			info: e.detail.card.info,
 			menbers: e.detail.card.menbers,
-			picture: e.detail.card.picture ? e.detail.card.picture:"",
+			picture: e.detail.card.picture ? e.detail.card.picture : "",
 			province: e.detail.card.province,
-			title	: e.detail.card.title,
-			salary: e.detail.card.salary ? e.detail.card.salary:0 ,
-			state:2
+			title: e.detail.card.title,
+			salary: e.detail.card.salary ? e.detail.card.salary : 0,
+			state: 2,
 		}
 		this.setData({
 			modalName: "viewModal",
@@ -67,7 +67,7 @@ Page({
 		this.setData({
 			currentIndex: e.detail.index
 		})
-		if (e.detail.card.picture){
+		if (e.detail.card.picture) {
 			this.setData({
 				imgList: [e.detail.card.picture]
 			})
@@ -230,7 +230,6 @@ Page({
 			state: 2,
 			title: this.data.card.title,
 		};
-		console.log(infoList)
 		if (this.data.imgList.length&&(this.data.imgList[0]!=this.data.card.picture)){//说明有新图片上传
 			let nowDate = new Date();
 			// 图像命名 时间戳 + 本身名字
@@ -312,41 +311,40 @@ Page({
 		}
 
 		//设为轮播图
-		if (this.data.carousel) {
-			wx.cloud.callFunction({
-				// 要调用的云函数名称
-				name: 'insertRecommendIV',
-				// 传递给云函数的参数
-				data: {
-					url_id: this.data.card.id
-				},
-				success: res => {
-					console.log(res);
-					console.log(this.data.card.id)
-				},
-				fail: err => {
-					console.log(err);
-				}
-			})
-		};
+			if (this.data.carousel){//设置为轮播
+				wx.cloud.callFunction({
+					// 要调用的云函数名称
+					name: 'insertRecommendIV',
+					// 传递给云函数的参数
+					data: {
+						url_id: this.data.card.id
+					},
+					success: res => {
+						console.log(res);
+						console.log(this.data.card.id)
+					},
+					fail: err => {
+						console.log(err);
+					}
+				})
+			
 		//设为推荐列表
-		if (this.data.recommend) {
-			wx.cloud.callFunction({
-				// 要调用的云函数名称
-				name: 'insertRecommend',
-				// 传递给云函数的参数
-				data: {
-					url_id: this.data.card.id,
-				},
-				success: res => {
-					console.log(res);
-					console.log(this.data.card.id)
-				},
-				fail: err => {
-					// handle error
-					console.log(err);
-				}
-			})
+			if (this.data.recommend){//设置为推荐
+				wx.cloud.callFunction({
+					// 要调用的云函数名称
+					name: 'insertRecommend',
+					// 传递给云函数的参数
+					data: {
+						url_id: this.data.card.id,
+					},
+					success: res => {
+					},
+					fail: err => {
+						throw err;
+					}
+				})
+			}
+			
 		}
 	}
 })

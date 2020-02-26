@@ -135,12 +135,12 @@
 			<!-- 是否推荐为轮播图 -->
 			<view class="cu-form-group">
 				<view class="title">设为轮播</view>
-				<switch bindchange="onCarousel"></switch>
+				<switch bindchange="onCarousel" checked="{{carousel}}"></switch>
 			</view>
 			<!-- 是否设置为推荐图片 -->
 			<view class="cu-form-group margin-bottom">
 				<view class="title">设为推荐</view>
-				<switch bindchange="onRecommend"></switch>
+				<switch bindchange="onRecommend" checked="{{recommend}}"></switch>
 			</view>
 			<button class="cu-btn bg-gradual-red lg margin-bottom" catchtap="onSubmit">提交</button>
 		</view>

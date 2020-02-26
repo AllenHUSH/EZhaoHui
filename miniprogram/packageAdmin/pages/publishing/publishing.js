@@ -12,6 +12,8 @@ Page({
 		imgList: [],
 		carousel: false,
 		recommend: false,
+		beforeCarousel:false,
+		bedoreRecommend:false,
 		card: {},
 		currentIndex: 0//当前正在编辑的卡片
 	},
@@ -42,6 +44,28 @@ Page({
 		})
 	},//显示抽屉
 	editShow(e) {
+		wx.cloud.callFunction({//是否是轮播或者推荐
+			name: "checkRecommend",
+			data: {
+				url_id: e.detail.card._id//传id
+			}
+		}).then(res=>{
+			let carousel1 = res.result.carousel;
+			let recommend1 = res.result.recommend;
+			this.setData({//设置当前轮播状态
+				carousel: carousel1
+			})
+			this.setData({//设置推荐
+				recommend: recommend1
+			})
+			this.setData({//设置之前轮播状态
+				beforeCarousel: carousel1
+			})
+			this.setData({//设置推荐
+				beforeRecommend: recommend1
+			})
+		})
+
 		let currentData = {
 			id: e.detail.card._id,
 			city: e.detail.card.city,
@@ -230,8 +254,6 @@ Page({
 			picture: this.data.imgList[0] ? this.data.imgList[0]:"",
 			state: 2,
 			title: this.data.card.title,
-			url: this.data.card.url,
-			username: this.data.card.username
 		};
 		if (this.data.imgList.length && (this.data.imgList[0] != this.data.card.picture)) {//说明有新图片上传
 			let nowDate = new Date();
@@ -287,9 +309,26 @@ Page({
 					wx.showToast({
 						title: '编辑成功'
 					})
+					let infoList1 = {
+						_id: this.data.card.id,
+						province: this.data.card.province,
+						city: this.data.card.city,
+						company: this.data.card.company ? this.data.card.company : "",
+						create_time: this.data.card.create_time,
+						end_time: this.data.card.end_time,
+						salary: Number(this.data.card.salary),
+						menbers: this.data.card.menbers,
+						edu_back: this.data.card.edu + ' ' + (this.data.card.major ? this.data.card.major : "专业不限"),
+						info: this.data.card.info,
+						picture: this.data.imgList[0] ? this.data.imgList[0] : "",
+						state: 2,
+						title: this.data.card.title,
+						url: this.data.card.url,
+						username: this.data.card.username
+					};
 					let str = "publishingList["+this.data.currentIndex+"]"
 					this.setData({
-						[str]: infoList
+						[str]: infoList1
 					})
 					this.setData({
 						modalName: null
@@ -308,41 +347,66 @@ Page({
 		}
 
 		//设为轮播图
-		if (this.data.carousel) {
-			wx.cloud.callFunction({
-				// 要调用的云函数名称
-				name: 'insertRecommendIV',
-				// 传递给云函数的参数
-				data: {
-					url_id: this.data.card.id
-				},
-				success: res => {
-					console.log(res);
-					console.log(this.data.card.id)
-				},
-				fail: err => {
-					console.log(err);
-				}
-			})
+		if (this.data.carousel != this.data.beforeCarousel) {//设置改变
+			if (this.data.carousel) {//设置为轮播
+				wx.cloud.callFunction({
+					// 要调用的云函数名称
+					name: 'insertRecommendIV',
+					// 传递给云函数的参数
+					data: {
+						url_id: this.data.card.id
+					},
+					success: res => {
+					},
+					fail: err => {
+						console.log(err);
+					}
+				})
+			} else {//取消轮播
+				wx.cloud.callFunction({
+					name: "deleteRecommendIV",
+					data: {
+						url_id: this.data.card.id
+					},
+					success: res => {
+					},
+					fail: err => {
+						throw err;
+					}
+				})
+			}
+
 		};
 		//设为推荐列表
-		if (this.data.recommend) {
-			wx.cloud.callFunction({
-				// 要调用的云函数名称
-				name: 'insertRecommend',
-				// 传递给云函数的参数
-				data: {
-					url_id: this.data.card.id,
-				},
-				success: res => {
-					console.log(res);
-					console.log(this.data.card.id)
-				},
-				fail: err => {
-					// handle error
-					console.log(err);
-				}
-			})
+		if (this.data.recommend != this.data.beforeRecommend) {//设置是否是推荐改变
+			if (this.data.recommend) {//设置为推荐
+				wx.cloud.callFunction({
+					// 要调用的云函数名称
+					name: 'insertRecommend',
+					// 传递给云函数的参数
+					data: {
+						url_id: this.data.card.id,
+					},
+					success: res => {
+					},
+					fail: err => {
+						throw err;
+					}
+				})
+			} else {//取消推荐
+				wx.cloud.callFunction({
+					name: "deleteRecommend",
+					data: {
+						url_id: this.data.card.id
+					},
+					success: res => {
+					},
+					fail: err => {
+						throw err;
+					}
+				})
+			}
+
 		}
 	}
 })
