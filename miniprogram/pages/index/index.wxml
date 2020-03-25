@@ -1,5 +1,4 @@
 <image style="width:100%" mode="widthFix" src="../../images/nav_index.png"></image>
-
 <swiper wx:if="{{swiperList.length}}" class="card-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
     <swiper-item wx:for="{{swiperList}}" wx:key="item" class="{{cardCur==index?'cur':''}}">
         <view class="swiper-item">
