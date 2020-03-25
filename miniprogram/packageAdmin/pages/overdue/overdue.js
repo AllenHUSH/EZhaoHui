@@ -239,7 +239,6 @@ Page({
 				cloudPath,
 				filePath,
 				success: res => {
-					console.log('[上传文件] 成功：', cloudPath, res, res.fileID);
 					// 成功则将表单推送到后台，因为图像传的比较慢，而表单里有picture，所以图像传成功之后传表单
 					infoList.picture = res.fileID;
 					wx.cloud.callFunction({

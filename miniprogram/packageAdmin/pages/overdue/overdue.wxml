@@ -9,7 +9,7 @@
 	<view class="content">
 		<view 
 			wx:if="{{!overdueList.length}}"
-			class="text-xl padding"
+			class="text-xl padding text"
 		>
 			<text class="text-black text-bold">暂无过期数据哦 !</text>
 		</view>

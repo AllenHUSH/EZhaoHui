@@ -1,0 +1,27 @@
+<cu-custom bgColor="bg-gradual-red" isBack="{{true}}">
+    <view slot="content">多条上传</view>
+</cu-custom>
+<view class="box">
+<!--    <view class="cu-bar btn-group">-->
+<!--    </view>-->
+    <view class="cu-bar btn-group" hidden="{{bool}}">
+        <button class="cu-btn text-green line-green round shadow upload"
+            bindtap="upload"
+        >点击上传Excel</button>
+    </view>
+    <view class="cu-bar btn-group" hidden="{{!bool}}">
+        <button class="cu-btn text-orange line-orange round shadow upload"
+                bindtap="cancel"
+        >取消</button>
+    </view>
+    <view class="cu-bar btn-group" hidden="{{!bool}}">
+        <view class="text solid-bottom text-lg padding shadow">
+            {{url}}
+        </view>
+    </view>
+    <view class="cu-bar btn-group">
+        <button class="cu-btn bg-blue shadow-blur round submit"
+                bindtap="submit"
+        >提交</button>
+    </view>
+</view>

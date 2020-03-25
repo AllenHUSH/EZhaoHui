@@ -17,7 +17,8 @@
 				"pages/serviceManual/serviceManual",
 				"pages/personnel/personnel",
 				"pages/publishing/publishing",
-				"pages/showArticle/showArticle"
+				"pages/showArticle/showArticle",
+				"pages/upload/upload"
 			]
 		}
 	],

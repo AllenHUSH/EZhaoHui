@@ -1,0 +1,33 @@
+page{
+    background-color: #fff;
+}
+.box {
+    margin: 20rpx 0;
+    width: 100%!important;
+}
+
+.box view.cu-bar {
+    margin-top: 10rpx;
+}
+.box view.cu-bar .cu-btn{
+    max-height: 78rpx;
+    min-height: 78rpx!important;
+    max-width: 80%!important;
+}
+.box view.cu-bar .cu-btn.upload{
+    background-color: #fff!important;
+}
+.text{
+    padding: 20rpx;
+    max-height: 78rpx;
+    min-height: 78rpx!important;
+    max-width: 80%!important;
+    min-width: 80%!important;
+    line-height: 38rpx;
+    overflow: hidden;
+    white-space: nowrap; /*不换行*/
+    text-overflow: ellipsis;
+    background-color: #fff!important;
+    color: #424242;
+    radius:8rpx;
+}

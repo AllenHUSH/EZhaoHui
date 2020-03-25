@@ -13,6 +13,13 @@ Page({
         url: "/packageAdmin/pages/pending/pending"
       },
       {
+        title: '多条上传',
+        name: 'upload',
+        color: 'orange',
+        icon: 'file',
+        url: "/packageAdmin/pages/upload/upload"
+      },
+      {
         title: '未通过',
         name: 'not pass',
         color: 'blue',
