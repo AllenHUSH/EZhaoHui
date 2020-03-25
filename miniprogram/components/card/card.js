@@ -30,18 +30,17 @@ Component({
     methods: {
         //长按复制
         copyUrl(event) {
-            var url = event.currentTarget.dataset.url;
             if(this.data.judge){
 	            app.globalData.url = this.properties.card.url;
 				wx.navigateTo({url:"../showArticle/showArticle"})
             }else {
 	            wx.setClipboardData({
-		            data: this.data.card.url,//推送链接
+		            data: this.data.properties.url,//推送链接
 		            success: function (res) {
 			            wx.getClipboardData({
 				            success: function (res) {
 					            wx.showToast({
-						            title: '由于不是公众号内文章无法跳转，已复制链接'
+						            title: '已复制链接'
 					            })
 				            }
 			            })

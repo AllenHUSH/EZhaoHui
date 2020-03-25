@@ -1,4 +1,5 @@
 // components/overdueCard/overdueCard.js
+let app = getApp();
 Component({
 	/**
 	 * 组件的属性列表
@@ -17,12 +18,18 @@ Component({
 	 * 组件的初始数据
 	 */
 	data: {
-		
+		judge:false
 	},
 
 	/**
 	 * 组件的方法列表
 	 */
+	attached(){
+		let reg = /https:\/\/open.work.weixin.qq.com\/wwopen\//g;
+		this.setData({
+			judge:reg.test(this.properties.card.url)
+		})
+	},
 	methods: {
 		// ListTouch触摸开始
 		ListTouchStart(e) {
@@ -52,21 +59,29 @@ Component({
 			this.setData({
 				ListTouchDirection: null
 			})
+
 		},
 		copyUrl(){
-			wx.setClipboardData({
-				data: this.properties.card.url,//推送链接
-				success: function (res) {
-					wx.getClipboardData({
-						success: function (res) {
-							wx.showToast({
-								title: '复制链接成功'
-							})
-						}
-					})
-				}
-			})
+			if(this.data.judge){
+				app.globalData.url = this.properties.card.url;
+				wx.navigateTo({url:"../showArticle/showArticle"})
+			}else {
+				wx.setClipboardData({
+					data: this.properties.card.url,//推送链接
+					success: function (res) {
+						wx.getClipboardData({
+							success: function (res) {
+								wx.showToast({
+									title: '已复制链接'
+								})
+							}
+						})
+					}
+
+				})
+			}
 		},
+		//删除
 		onDelete(e) {
 			let id = this.properties.card._id;
 			if (this.properties.card.state===3){//删除
@@ -151,8 +166,10 @@ Component({
 			}
 			
 		},
+		//修改
 		onChange(e){
 			this.triggerEvent('editShow', { card:this.properties.card, index:this.properties.index })
-		}
+		},
+
 	}
 })

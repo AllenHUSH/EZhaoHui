@@ -1,6 +1,6 @@
 <!--components/overdueCard/overdueCard.wxml-->
 <view class="card bg-white padding-sm"
-	bindlongtap="copyUrl"
+	bindtap="copyUrl"
 >
 	<image class="bg" wx:if="{{card.picture}}" src="{{card.picture}}"></image>
 	<view class="result-title text-black text-bold text-xl">{{card.title}}</view><!-- 标题 -->

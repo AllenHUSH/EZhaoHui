@@ -9,7 +9,9 @@
 				<text class="text-black text-bold">暂无pending数据 !</text>
 			</view>
 	<view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg" wx:else>
-		<view  class="cu-item arrow {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{pend_infoList}}" wx:for-item="item" wx:key="index" catchtap="onLongpress" bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}" data-url="{{item.url}}" wx:if="{{item.url}}">
+		<view  class="cu-item arrow {{modalName=='move-box-'+ index?'move-cur':''}}"
+			   wx:for="{{pend_infoList}}"
+			   catchtap="onLongpress" bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}" data-url="{{item.url}}" wx:if="{{item.url}}">
 			<view class="content" >
 				<text class="cuIcon-discoverfill text-grey"></text>
 				<text class="text-gray pend-url">{{item.url}}</text>
