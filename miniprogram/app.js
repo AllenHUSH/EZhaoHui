@@ -26,5 +26,7 @@ App({
       }
     })
   },
-
+  globalData:{
+    url:""
+  }
 })

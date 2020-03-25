@@ -1,0 +1,2 @@
+<!--miniprogram/pages/showArticle/showArticle.wxml-->
+<article url="{{url}}"></article>

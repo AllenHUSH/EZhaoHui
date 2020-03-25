@@ -3,7 +3,8 @@
 		"pages/index/index",
 		"pages/about/about",
 		"pages/result/result",
-		"components/card/card"
+		"components/card/card",
+		"pages/showArticle/showArticle"
 	],
 	"subpackages": [
 		{
@@ -15,7 +16,8 @@
 				"pages/overdue/overdue",
 				"pages/serviceManual/serviceManual",
 				"pages/personnel/personnel",
-				"pages/publishing/publishing"
+				"pages/publishing/publishing",
+				"pages/showArticle/showArticle"
 			]
 		}
 	],
@@ -31,7 +33,8 @@
 		"cu-custom": "/colorui/components/cu-custom",
 		"searchForm": "/components/searchForm/searchForm",
 		"card": "/components/card/card",
-		"overdueCard": "/components/overdueCard/overdueCard"
+		"overdueCard": "/components/overdueCard/overdueCard",
+		"article": "/components/article/article"
 	},
 	"sitemapLocation": "sitemap.json",
 	"style": "v2",

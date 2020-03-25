@@ -1,0 +1,2 @@
+<!--components/article/article.wxml-->
+<web-view src="{{url}}"></web-view>
