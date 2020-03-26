@@ -71,17 +71,14 @@ Page({
 				filePath:this.data.path,
 				success:(res)=>{
 					let fileId = res.fileID;
-					console.log(res)
-					wx.showToast({
-						title:"上传成功"
-					})
+					
 					this.setData({
 						bool:false,
 						url:"",
 						path:""
 					})
 					wx.cloud.callFunction({
-						name:"",
+						name:"readExcel",
 						data:{
 							openid:this.data.openId,
 							fileID:fileId
@@ -89,8 +86,10 @@ Page({
 					}).then((res)=>{
 						console.log(res)
 						wx.showToast({
-							title:"解析成功"
+							title: "上传成功"
 						})
+					}).catch(err=>{
+						throw err;
 					})
 				},
 				fail:err=>{
