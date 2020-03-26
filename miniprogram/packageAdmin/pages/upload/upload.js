@@ -7,14 +7,15 @@ Page({
 	data: {
 		bool:false,
 		url:"",
-		path:""
+		path:"",
+		openId:""
 	},
 
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
-	onLoad: function (options) {
-
+	onLoad:function(){
+		this.getOpenid();
 	},
 	upload(){
 		console.log(111)
@@ -23,11 +24,11 @@ Page({
 			type:"file",
 			success:(res)=>{
 				let path = res.tempFiles[0].path;
-				let reg = /.(xlsx|xls|csv)/g;
+				// let reg = /.(xlsx|xls|csv)/g;
+				let reg = /.(xlsx)/g;
 				this.setData({
 					bool:reg.test(path)
 				})
-				console.log(res)
 				if(this.data.bool){
 					this.setData({
 						url:res.tempFiles[0].name
@@ -40,6 +41,17 @@ Page({
 				}
 			}
 		})
+	},
+	getOpenid() {
+		wx.cloud.callFunction({
+			name: 'getOpenid',
+			complete: res => {
+				let openId = res.result.openId;
+				this.setData({
+					openId: openId
+				})
+			}
+		});
 	},
 	cancel(){// 取消上传
 		this.setData({
@@ -58,6 +70,8 @@ Page({
 				cloudPath:`ExcelFile/${new Date().getTime()}${this.data.url}`,
 				filePath:this.data.path,
 				success:(res)=>{
+					let fileId = res.fileID;
+					console.log(res)
 					wx.showToast({
 						title:"上传成功"
 					})
@@ -65,6 +79,18 @@ Page({
 						bool:false,
 						url:"",
 						path:""
+					})
+					wx.cloud.callFunction({
+						name:"",
+						data:{
+							openid:this.data.openId,
+							fileID:fileId
+						}
+					}).then((res)=>{
+						console.log(res)
+						wx.showToast({
+							title:"解析成功"
+						})
 					})
 				},
 				fail:err=>{
